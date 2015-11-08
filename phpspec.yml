@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Stellar
+        psr4_prefix: Stellar
+        src_path: app
