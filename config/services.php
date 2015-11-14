@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => Stellar\User::class,
+        'model'  => Stellar\Player::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

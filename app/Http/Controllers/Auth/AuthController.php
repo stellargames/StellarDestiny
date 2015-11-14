@@ -2,7 +2,7 @@
 
 namespace Stellar\Http\Controllers\Auth;
 
-use Stellar\User;
+use Stellar\Player;
 use Validator;
 use Stellar\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -42,9 +42,9 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'name' => 'required|max:64',
+            'email' => 'required|email|max:255|unique:players',
+            'password' => 'required|confirmed|min:8',
         ]);
     }
 
@@ -52,11 +52,11 @@ class AuthController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return Player
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Player::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
