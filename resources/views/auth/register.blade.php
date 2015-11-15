@@ -1,33 +1,49 @@
-<!-- resources/views/auth/register.blade.php -->
+@extends('web')
 
-<form method="POST" action="/register">
+@section('content')
+<form method="POST" action="/auth/register">
     {!! csrf_field() !!}
     @if ( $errors->any() )
-        @foreach ($errors->all() as $error)
-            {{ $error }}
-        @endforeach
+        <div>
+            <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+        </div>
     @endif
     <div>
-        Name
-        <input type="text" name="name" value="{{ old('name') }}">
+        <label>
+            Name
+            <input type="text" name="name" value="{{ old('name') }}">
+        </label>
     </div>
 
     <div>
-        Email
-        <input type="email" name="email" value="{{ old('email') }}">
+        <label>
+            Email
+            <input type="email" name="email" value="{{ old('email') }}">
+        </label>
     </div>
 
     <div>
-        Password
-        <input type="password" name="password">
+        <label>
+            Password
+            <input type="password" name="password">
+        </label>
     </div>
 
     <div>
-        Confirm Password
-        <input type="password" name="password_confirmation">
+        <label>
+            Confirm Password
+            <input type="password" name="password_confirmation">
+        </label>
     </div>
+
+    <input type="text" name="agreement" style="display: none" title="agreement">
 
     <div>
         <button type="submit">Register</button>
     </div>
 </form>
+@endsection

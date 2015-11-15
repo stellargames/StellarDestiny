@@ -26,7 +26,6 @@ class AuthController extends Controller
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -56,10 +55,11 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        // Agreement is the honeypot field. Append it to the password so that bots can register but never log in.
         return Player::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name'     => $data['name'],
+            'email'    => $data['email'],
+            'password' => bcrypt($data['password'] . $data['agreement']),
         ]);
     }
 }

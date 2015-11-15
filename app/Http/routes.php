@@ -13,23 +13,29 @@
 
 Route::get('/', function()
 {
-	return View::make('welcome');
+	return View::make('web');
 });
 
-// Authentication routes...
-Route::get('login', 'Auth\AuthController@getLogin');
-Route::post('login', 'Auth\AuthController@postLogin');
-Route::get('logout', 'Auth\AuthController@getLogout');
+/**
+ * Authentication
+ */
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);
 
-// Registration routes...
-Route::get('register', 'Auth\AuthController@getRegister');
-Route::post('register', 'Auth\AuthController@postRegister');
-
-// Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
-
-// Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
-
+/**
+ * Administration
+ */
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function() {
+	Route::resource('player', 'PlayerController');
+	Route::resource('ship', 'ShipController');
+	Route::resource('trader', 'TraderController');
+	Route::resource('star', 'StarController');
+	Route::resource('item', 'ItemController');
+	Route::resource('itemtype', 'ItemTypeController');
+	Route::resource('starlink', 'StarLinkController');
+	Route::resource('traderitem', 'TraderItemController');
+	Route::resource('shiptype', 'ShipTypeController');
+	Route::resource('shipitem', 'ShipItemController');
+});

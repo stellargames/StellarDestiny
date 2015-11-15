@@ -2,6 +2,7 @@
 
 namespace Stellar\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
@@ -17,8 +18,7 @@ class Authenticate
     /**
      * Create a new filter instance.
      *
-     * @param  Guard  $auth
-     * @return void
+     * @param  Guard $auth
      */
     public function __construct(Guard $auth)
     {
@@ -28,11 +28,13 @@ class Authenticate
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure                 $next
+     * @param  string               $role
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role = null)
     {
         if ($this->auth->guest()) {
             if ($request->ajax()) {
@@ -40,6 +42,10 @@ class Authenticate
             } else {
                 return redirect()->guest('auth/login');
             }
+        }
+        // Deny access to non-admin users when an admin role is required.
+        if ($role && !Auth::user()->hasRole($role)) {
+            return response('Unauthorized.', 403);
         }
 
         return $next($request);
