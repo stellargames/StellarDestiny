@@ -3,22 +3,22 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateItemsTable extends Migration {
+class CreateShipTypesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('items', function(Blueprint $table) {
+		Schema::create('ship_types', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('name', 64);
 			$table->text('description');
-			$table->integer('value');
-			$table->integer('type')->unsigned();
+			$table->smallInteger('slots')->unsigned();
+			$table->integer('structure')->unsigned();
 			$table->timestamps();
 		});
 	}
 
 	public function down()
 	{
-		Schema::drop('items');
+		Schema::drop('ship_types');
 	}
 }

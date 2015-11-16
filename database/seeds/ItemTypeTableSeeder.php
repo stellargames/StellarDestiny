@@ -38,5 +38,29 @@ class ItemTypeTableSeeder extends Seeder {
 				'name' => 'Jumpstore',
 				'description' => 'Jumpstores are energy storage devices that power the jumps through the starlinks.'
 			));
+
+		// mine
+		ItemType::create(array(
+				'name' => 'Mines',
+				'description' => 'Mines are a cheap way to limit rival movements.'
+			));
+
+		// cargo
+		ItemType::create(array(
+				'name' => 'Cargo Pods',
+				'description' => 'Cargo pods are designed to hold bulk trade goods.'
+			));
+
+		// safe
+		ItemType::create(array(
+				'name' => 'Secure storage',
+				'description' => 'Secure storage can hold only a little but will prevent the contents from falling into the wrong hands.'
+			));
+
+		// sensor
+		ItemType::create(array(
+				'name' => 'Sensors',
+				'description' => 'Sensors and scanner to detect and analyze whatever you may encounter.'
+			));
 	}
 }

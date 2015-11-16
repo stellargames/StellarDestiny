@@ -9,11 +9,13 @@ class CreateShipsTable extends Migration {
 	{
 		Schema::create('ships', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name', 64);
-			$table->integer('energy')->unsigned();
 			$table->integer('player_id')->unsigned();
 			$table->integer('star_id')->unsigned()->nullable();
 			$table->integer('ship_type_id')->unsigned();
+			$table->integer('energy')->unsigned();
+			$table->integer('structure')->unsigned();
+			$table->integer('credits');
+			$table->string('name', 64);
 			$table->timestamps();
 		});
 	}

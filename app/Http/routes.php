@@ -38,4 +38,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
 	Route::resource('traderitem', 'TraderItemController');
 	Route::resource('shiptype', 'ShipTypeController');
 	Route::resource('shipitem', 'ShipItemController');
+	Route::resource('mine', 'MineController');
 });

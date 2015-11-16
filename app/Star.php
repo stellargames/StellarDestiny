@@ -24,4 +24,9 @@ class Star extends Model {
 		return $this->belongsToMany('Star', 'star_links', 'star_id', 'destination')->withTimeStamps();
 	}
 
+	public function mines()
+	{
+		return $this->hasMany('Mine');
+	}
+
 }
