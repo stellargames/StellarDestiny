@@ -68,6 +68,21 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->foreign('star_id')->references('id')->on('stars')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->foreign('player_id')->references('id')->on('players')
+						->onDelete('set null')
+						->onUpdate('set null');
+		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->foreign('item_id')->references('id')->on('items')
+						->onDelete('cascade')
+						->onUpdate('cascade');
+		});
 	}
 
 	public function down()
@@ -107,6 +122,15 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('item_ship', function(Blueprint $table) {
 			$table->dropForeign('item_ship_ship_id_foreign');
+		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->dropForeign('mines_star_id_foreign');
+		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->dropForeign('mines_player_id_foreign');
+		});
+		Schema::table('mines', function(Blueprint $table) {
+			$table->dropForeign('mines_item_id_foreign');
 		});
 	}
 }
