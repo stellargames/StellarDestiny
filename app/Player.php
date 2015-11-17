@@ -3,18 +3,18 @@
 namespace Stellar;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
 /**
  * Class Player
  * @package Stellar
  *
- * @property int $status
+ * @property int    $status
  * @property string $name
  */
 class Player extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
@@ -53,20 +53,33 @@ class Player extends Model implements AuthenticatableContract, AuthorizableContr
 
 
     /**
+     * The faction the player belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function faction()
+    {
+        return $this->belongsTo('Faction');
+    }
+
+
+    /**
      * Check if this user has a role.
      *
      * @param $role
      *
      * @return bool
      */
-    public function hasRole($role) {
+    public function hasRole($role)
+    {
         switch ($role) {
             case 'admin':
                 $has_role = $this->status == 1;
                 break;
             default:
-                $has_role = FALSE;
+                $has_role = false;
         }
+
         return $has_role;
     }
 

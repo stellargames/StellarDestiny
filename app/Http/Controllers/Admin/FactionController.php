@@ -2,7 +2,7 @@
 
 use Response;
 
-class MineController extends AdminController
+class FactionController extends AdminController
 {
 
     /**
