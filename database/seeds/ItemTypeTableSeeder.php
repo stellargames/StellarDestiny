@@ -7,8 +7,6 @@ class ItemTypeTableSeeder extends Seeder {
 
 	public function run()
 	{
-		//DB::table('item_types')->delete();
-
 		// armor
 		ItemType::create(array(
 				'name' => 'Armor',

@@ -5,6 +5,7 @@ namespace Stellar\Http\Middleware;
 use Auth;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Http\Request;
 
 class Authenticate
 {
@@ -34,7 +35,7 @@ class Authenticate
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $role = null)
+    public function handle(Request $request, Closure $next, $role = null)
     {
         if ($this->auth->guest()) {
             if ($request->ajax()) {
