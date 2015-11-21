@@ -12,6 +12,7 @@ TODO: add a Todo list of stuff to do when volunteers show interest.
 
 
 ### Build status
+[![Build Status](https://travis-ci.org/stellargames/StellarDestiny.svg?branch=master)](https://travis-ci.org/stellargames/StellarDestiny) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/cb269cfd-5718-4bc1-937b-25dfa6863a18/mini.png)](https://insight.sensiolabs.com/projects/cb269cfd-5718-4bc1-937b-25dfa6863a18)
 [![Code Climate](https://codeclimate.com/github/stellargames/StellarDestiny/badges/gpa.svg)](https://codeclimate.com/github/stellargames/StellarDestiny) [![Test Coverage](https://codeclimate.com/github/stellargames/StellarDestiny/badges/coverage.svg)](https://codeclimate.com/github/stellargames/StellarDestiny/coverage) [![Issue Count](https://codeclimate.com/github/stellargames/StellarDestiny/badges/issue_count.svg)](https://codeclimate.com/github/stellargames/StellarDestiny)
 
 

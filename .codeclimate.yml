@@ -15,5 +15,6 @@ ratings:
 exclude_paths:
 - config/**/*
 - tests/**/*
+- database/migrations/*
 - _ide_helper.php
 - c3.php

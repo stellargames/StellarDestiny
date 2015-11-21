@@ -26,19 +26,17 @@ branches:
 
 install:
   - mysql -e 'create database stellardestiny;'
-  - cp .env.travis .env
   - travis_retry composer self-update
-  - travis_retry composer install --prefer-source --no-interaction --dev
+  - travis_retry composer install --prefer-source --no-interaction
   - chmod -R 777 storage/
   - php artisan migrate
   - php artisan db:seed
   - php -S localhost:8000 -t public &
   - sleep 5 # give artisan serve some time to start
-  - php vendor/bin/codecept build
-  - cp tests/acceptance.suite.yml.ci tests/acceptance.suite.yml #copy over CI acceptance test configuration
+  - vendor/bin/codecept build
 
 script:
-  - php vendor/bin/codecept run --report --coverage-xml
+  - vendor/bin/codecept run --env travis
 
 addons:
     code_climate:
