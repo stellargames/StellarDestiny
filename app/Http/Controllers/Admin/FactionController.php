@@ -90,5 +90,3 @@ class FactionController extends AdminController
     }
 
 }
-
-?>

@@ -90,5 +90,3 @@ class StarController extends AdminController
     }
 
 }
-
-?>

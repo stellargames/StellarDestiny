@@ -15,3 +15,4 @@ class Item extends Model {
 	}
 
 }
+

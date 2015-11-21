@@ -90,5 +90,3 @@ class StarLinkController extends AdminController
     }
 
 }
-
-?>

@@ -90,5 +90,3 @@ class ShipController extends AdminController
     }
 
 }
-
-?>

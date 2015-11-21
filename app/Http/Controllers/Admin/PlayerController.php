@@ -90,5 +90,3 @@ class PlayerController extends AdminController
     }
 
 }
-
-?>

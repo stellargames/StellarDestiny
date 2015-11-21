@@ -90,5 +90,3 @@ class TraderController extends AdminController
     }
 
 }
-
-?>

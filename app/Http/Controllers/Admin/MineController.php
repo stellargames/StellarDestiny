@@ -90,5 +90,3 @@ class MineController extends AdminController
     }
 
 }
-
-?>

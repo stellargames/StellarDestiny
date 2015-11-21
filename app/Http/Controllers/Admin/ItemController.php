@@ -90,5 +90,3 @@ class ItemController extends AdminController
     }
 
 }
-
-?>
