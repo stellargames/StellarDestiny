@@ -1,25 +1,28 @@
 language: php
 
 php:
-  - 5.5
   - 5.6
   - 7.0
-  - hhvm
 
 env:
   global:
-    - setup=basic
+    - APP_ENV=test
+    - APP_DEBUG=false
+    - APP_KEY=Tpk0wmVgmVvqMHIRGWgk1PTLvyCqs23e
+    - DB_HOST=localhost
+    - DB_DATABASE=stellardestiny
+    - DB_USERNAME=root
+    - DB_PASSWORD=
+    - CACHE_DRIVER=file
+    - SESSION_DRIVER=file
+    - QUEUE_DRIVER=sync
 
 matrix:
-  allow_failures:
-    - php: hhvm
   fast_finish: true
 
 branches:
   only:
     - master
-
-sudo: false
 
 install:
   - mysql -e 'create database stellardestiny;'

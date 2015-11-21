@@ -16,3 +16,4 @@ exclude_paths:
 - config/**/*
 - tests/**/*
 - _ide_helper.php
+- c3.php

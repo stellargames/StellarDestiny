@@ -15,12 +15,7 @@ extensions:
 modules:
     enabled:
         - PhpBrowser
-#        - WebHelper
         - Laravel5
-#        - Mockery
-    config:
-        PhpBrowser:
-            url: 'http://stellardestiny.app'
 coverage:
     enabled: true
     remote: false
