@@ -17,6 +17,10 @@ env:
     - SESSION_DRIVER=file
     - QUEUE_DRIVER=sync
 
+addons:
+    code_climate:
+        repo_token: 9dc9de1806a63d84f4ea92fa303e30cee43d1e12c7e25f61530b96e38b2c2564
+
 matrix:
   fast_finish: true
 
@@ -36,13 +40,10 @@ install:
   - vendor/bin/codecept build
 
 script:
-  - vendor/bin/codecept run --env travis --coverage-xml=build/logs/clover.xml
-
-addons:
-    code_climate:
-        repo_token: 9dc9de1806a63d84f4ea92fa303e30cee43d1e12c7e25f61530b96e38b2c2564
+  - vendor/bin/codecept run --env travis
 
 after_script:
+  - phpunit --coverage-clover build/logs/clover.xml
   - vendor/bin/test-reporter
 
 after_failure:
