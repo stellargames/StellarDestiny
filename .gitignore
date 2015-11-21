@@ -4,4 +4,5 @@ Homestead.yaml
 Homestead.json
 .env
 
-tests/_output/
+/tests/_output/
+/tests/_support/_generated

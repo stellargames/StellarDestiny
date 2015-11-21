@@ -36,7 +36,7 @@ install:
   - vendor/bin/codecept build
 
 script:
-  - vendor/bin/codecept run --env travis
+  - vendor/bin/codecept run --env travis --coverage-xml=build/logs/clover.xml
 
 addons:
     code_climate:

@@ -13,7 +13,7 @@ class AddFactionsToPlayersTable extends Migration
     public function up()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->integer('faction_id')->unsigned();
+            $table->integer('faction_id')->unsigned()->nullable();
         });
         Schema::table('players', function(Blueprint $table) {
             $table->foreign('faction_id')->references('id')->on('factions')
