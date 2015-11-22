@@ -47,10 +47,10 @@ install:
   - vendor/bin/codecept build
 
 script:
-  - vendor/bin/codecept run --report --coverage-xml=build/logs/clover.xml --env=travis
+  - vendor/bin/codecept run --report --coverage-xml --env=travis
 
 after_script:
-  - vendor/bin/test-reporter
+  - vendor/bin/test-reporter --coverage-report=./tests/_output/coverage.xml
 
 after_failure:
   - cat storage/logs/laravel.log
