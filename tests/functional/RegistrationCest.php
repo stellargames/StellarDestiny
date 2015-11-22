@@ -12,8 +12,6 @@ class RegistrationCest
             'name'       => 'Tester',
             'email'      => 'tester@stellardestiny.online',
             'password'   => 'password',
-            'created_at' => new DateTime(),
-            'updated_at' => new DateTime(),
         ];
 
         $I->amOnPage('/');
@@ -74,6 +72,24 @@ class RegistrationCest
             'email' => $this->tester['email'],
         ]);
         $I->seeAuthentication();
+    }
+
+    public function testSpamRegistration(FunctionalTester $I)
+    {
+        $I->fillField('name', $this->tester['name']);
+        $I->fillField('email', $this->tester['email']);
+        $I->fillField('password', $this->tester['password']);
+        $I->fillField('password_confirmation', $this->tester['password']);
+        $I->fillField('agreement', 'yes');
+        $I->click('Register', 'button');
+        $I->dontSeeFormErrors();
+        $I->click('Logout');
+        $I->click('Login');
+        $I->fillField('email', $this->tester['email']);
+        $I->fillField('password', $this->tester['password']);
+        $I->click('Login', 'button');
+        $I->seeFormHasErrors();
+        $I->dontSeeAuthentication();
     }
 
 }
