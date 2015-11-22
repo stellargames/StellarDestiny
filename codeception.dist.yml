@@ -18,7 +18,6 @@ modules:
         - Laravel5
 coverage:
     enabled: true
-    remote: false
     whitelist:
         include:
             - app/*

@@ -36,14 +36,13 @@ install:
   - php artisan migrate
   - php artisan db:seed
   - php -S localhost:8000 -t public &
-  - sleep 5 # give artisan serve some time to start
+  - sleep 5
   - vendor/bin/codecept build
 
 script:
-  - vendor/bin/codecept run --env travis
+  - vendor/bin/codecept run --report --coverage-xml=build/logs/clover.xml --env travis
 
 after_script:
-  - phpunit --coverage-clover build/logs/clover.xml
   - vendor/bin/test-reporter
 
 after_failure:

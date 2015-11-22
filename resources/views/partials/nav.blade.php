@@ -10,7 +10,7 @@
                 <li><a href="{{ url('/auth/register') }}">Register</a></li>
             @else
                 <li>
-                    <a href="#">{{ Auth::user()->name }}</a>
+                    Logged in as <a href="#">{{ Auth::user()->name }}</a>
                     <ul>
                         <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
                     </ul>
