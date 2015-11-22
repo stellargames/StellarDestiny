@@ -10,3 +10,4 @@ modules:
         - PhpBrowser:
             url: http://stellardestiny.app
         - \Helper\Acceptance
+

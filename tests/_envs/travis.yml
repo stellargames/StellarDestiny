@@ -1,5 +1,7 @@
 # `travis` environment config goes here
 modules:
-    config:
-        PhpBrowser:
+    enabled:
+        - PhpBrowser:
             url: http://localhost:8000
+        - Laravel5
+        - Asserts

@@ -16,8 +16,10 @@ modules:
     enabled:
         - PhpBrowser
         - Laravel5
+        - Asserts
 coverage:
     enabled: true
+    remote: true
     whitelist:
         include:
             - app/*
