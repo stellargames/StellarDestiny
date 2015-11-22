@@ -50,7 +50,7 @@ class RegistrationCest
 
     public function testDuplicateEmail(FunctionalTester $I)
     {
-        $I->haveRecord('players', [
+        $I->haveRecord('users', [
             'email' => $this->tester['email'],
         ]);
         $I->fillField('email', $this->tester['email']);
@@ -67,7 +67,7 @@ class RegistrationCest
         $I->fillField('password_confirmation', $this->tester['password']);
         $I->click('Register', 'button');
         $I->dontSeeFormErrors();
-        $I->seeRecord('players', [
+        $I->seeRecord('users', [
             'name'  => $this->tester['name'],
             'email' => $this->tester['email'],
         ]);

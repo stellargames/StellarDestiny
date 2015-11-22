@@ -41,7 +41,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
  * Administration
  */
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function() {
-	Route::resource('player', 'PlayerController');
+	Route::resource('user', 'UserController');
 	Route::resource('ship', 'ShipController');
 	Route::resource('trader', 'TraderController');
 	Route::resource('star', 'StarController');

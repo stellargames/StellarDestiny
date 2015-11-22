@@ -2,7 +2,7 @@
 
 use Response;
 
-class PlayerController extends AdminController
+class UserController extends AdminController
 {
 
     /**

@@ -11,18 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 /**
- * Class Player
+ * Class User
  * @package Stellar
  *
  * @property int    $status
  * @property string $name
  */
-class Player extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
 
     use Authenticatable, Authorizable, CanResetPassword;
 
-    protected $table = 'players';
+    protected $table = 'users';
 
     public $timestamps = true;
 

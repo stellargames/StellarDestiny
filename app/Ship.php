@@ -11,7 +11,7 @@ class Ship extends Model {
 
 	public function owner()
 	{
-		return $this->belongsTo('Player');
+		return $this->belongsTo('User');
 	}
 
 	public function location()

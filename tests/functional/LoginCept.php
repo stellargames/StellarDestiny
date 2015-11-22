@@ -1,7 +1,7 @@
 <?php
 $I = new FunctionalTester($scenario);
 $I->wantTo('login as a player');
-$I->haveRecord('players', [
+$I->haveRecord('users', [
     'name' =>  'John Doe',
     'email' =>  'john@doe.com',
     'password' => bcrypt('password'),
@@ -17,7 +17,7 @@ $I->seeCurrentUrlEquals('');
 $I->seeAuthentication();
 $I->see('Logged in as John Doe');
 
-$I->amOnPage('/admin/player');
+$I->amOnPage('/admin/user');
 $I->seeResponseCodeIs(403);
 
 $I->amOnPage('/');
