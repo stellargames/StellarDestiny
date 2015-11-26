@@ -56,3 +56,11 @@ after_script:
 after_failure:
   - cat storage/logs/laravel.log
   - cat tests/_output/*
+
+notifications:
+  webhooks:
+    urls:
+      - http://stellardestiny.online/deploy
+    on_success: always
+    on_failure: never
+    on_start: never
