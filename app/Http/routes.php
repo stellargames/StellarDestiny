@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('web');
+Route::get('/', function () {
+    return View::make('web');
 });
 
 /**
@@ -36,19 +35,22 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
-
 /**
  * Administration
  */
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function() {
-	Route::resource('user', 'UserController');
-	Route::resource('ship', 'ShipController');
-	Route::resource('trader', 'TraderController');
-	Route::resource('star', 'StarController');
-	Route::resource('item', 'ItemController');
-	Route::resource('itemtype', 'ItemTypeController');
-	Route::resource('starlink', 'StarLinkController');
-	Route::resource('shiptype', 'ShipTypeController');
-	Route::resource('mine', 'MineController');
-	Route::resource('faction', 'FactionController');
+Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin' ], function () {
+    Route::resource('user', 'UserController');
+    Route::resource('ship', 'ShipController');
+    Route::resource('trader', 'TraderController');
+    Route::resource('star', 'StarController');
+    Route::resource('item', 'ItemController');
+    Route::resource('itemtype', 'ItemTypeController');
+    Route::resource('starlink', 'StarLinkController');
+    Route::resource('shiptype', 'ShipTypeController');
+    Route::resource('mine', 'MineController');
+    Route::resource('faction', 'FactionController');
+});
+
+Route::post('deploy', function () {
+    File::append(storage_path('logs/deploy.log'), var_export(Input::all(), true));
 });

@@ -19,7 +19,6 @@ modules:
         - Asserts
 coverage:
     enabled: true
-    remote: true
     whitelist:
         include:
             - app/*

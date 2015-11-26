@@ -144,12 +144,6 @@ return [
         Stellar\Providers\AuthServiceProvider::class,
         Stellar\Providers\EventServiceProvider::class,
         Stellar\Providers\RouteServiceProvider::class,
-
-        /*
-         * Development helpers.
-         */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
     ],
 
     /*

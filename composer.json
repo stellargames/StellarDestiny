@@ -39,7 +39,6 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "Codeception\\c3\\Installer::copyC3ToRoot",
       "php artisan clear-compiled",
       "php artisan optimize"
     ],
