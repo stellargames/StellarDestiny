@@ -11,6 +11,10 @@ cache:
     - vendor
     - $HOME/.composer/cache
 
+addons:
+  code_climate:
+    repo_token: 9dc9de1806a63d84f4ea92fa303e30cee43d1e12c7e25f61530b96e38b2c2564
+
 env:
   global:
     - APP_ENV=test
@@ -23,10 +27,7 @@ env:
     - CACHE_DRIVER=file
     - SESSION_DRIVER=file
     - QUEUE_DRIVER=sync
-
-addons:
-    code_climate:
-        repo_token: 9dc9de1806a63d84f4ea92fa303e30cee43d1e12c7e25f61530b96e38b2c2564
+    - secure: EqGY1F3RQHC/fapHJ/fHD9TqBjqM8Od+yGu0qwCNny8NvqKZbB26rd+HBAr+XCLa4UMspIJ/X4prk+QZ5xuEFkVD6VjsCict4gODefBBv5QzzLz14frAqqgMrkHKzUAZiltXoELw+RAVAxtWnGRUdY6tiX9PYE0j+6slVHuWwi0flcVkplON9RnB6MmvaekOx3uGezMntk2AQX8E5Ewb8kWzu4ptIOu1EyF0N0WM0GecGvu5aBwnSs8PyeLSuuGEnyViMGZTZGPnVYb/Rzvg0nPWy+AX9LccdHvS7v8o+19D/r2qeG29ZYw1FopnQ03cMjJaCXGZFZPlGSRZkcvUgsVVIsy9FkcB6cm7iH0Vq0fNujraakxhwfvMjNhgWoP9L02kBSWhs0calBbJcxGn1muMiIQj5f9Z01bwbPj3/CgirOJzQjiP9hQ6Ud96JpfRYrdZF5kizVQiCglGVC6PvLupSd+1v7+it8znXFCNX00klUkKgJE4WgSTttUQYB//Fxhy0bO+mUp1m1HYP9e3lEY7aYvIMI+19BMVsvWPOttU4ixBowLjYkY08vqRKZ4PL1yP5JTmMut5EL2nXR75lXrrawDuicYAxRWy8qaLXV8DHMQoACC+PBaJfOx6LaUYJBAHQHypt719fxPSdrULd0XKM4gyN7e4G0HMNOjCImU=
 
 matrix:
   fast_finish: true
@@ -48,10 +49,10 @@ install:
   - vendor/bin/codecept build
 
 script:
-  - vendor/bin/codecept run --report --coverage-xml --env=travis
+  - vendor/bin/codecept run --coverage-xml --env=travis -d -vvv
 
 after_script:
-  - vendor/bin/test-reporter --coverage-report=./tests/_output/coverage.xml
+  - vendor/bin/test-reporter --coverage-report=./tests/_output/coverage.xml --stdout
 
 after_failure:
   - cat storage/logs/laravel.log
