@@ -10,7 +10,7 @@ class RegistrationCest
     {
         $this->tester = [
             'name'       => 'Tester',
-            'email'      => 'tester@stellardestiny.online',
+            'email'      => 'tester+' . str_random(8) . '@stellardestiny.online',
             'password'   => 'password',
         ];
 
