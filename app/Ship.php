@@ -11,22 +11,22 @@ class Ship extends Model {
 
 	public function owner()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo('Stellar/User');
 	}
 
 	public function location()
 	{
-		return $this->belongsTo('Star');
+		return $this->belongsTo('Stellar/Star');
 	}
 
 	public function type()
 	{
-		return $this->belongsTo('ShipType');
+		return $this->belongsTo('Stellar/ShipType');
 	}
 
 	public function items()
 	{
-		return $this->belongsToMany('Item')->withPivot('amount','paid');
+		return $this->belongsToMany('Stellar/Item')->withPivot('amount','paid');
 	}
 
 }

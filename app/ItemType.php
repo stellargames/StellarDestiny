@@ -11,7 +11,7 @@ class ItemType extends Model {
 
 	public function items()
 	{
-		return $this->hasMany('Item');
+		return $this->hasMany('Stellar/Item');
 	}
 
 }

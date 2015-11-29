@@ -48,7 +48,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function ships()
     {
-        return $this->hasMany('Ship');
+        return $this->hasMany('Stellar\Ship');
     }
 
 
@@ -59,7 +59,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function faction()
     {
-        return $this->belongsTo('Faction');
+        return $this->belongsTo('Stellar\Faction');
     }
 
 

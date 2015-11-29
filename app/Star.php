@@ -11,22 +11,22 @@ class Star extends Model {
 
 	public function traders()
 	{
-		return $this->hasMany('Trader');
+		return $this->hasMany('Stellar/Trader');
 	}
 
 	public function ships()
 	{
-		return $this->hasMany('Ship');
+		return $this->hasMany('Stellar/Ship');
 	}
 
 	public function exits()
 	{
-		return $this->belongsToMany('Star', 'star_links', 'star_id', 'destination')->withTimeStamps();
+		return $this->belongsToMany('Stellar/Star', 'star_links', 'star_id', 'destination')->withTimeStamps();
 	}
 
 	public function mines()
 	{
-		return $this->hasMany('Mine');
+		return $this->hasMany('Stellar/Mine');
 	}
 
 }

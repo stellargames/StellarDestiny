@@ -11,7 +11,7 @@ class Faction extends Model {
 
 	public function players()
 	{
-		return $this->hasMany('User');
+		return $this->hasMany('Stellar/User');
 	}
 
 }
