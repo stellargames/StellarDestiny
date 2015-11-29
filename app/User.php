@@ -26,6 +26,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public $timestamps = true;
 
+    public static $statusEnum = [
+        0 => 'Registered',
+        1 => 'Admin',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -74,13 +79,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         switch ($role) {
             case 'admin':
-                $has_role = $this->status == 1;
+                $has_role = $this->status % 2 == 1;
                 break;
             default:
                 $has_role = false;
         }
 
         return $has_role;
+    }
+
+
+    /**
+     * Check if the user is admin.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
     }
 
 }

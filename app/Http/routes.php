@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return View::make('web');
+    return View::make('home');
 });
 
 /**
@@ -39,7 +39,9 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
  * Administration
  */
 Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin' ], function () {
-    Route::resource('user', 'UserController');
+    Route::get('user', 'UserController@index');
+    Route::any('user/edit', 'UserController@edit');
+    //Route::resource('user', 'UserController');
     Route::resource('ship', 'ShipController');
     Route::resource('trader', 'TraderController');
     Route::resource('star', 'StarController');

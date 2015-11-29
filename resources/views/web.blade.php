@@ -9,7 +9,7 @@
 
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cyborg/bootstrap.min.css" rel="stylesheet">
 
-    {{ Rapyd::styles() }}
+    {!! Rapyd::styles() !!}
     <link rel="stylesheet" href="/css/all.css">
 
 </head>
@@ -36,6 +36,6 @@
 
 <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-{{ Rapyd::scripts() }}
+{!! Rapyd::scripts() !!}
 </body>
 </html>

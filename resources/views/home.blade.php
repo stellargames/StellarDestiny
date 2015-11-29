@@ -1,10 +1,9 @@
 @extends('web')
 
 @section('title')
-User administration
+STELLAR DESTINY
 @endsection
 
 @section('content')
-    {!! $filter !!}
-    {!! $grid !!}
+
 @endsection

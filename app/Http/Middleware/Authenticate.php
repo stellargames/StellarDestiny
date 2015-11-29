@@ -44,7 +44,7 @@ class Authenticate
                 return redirect()->guest('auth/login');
             }
         }
-        // Deny access to non-admin users when an admin role is required.
+        // Deny access to users when a certain role is required.
         if ($role && !Auth::user()->hasRole($role)) {
             return response('Unauthorized.', 403);
         }
