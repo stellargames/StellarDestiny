@@ -53,7 +53,6 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'aut
 
 Route::post('deploy', function () {
     $payload = json_decode(Input::get('payload'));
-    File::append(storage_path('/logs/deploy.log'), var_export($payload, TRUE));
     if ($payload->status_message == 'Passed') {
         touch(storage_path('app/deploy'));
     }
