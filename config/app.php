@@ -144,6 +144,11 @@ return [
         Stellar\Providers\AuthServiceProvider::class,
         Stellar\Providers\EventServiceProvider::class,
         Stellar\Providers\RouteServiceProvider::class,
+
+        /*
+         * Third party providers...
+         */
+        Zofe\Rapyd\RapydServiceProvider::class,
     ],
 
     /*
