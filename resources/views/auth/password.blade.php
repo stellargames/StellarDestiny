@@ -1,30 +1,24 @@
 @extends('web')
 
+@section('title')
+Password reset
+@endsection
+
 @section('content')
-<form method="POST" action="/password/email">
+<form class="form-horizontal" method="POST" action="/password/email">
     {!! csrf_field() !!}
 
-    @if (count($errors) > 0)
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="form-group @if ($errors->has('email')) has-error @endif">
+        <div class="col-sm-offset-2 col-sm-4">
+            <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+            @if ($errors->has('email')) <div class="text-danger">{{ $errors->first('email') }}</div> @endif
         </div>
-    @endif
-
-    <div>
-        <label>
-        Email
-            <input type="email" name="email" value="{{ old('email') }}">
-        </label>
     </div>
 
-    <div>
-        <button type="submit">
-            Send Password Reset Link
-        </button>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button class="btn btn-default" id="inputSubmit" type="submit">Send Password Reset Link</button>
+        </div>
     </div>
 </form>
 @endsection

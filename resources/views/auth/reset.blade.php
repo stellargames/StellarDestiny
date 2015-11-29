@@ -1,45 +1,39 @@
 @extends('web')
 
+@section('title')
+Reset password
+@endsection
+
 @section('content')
-<form method="POST" action="/password/reset">
+<form class="form-horizontal" method="POST" action="/password/reset">
     {!! csrf_field() !!}
     <input type="hidden" name="token" value="{{ $token }}">
 
-    @if (count($errors) > 0)
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="form-group @if ($errors->has('email')) has-error @endif">
+        <div class="col-sm-offset-2 col-sm-4">
+            <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="Email">
+            @if ($errors->has('email')) <div class="text-danger">{{ $errors->first('email') }}</div> @endif
         </div>
-    @endif
-
-    <div>
-        <label>
-        Email
-            <input type="email" name="email" value="{{ old('email') }}">
-        </label>
     </div>
 
-    <div>
-        <label>
-        Password
-            <input type="password" name="password">
-        </label>
+    <div class="form-group @if ($errors->has('password')) has-error @endif">
+        <div class="col-sm-offset-2 col-sm-4">
+            <input class="form-control" type="password" name="password" placeholder="New password">
+            @if ($errors->has('password')) <div class="text-danger">{{ $errors->first('password') }}</div> @endif
+        </div>
     </div>
 
-    <div>
-        <label>
-            Confirm Password
-            <input type="password" name="password_confirmation">
-        </label>
+    <div class="form-group @if ($errors->has('password_confirmation')) has-error @endif">
+        <div class="col-sm-offset-2 col-sm-4">
+            <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm new password">
+            @if ($errors->has('password_confirmation')) <div class="text-danger">{{ $errors->first('password_confirmation') }}</div> @endif
+        </div>
     </div>
 
-    <div>
-        <button type="submit">
-            Reset Password
-        </button>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button class="btn btn-default" id="inputSubmit" type="submit">Reset password</button>
+        </div>
     </div>
 </form>
 @endsection
