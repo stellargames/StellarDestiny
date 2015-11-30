@@ -11,7 +11,7 @@ class Item extends Model {
 
 	public function type()
 	{
-		return $this->belongsTo('Stellar/ItemType');
+		return $this->belongsTo('Stellar\ItemType');
 	}
 
 }

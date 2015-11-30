@@ -11,7 +11,7 @@ class Mine extends Model {
 
 	public function owner()
 	{
-		return $this->belongsTo('Stellar/User');
+		return $this->belongsTo('Stellar\User');
 	}
 
 }

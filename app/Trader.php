@@ -11,12 +11,12 @@ class Trader extends Model {
 
 	public function star()
 	{
-		return $this->belongsTo('Stellar/Star');
+		return $this->belongsTo('Stellar\Star');
 	}
 
 	public function items()
 	{
-		return $this->belongsToMany('Stellar/Item')->withPivot('amount', 'wanted', 'balance');
+		return $this->belongsToMany('Stellar\Item')->withPivot('amount', 'wanted', 'balance');
 	}
 
 }
