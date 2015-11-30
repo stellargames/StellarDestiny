@@ -14,8 +14,5 @@ Burp::get(null, 'ord=(-?)(\w+)', array('as'=>'orderby', function($direction, $fi
     BurpEvent::queue('dataset.sort', array($direction, $field));
 }))->remove('page');
 
-//todo: dataedit  
-
-
 Route::get('rapyd-ajax/{hash}', array('as' => 'rapyd.remote', 'uses' => '\Zofe\Rapyd\Controllers\AjaxController@getRemote'));
 

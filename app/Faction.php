@@ -9,7 +9,7 @@ class Faction extends Model {
 	protected $table = 'factions';
 	public $timestamps = true;
 
-	public function players()
+	public function users()
 	{
 		return $this->hasMany('Stellar\User');
 	}
