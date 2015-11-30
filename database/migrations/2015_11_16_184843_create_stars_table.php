@@ -9,8 +9,7 @@ class CreateStarsTable extends Migration {
 	{
 		Schema::create('stars', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name', 64);
-			$table->timestamps();
+			$table->string('name', 64)->unique();
 		});
 	}
 

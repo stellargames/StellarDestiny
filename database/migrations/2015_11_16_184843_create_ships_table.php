@@ -9,7 +9,7 @@ class CreateShipsTable extends Migration {
 	{
 		Schema::create('ships', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('player_id')->unsigned();
+			$table->integer('user_id')->unsigned();
 			$table->integer('star_id')->unsigned()->nullable();
 			$table->integer('ship_type_id')->unsigned();
 			$table->integer('energy')->unsigned();

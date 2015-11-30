@@ -10,7 +10,6 @@ class CreateStarLinksTable extends Migration {
 		Schema::create('star_links', function(Blueprint $table) {
 			$table->integer('star_id')->unsigned()->index();
 			$table->integer('destination')->unsigned();
-			$table->timestamps();
 		});
 	}
 
