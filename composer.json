@@ -28,7 +28,8 @@
     "barryvdh/laravel-ide-helper": "^2.1",
     "codeception/codeception": "*",
     "codeclimate/php-test-reporter": "^0.2.0",
-    "codeception/c3": "^2.0"
+    "codeception/c3": "^2.0",
+    "barryvdh/laravel-debugbar": "^2.0"
   },
   "autoload": {
     "classmap": [
