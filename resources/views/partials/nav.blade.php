@@ -19,6 +19,7 @@
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('/admin/user') }}">Users</a></li>
+                        <li><a href="{{ url('/admin/star') }}">Stars</a></li>
                     </ul>
                 </li>
             </ul>

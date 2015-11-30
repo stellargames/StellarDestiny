@@ -39,15 +39,19 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
  * Administration
  */
 Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin' ], function () {
+    // User management.
     Route::get('user', 'UserController@index');
     Route::any('user/edit', 'UserController@edit');
-    //Route::resource('user', 'UserController');
+
+    // Star maps.
+    Route::get('star', 'StarController@index');
+    Route::get('star/generate', 'StarController@generate');
+
     Route::resource('ship', 'ShipController');
     Route::resource('trader', 'TraderController');
-    Route::resource('star', 'StarController');
+
     Route::resource('item', 'ItemController');
     Route::resource('itemtype', 'ItemTypeController');
-    Route::resource('starlink', 'StarLinkController');
     Route::resource('shiptype', 'ShipTypeController');
     Route::resource('mine', 'MineController');
     Route::resource('faction', 'FactionController');
