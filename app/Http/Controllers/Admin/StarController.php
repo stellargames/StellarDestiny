@@ -85,7 +85,7 @@ class StarController extends AdminController
                 $other_star->exits()->attach($star);
 
                 $visited_stars[$other_star_id] = $all_stars[$other_star_id];
-                unset($unvisited_stars[$other_star_id]);
+                unset( $unvisited_stars[$other_star_id] );
                 $total_links++;
             }
             $star_id = $other_star_id;
@@ -93,7 +93,7 @@ class StarController extends AdminController
 
         // Add some extra links to create cycles.
         for ($i = 0; $i < $total_links / 10; $i++) {
-            $star = $all_stars[array_rand($all_stars)];
+            $star       = $all_stars[array_rand($all_stars)];
             $other_star = $all_stars[array_rand($all_stars)];
             if ($star != $other_star) {
                 $star->exits()->attach($other_star);
@@ -102,83 +102,8 @@ class StarController extends AdminController
             }
         }
 
-
         return redirect()->back()->with('status',
             'Generated ' . $star_count . ' stars and ' . $total_links . ' star links.');
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store()
-    {
-
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($id)
-    {
-
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function update($id)
-    {
-
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function destroy($id)
-    {
-
     }
 
 }
