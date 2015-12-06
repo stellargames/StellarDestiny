@@ -1,8 +1,9 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
+use Illuminate\Routing\Controller;
 use Response;
 
-class FactionController extends AdminController
+class FactionController extends Controller
 {
 
     /**

@@ -8,14 +8,46 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+
+define ('USER_STATUS_REGISTERED', 0);
+define ('USER_STATUS_ADMIN', 1);
+define ('USER_STATUS_SPAMMER', 2);
+
 
 /**
  * Class User
- * @package Stellar
  *
+ * @package Stellar
  * @property int    $status
  * @property string $name
+ * @property integer $id
+ * @property integer $faction_id
+ * @property integer $reputation
+ * @property integer $alignment
+ * @property integer $affiliation
+ * @property integer $current_ship
+ * @property string $email
+ * @property string $password
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Ship[] $ships
+ * @property-read \Stellar\Faction $faction
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User whereStatus($value)
+ * @method static Builder|User whereFactionId($value)
+ * @method static Builder|User whereReputation($value)
+ * @method static Builder|User whereAlignment($value)
+ * @method static Builder|User whereAffiliation($value)
+ * @method static Builder|User whereCurrentShip($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereUpdatedAt($value)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -27,8 +59,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public $timestamps = true;
 
     public static $statusEnum = [
-        0 => 'Registered',
-        1 => 'Admin',
+        USER_STATUS_REGISTERED => 'Registered',
+        USER_STATUS_ADMIN => 'Admin',
+        USER_STATUS_SPAMMER => 'Spammer',
     ];
 
     /**
@@ -77,14 +110,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function hasRole($role)
     {
-        switch ($role) {
-            case 'admin':
-                $has_role = $this->status % 2 == 1;
-                break;
-            default:
-                $has_role = false;
-        }
-
+        $bit = array_search($role, $this::$statusEnum);
+        $has_role = $bit && $this->status & $bit == 1;
         return $has_role;
     }
 
@@ -96,7 +123,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function isAdmin()
     {
-        return $this->hasRole('admin');
+        return $this->hasRole('Admin');
     }
 
 }

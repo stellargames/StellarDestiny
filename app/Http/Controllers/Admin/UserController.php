@@ -1,9 +1,10 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
+use Illuminate\Routing\Controller;
 use Response;
 use Stellar\User;
 
-class UserController extends AdminController
+class UserController extends Controller
 {
 
     /**

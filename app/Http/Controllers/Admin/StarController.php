@@ -1,10 +1,11 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
 use DB;
+use Illuminate\Routing\Controller;
 use Response;
 use Stellar\Star;
 
-class StarController extends AdminController
+class StarController extends Controller
 {
 
     /**
@@ -39,7 +40,7 @@ class StarController extends AdminController
                 $name = $vowels[mt_rand(0, 4)] . $consonants[mt_rand(0, 16)] . $vowels[mt_rand(0,
                         4)] . '-' . str_pad(mt_rand(0, 999), 3, '2', STR_PAD_LEFT);
             }
-        } while (Star::where('name', $name)->exists());
+        } while (Star::whereName($name)->exists());
 
         return $name;
     }
@@ -58,12 +59,16 @@ class StarController extends AdminController
 
         // Create new stars.
         $star_count      = 200;
+        /**
+         * @var Star[] $unvisited_stars
+         * @var Star[] $visited_stars
+         * @var Star[] $all_stars
+         */
         $unvisited_stars = [ ];
         $visited_stars   = [ ];
         $all_stars       = [ ];
         for ($i = 0; $i < $star_count; $i++) {
-            $star       = new Star();
-            $star->name = $this->generateName();
+            $star = new Star([ 'name' => $this->generateName() ]);
             $star->save();
             $unvisited_stars[$star->getKey()] = true;
             $all_stars[$star->getKey()]       = $star;

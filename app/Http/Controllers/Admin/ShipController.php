@@ -1,8 +1,9 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
+use Illuminate\Routing\Controller;
 use Response;
 
-class ShipController extends AdminController
+class ShipController extends Controller
 {
 
     /**

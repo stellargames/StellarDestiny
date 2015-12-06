@@ -38,7 +38,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 /**
  * Administration
  */
-Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:admin' ], function () {
+Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:Admin' ], function () {
     // User management.
     Route::get('user', 'UserController@index');
     Route::any('user/edit', 'UserController@edit');

@@ -64,10 +64,17 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         // Agreement is the honeypot field. Append it to the password so that bots can register but never log in.
-        return User::create([
+        $user = new User([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password'] . $data['agreement']),
         ]);
+        // Also mark user as spammer when agreement is filled.
+        if (!empty($data['agreement'])) {
+            $user->status |= USER_STATUS_SPAMMER;
+        }
+        $user->save();
+
+        return $user;
     }
 }

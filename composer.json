@@ -29,7 +29,8 @@
     "codeception/codeception": "*",
     "codeclimate/php-test-reporter": "^0.2.0",
     "codeception/c3": "^2.0",
-    "barryvdh/laravel-debugbar": "^2.0"
+    "barryvdh/laravel-debugbar": "^2.0",
+    "doctrine/dbal": "~2.3"
   },
   "autoload": {
     "classmap": [
