@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Stellar\User::class,
+    'model' => Stellar\Models\User::class,
 
     /*
     |--------------------------------------------------------------------------

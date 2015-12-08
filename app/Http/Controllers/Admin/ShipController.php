@@ -2,6 +2,10 @@
 
 use Illuminate\Routing\Controller;
 use Response;
+use Stellar\Models\Items\Jumpstore;
+use Stellar\Models\Ship;
+use Stellar\Models\ShipType;
+use Stellar\Models\Star;
 
 class ShipController extends Controller
 {
@@ -13,7 +17,14 @@ class ShipController extends Controller
      */
     public function index()
     {
-
+        $shipType = ShipType::whereName('Explorer')->first();
+        $star = Star::random()->first();
+        $ship = new Ship($shipType, auth()->user(), $star, 'Serenity');
+        $ship->credits = 1000;
+        $ship->energy = 50;
+        $ship->save();
+        $item = Jumpstore::whereValue(1)->get()->random();
+        $ship->items()->attach($item, ['amount' => 1]);
     }
 
 

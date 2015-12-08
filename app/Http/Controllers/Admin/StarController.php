@@ -3,7 +3,7 @@
 use DB;
 use Illuminate\Routing\Controller;
 use Response;
-use Stellar\Star;
+use Stellar\Models\Star;
 
 class StarController extends Controller
 {
@@ -58,7 +58,7 @@ class StarController extends Controller
         DB::table('star_links')->delete();
 
         // Create new stars.
-        $star_count      = 200;
+        $star_count = 200;
         /**
          * @var Star[] $unvisited_stars
          * @var Star[] $visited_stars

@@ -9,8 +9,8 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-		$this->call('ItemTypeTableSeeder');
-		$this->command->info('ItemType table seeded!');
+		$this->call('ItemTableSeeder');
+		$this->call('ShipTypeTableSeeder');
 
 		Model::reguard();
 	}

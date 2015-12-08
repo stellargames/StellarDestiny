@@ -2,7 +2,7 @@
 
 use Illuminate\Routing\Controller;
 use Response;
-use Stellar\User;
+use Stellar\Models\User;
 
 class UserController extends Controller
 {

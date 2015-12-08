@@ -2,10 +2,12 @@
 
 namespace Stellar\Http\Controllers\Auth;
 
+use Event;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Stellar\Events\UserRegistered;
 use Stellar\Http\Controllers\Controller;
-use Stellar\User;
+use Stellar\Models\User;
 use Validator;
 
 class AuthController extends Controller
@@ -74,7 +76,7 @@ class AuthController extends Controller
             $user->status |= USER_STATUS_SPAMMER;
         }
         $user->save();
-
+        Event::fire(new UserRegistered($user));
         return $user;
     }
 }

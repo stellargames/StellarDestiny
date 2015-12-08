@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'Stellar\Events\SomeEvent' => [
-            'Stellar\Listeners\EventListener',
+        'Stellar\Events\UserRegistered' => [
+            'Stellar\Listeners\UserInitialization',
         ],
     ];
 

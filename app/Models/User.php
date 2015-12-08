@@ -1,6 +1,6 @@
 <?php
 
-namespace Stellar;
+namespace Stellar\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
 define ('USER_STATUS_REGISTERED', 0);
@@ -17,12 +16,11 @@ define ('USER_STATUS_SPAMMER', 2);
 
 
 /**
- * Class User
+ * Stellar\Models\User
  *
- * @package Stellar
- * @property int    $status
- * @property string $name
  * @property integer $id
+ * @property string $name
+ * @property boolean $status
  * @property integer $faction_id
  * @property integer $reputation
  * @property integer $alignment
@@ -33,21 +31,21 @@ define ('USER_STATUS_SPAMMER', 2);
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Ship[] $ships
- * @property-read \Stellar\Faction $faction
- * @method static Builder|User whereId($value)
- * @method static Builder|User whereName($value)
- * @method static Builder|User whereStatus($value)
- * @method static Builder|User whereFactionId($value)
- * @method static Builder|User whereReputation($value)
- * @method static Builder|User whereAlignment($value)
- * @method static Builder|User whereAffiliation($value)
- * @method static Builder|User whereCurrentShip($value)
- * @method static Builder|User whereEmail($value)
- * @method static Builder|User wherePassword($value)
- * @method static Builder|User whereRememberToken($value)
- * @method static Builder|User whereCreatedAt($value)
- * @method static Builder|User whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Ship[] $ships
+ * @property-read \Stellar\Models\Faction $faction
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereFactionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereReputation($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAlignment($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAffiliation($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCurrentShip($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereUpdatedAt($value)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -86,7 +84,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function ships()
     {
-        return $this->hasMany('Stellar\Ship');
+        return $this->hasMany('Stellar\Models\Ship');
     }
 
 
@@ -97,7 +95,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function faction()
     {
-        return $this->belongsTo('Stellar\Faction');
+        return $this->belongsTo('Stellar\Models\Faction');
     }
 
 
