@@ -24,12 +24,5 @@ class CargoPod extends Item
 {
     public static $category = 'Cargo pods are designed to hold bulk trade goods.';
 
-    /**
-     * CargoPod constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'CargoPod';
-    }
+    protected static $singleTableType = 'CargoPod';
 }
