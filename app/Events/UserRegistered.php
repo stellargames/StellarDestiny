@@ -2,9 +2,7 @@
 
 namespace Stellar\Events;
 
-use Stellar\Events\Event;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Stellar\Models\User;
 
 /**

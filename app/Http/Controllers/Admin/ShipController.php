@@ -2,10 +2,6 @@
 
 use Illuminate\Routing\Controller;
 use Response;
-use Stellar\Models\Items\Jumpstore;
-use Stellar\Models\Ship;
-use Stellar\Models\ShipType;
-use Stellar\Models\Star;
 
 class ShipController extends Controller
 {
