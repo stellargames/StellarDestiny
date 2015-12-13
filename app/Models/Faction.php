@@ -17,14 +17,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereUpdatedAt($value)
  */
-class Faction extends Model {
+class Faction extends Model
+{
 
-	protected $table = 'factions';
-	public $timestamps = true;
+    protected $table = 'factions';
 
-	public function users()
-	{
-		return $this->hasMany('Stellar\Models\User');
-	}
+    public $timestamps = true;
+
+
+    public function users()
+    {
+        return $this->hasMany('Stellar\Models\User');
+    }
 
 }

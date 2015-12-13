@@ -17,14 +17,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereItemId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereTrigger($value)
  */
-class Mine extends Model {
+class Mine extends Model
+{
 
-	protected $table = 'mines';
-	public $timestamps = false;
+    protected $table = 'mines';
 
-	public function owner()
-	{
-		return $this->belongsTo('Stellar\Models\User');
-	}
+    public $timestamps = false;
+
+
+    public function owner()
+    {
+        return $this->belongsTo('Stellar\Models\User');
+    }
 
 }
