@@ -23,9 +23,6 @@ class CreateForeignKeys extends Migration
         Schema::table('traders', function (Blueprint $table) {
             $table->foreign('star_id')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
         });
-        Schema::table('items', function (Blueprint $table) {
-            $table->foreign('type')->references('id')->on('item_types')->onDelete('restrict')->onUpdate('restrict');
-        });
         Schema::table('star_links', function (Blueprint $table) {
             $table->foreign('star_id')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -75,9 +72,6 @@ class CreateForeignKeys extends Migration
         });
         Schema::table('traders', function (Blueprint $table) {
             $table->dropForeign('traders_star_id_foreign');
-        });
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign('items_type_foreign');
         });
         Schema::table('star_links', function (Blueprint $table) {
             $table->dropForeign('star_links_star_id_foreign');

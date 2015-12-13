@@ -9,7 +9,7 @@ class CreateItemsTable extends Migration {
 	{
 		Schema::create('items', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('type')->unsigned();
+			$table->string('type', 32);
 			$table->string('name', 64);
 			$table->text('description');
 			$table->integer('value');
