@@ -8,8 +8,8 @@ php:
 
 cache:
   directories:
-    - vendor
-    - $HOME/.composer/cache
+#    - vendor
+#    - $HOME/.composer/cache
 
 env:
   global:
