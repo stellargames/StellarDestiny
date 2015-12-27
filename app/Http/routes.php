@@ -16,6 +16,12 @@ Route::get('/', function () {
 });
 
 /**
+ * API
+ */
+Route::get('api', 'ApiController@testForm');
+Route::post('api', 'ApiController@request');
+
+/**
  * Authentication
  */
 // Authentication routes...
@@ -43,6 +49,10 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'aut
     Route::get('user', 'UserController@index');
     Route::any('user/edit', 'UserController@edit');
 
+    // Item management.
+    Route::get('item', 'ItemController@index');
+    Route::any('item/edit', 'ItemController@edit');
+
     // Star maps.
     Route::get('star', 'StarController@index');
     Route::get('star/generate', 'StarController@generate');
@@ -50,8 +60,6 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'aut
     Route::resource('ship', 'ShipController');
     Route::resource('trader', 'TraderController');
 
-    Route::resource('item', 'ItemController');
-    Route::resource('itemtype', 'ItemTypeController');
     Route::resource('shiptype', 'ShipTypeController');
     Route::resource('mine', 'MineController');
     Route::resource('faction', 'FactionController');

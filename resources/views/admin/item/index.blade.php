@@ -1,7 +1,7 @@
 @extends('web')
 
 @section('title')
-User administration
+Item administration
 @endsection
 
 @section('content')

@@ -2,9 +2,9 @@
 
 @section('title')
 @if (!empty($edit->model->name))
-{{ 'Edit user "' . $edit->model->name . '"' }}
+{{ 'Edit item "' . $edit->model->name . '"' }}
 @else
-Create new user
+Create new item
 @endif
 @endsection
 
