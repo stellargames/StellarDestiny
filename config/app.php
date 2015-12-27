@@ -13,8 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
-
+    'debug'           => env('APP_DEBUG', false),
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -26,8 +25,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
-
+    'url'             => 'http://localhost',
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -39,8 +37,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    'timezone'        => 'UTC',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -52,8 +49,7 @@ return [
     |
     */
 
-    'locale' => 'en',
-
+    'locale'          => 'en',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -66,7 +62,6 @@ return [
     */
 
     'fallback_locale' => 'en',
-
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -78,10 +73,8 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
-
-    'cipher' => 'AES-256-CBC',
-
+    'key'             => env('APP_KEY', 'SomeRandomString'),
+    'cipher'          => 'AES-256-CBC',
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
@@ -95,8 +88,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
-
+    'log'             => env('APP_LOG', 'single'),
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -108,7 +100,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers'       => [
 
         /*
          * Laravel Framework Service Providers...
@@ -136,7 +128,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Application Service Providers...
          */
@@ -144,13 +135,12 @@ return [
         Stellar\Providers\AuthServiceProvider::class,
         Stellar\Providers\EventServiceProvider::class,
         Stellar\Providers\RouteServiceProvider::class,
-
         /*
          * Third party providers...
          */
         Zofe\Rapyd\RapydServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -162,7 +152,7 @@ return [
     |
     */
 
-    'aliases' => [
+    'aliases'         => [
 
         'App'       => Illuminate\Support\Facades\App::class,
         'Artisan'   => Illuminate\Support\Facades\Artisan::class,
@@ -177,8 +167,10 @@ return [
         'Eloquent'  => Illuminate\Database\Eloquent\Model::class,
         'Event'     => Illuminate\Support\Facades\Event::class,
         'File'      => Illuminate\Support\Facades\File::class,
+        'Form'      => Collective\Html\FormFacade::class,
         'Gate'      => Illuminate\Support\Facades\Gate::class,
         'Hash'      => Illuminate\Support\Facades\Hash::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
         'Input'     => Illuminate\Support\Facades\Input::class,
         'Inspiring' => Illuminate\Foundation\Inspiring::class,
         'Lang'      => Illuminate\Support\Facades\Lang::class,

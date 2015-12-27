@@ -18,6 +18,7 @@
   "require": {
     "php": ">=5.6",
     "laravel/framework": "5.1.*",
+    "laravelcollective/html": "5.1.*",
     "zofe/rapyd": "2.1.*",
     "nanigans/single-table-inheritance": "0.5.*"
   },
