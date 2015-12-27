@@ -22,6 +22,16 @@ Route::get('api', 'ApiController@testForm');
 Route::post('api', 'ApiController@request');
 
 /**
+ * Client
+ */
+Route::group([ 'prefix' => 'client', 'namespace' => 'Client', 'middleware' => 'auth' ], function () {
+    Route::get('navigation', 'ClientController@navigation');
+    Route::get('inventory', 'ClientController@inventory');
+    Route::get('trade', 'ClientController@trade');
+    Route::get('info', 'ClientController@info');
+});
+
+/**
  * Authentication
  */
 // Authentication routes...

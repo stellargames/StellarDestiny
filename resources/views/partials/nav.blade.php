@@ -11,8 +11,11 @@
             <a class="navbar-brand" href="/">Home</a>
         </div>
         <div class="collapse navbar-collapse">
-            @if (Auth::check() && Auth::user()->isAdmin())
             <ul class="nav navbar-nav">
+            @if (Auth::check())
+                <li><a href="{{ url('/client/info') }}">Info</a></li>
+            @endif
+            @if (Auth::check() && Auth::user()->isAdmin())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">Admin<b
@@ -23,8 +26,8 @@
                         <li><a href="{{ url('/admin/item') }}">Items</a></li>
                     </ul>
                 </li>
-            </ul>
             @endif
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>

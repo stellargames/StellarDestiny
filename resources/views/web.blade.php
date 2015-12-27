@@ -7,7 +7,7 @@
 
     <title>Stellar Destiny</title>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cyborg/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     {!! Rapyd::styles() !!}
     <link rel="stylesheet" href="/css/all.css">
@@ -15,10 +15,12 @@
 </head>
 <body>
 <div class="container">
-    @include('partials.nav')
-
-    <h1 class="col-sm-offset-2">@yield('title')</h1>
-
+    <div class="row">
+        @include('partials.nav')
+    </div>
+    <div class="row">
+        <h1 class="col-sm-offset-2">@yield('title')</h1>
+    </div>
     @if(Session::has('notification'))
         <div>{{ Session::get('notification') }}</div>
     @endif
@@ -30,12 +32,14 @@
             </div>
         </div>
     @endif
-
-    @yield('content')
+    <div class="row">
+        @yield('content')
+    </div>
 </div>
 
 <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 {!! Rapyd::scripts() !!}
+<script>$('[data-toggle="tooltip"]').tooltip();</script>
 </body>
 </html>
