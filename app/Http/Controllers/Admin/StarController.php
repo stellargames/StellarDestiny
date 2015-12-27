@@ -18,7 +18,7 @@ class StarController extends Controller
         $star_count      = Star::all()->count();
         $star_link_count = DB::table('star_links')->count('destination') / 2;
 
-        return view('star.index', compact('star_count', 'star_link_count'));
+        return view('admin.star.index', compact('star_count', 'star_link_count'));
     }
 
 
