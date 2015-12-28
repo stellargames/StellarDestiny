@@ -32,13 +32,15 @@ Info
                      Structure <span class="badge">{{ $data->user->ship->structure }}/{{ $data->user->ship->type->structure }}</span>
                 </li>
                 <li class="list-group-item">
-                     Energy <span class="badge">{{ $data->user->ship->energy }}</span>
+                     Energy <span class="badge">{{ $data->user->ship->energy }}/{{ $data->user->ship->energy_capacity }}</span>
                 </li>
                 <li class="list-group-item">
-                     Capacity <span class="badge">{{ count($data->user->ship->items) }}/{{ $data->user->ship->type->slots }}</span>
+                     Hardpoints <span class="badge">{{ count($data->user->ship->items) }}/{{ $data->user->ship->type->slots }}</span>
+                </li>
+                <li class="list-group-item">
+                     Cargo <span class="badge">{{ $data->user->ship->cargo_capacity }}</span>
                 </li>
             </ul>
-
         </div>
     </div>
 @endsection

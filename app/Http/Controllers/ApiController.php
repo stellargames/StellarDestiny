@@ -17,8 +17,13 @@ class ApiController extends Controller
      */
     public function request(Request $request)
     {
-
-        $player = auth()->user()->load([ 'ship.type', 'ship.location.exits', 'ship.location.ships', 'ship.location.traders', 'ship.items' ]);
+        $player = auth()->user()->load([
+            'ship.type',
+            'ship.location.exits',
+            'ship.location.ships',
+            'ship.location.traders',
+            'ship.items'
+        ]);
 
         $response = [
             'user' => $player,
