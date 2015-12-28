@@ -3,7 +3,7 @@
 namespace Stellar;
 
 use Stellar\Models\Items\CargoPod;
-use Stellar\Models\Items\Jumpstore;
+use Stellar\Models\Items\JumpStore;
 use Stellar\Models\Ship;
 use Stellar\Models\ShipType;
 use Stellar\Models\Star;
@@ -32,7 +32,7 @@ class ShipFactory
         $ship->owner()->associate($player);
         $ship->save();
         // Add a jumpstore and a cargo pod.
-        $item = Jumpstore::whereValue(1)->get()->random();
+        $item = JumpStore::whereValue(1)->get()->random();
         $ship->items()->attach($item, [ 'amount' => 1 ]);
         $item = CargoPod::whereValue(1)->get()->random();
         $ship->items()->attach($item, [ 'amount' => 1 ]);

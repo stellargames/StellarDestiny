@@ -44,6 +44,8 @@ class Ship extends Model
 
     protected $hidden = [ 'user_id', 'star_id', 'ship_type_id', 'created_at', 'updated_at' ];
 
+    protected $appends = [ 'energy_capacity', 'cargo_capacity' ];
+
 
     /**
      * The player that owns the ship.
@@ -97,9 +99,26 @@ class Ship extends Model
     public function getEnergyCapacityAttribute()
     {
         $capacity   = 10;
-        $jumpStores = $this->items()->whereType('Jumpstore')->get();
+        $jumpStores = $this->items->where('type', 'JumpStore');
         foreach ($jumpStores as $jumpstore) {
             $capacity += 10 * $jumpstore->value;
+        }
+
+        return $capacity;
+    }
+
+
+    /**
+     * Calculate the total cargo storage from the available cargo pods.
+     *
+     * @return int
+     */
+    public function getCargoCapacityAttribute()
+    {
+        $capacity  = 0;
+        $cargoPods = $this->items->where('type', 'CargoPod');
+        foreach ($cargoPods as $cargoPod) {
+            $capacity += 10 * $cargoPod->value;
         }
 
         return $capacity;

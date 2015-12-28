@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Stellar\Models\Items\CargoPod;
-use Stellar\Models\Items\Jumpstore;
+use Stellar\Models\Items\JumpStore;
 
 class ItemTableSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class ItemTableSeeder extends Seeder
         DB::table('items')->delete();
 
         // Create new ones.
-        Jumpstore::create([
+        JumpStore::create([
             'name'        => 'Shocking Watt Pack',
             'description' => 'A simple basic jump energy store.',
             'value'       => 1

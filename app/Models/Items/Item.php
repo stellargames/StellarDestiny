@@ -37,7 +37,7 @@ class Item extends Model
         Shield::class,
         BeamWeapon::class,
         KineticWeapon::class,
-        Jumpstore::class,
+        JumpStore::class,
         SpaceMine::class,
         CargoPod::class,
         SecureStorage::class,
