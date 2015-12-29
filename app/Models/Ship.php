@@ -32,6 +32,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereName( $value )
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereCreatedAt( $value )
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereUpdatedAt( $value )
+ * @property-read mixed                                                                 $cargo_capacity
+ * @property-read mixed $shields
+ * @property-read mixed $armor
+ * @property-read mixed $kinetics
+ * @property-read mixed $beams
  */
 class Ship extends Model
 {
@@ -44,7 +49,7 @@ class Ship extends Model
 
     protected $hidden = [ 'user_id', 'star_id', 'ship_type_id', 'created_at', 'updated_at' ];
 
-    protected $appends = [ 'energy_capacity', 'cargo_capacity' ];
+    protected $appends = [ 'energy_capacity', 'shields', 'armor', 'kinetics', 'beams' ];
 
 
     /**
@@ -109,20 +114,71 @@ class Ship extends Model
 
 
     /**
-     * Calculate the total cargo storage from the available cargo pods.
+     * Calculate the total shield capacity from the available shields.
      *
      * @return int
      */
-    public function getCargoCapacityAttribute()
+    public function getShieldsAttribute()
     {
-        $capacity  = 0;
-        $cargoPods = $this->items->where('type', 'CargoPod');
-        foreach ($cargoPods as $cargoPod) {
-            $capacity += 10 * $cargoPod->value;
+        $value = 0;
+        $items  = $this->items->where('type', 'Shield');
+        foreach ($items as $item) {
+            $value += $item->value;
         }
 
-        return $capacity;
+        return $value;
     }
+
+    /**
+     * Calculate the total armor value from the available armor items.
+     *
+     * @return int
+     */
+    public function getArmorAttribute()
+    {
+        $value = 0;
+        $items  = $this->items->where('type', 'Armor');
+        foreach ($items as $item) {
+            $value += $item->value;
+        }
+
+        return $value;
+    }
+
+    /**
+     * Calculate the total power from the available kinetic weapons.
+     *
+     * @return int
+     */
+    public function getKineticsAttribute()
+    {
+        $value = 0;
+        $items  = $this->items->where('type', 'Kinetic Weapon');
+        foreach ($items as $item) {
+            $value += $item->value;
+        }
+
+        return $value;
+    }
+
+    /**
+     * Calculate the total power value from the available beam weapons.
+     *
+     * @return int
+     */
+    public function getBeamsAttribute()
+    {
+        $value = 0;
+        $items  = $this->items->where('type', 'Beam Weapon');
+        foreach ($items as $item) {
+            $value += $item->value;
+        }
+
+        return $value;
+    }
+
+
+
 
 
     /**

@@ -33,15 +33,18 @@ class Item extends Model
     protected static $singleTableTypeField = 'type';
 
     protected static $singleTableSubclasses = [
+        BiologyCargo::class,
+        TechnologyCargo::class,
+        LuxuryCargo::class,
         Armor::class,
         Shield::class,
         BeamWeapon::class,
         KineticWeapon::class,
         JumpStore::class,
         SpaceMine::class,
-        CargoPod::class,
         SecureStorage::class,
         Sensor::class,
+
     ];
 
     public $timestamps = true;

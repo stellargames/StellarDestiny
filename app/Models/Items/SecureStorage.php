@@ -24,12 +24,5 @@ class SecureStorage extends Item
 {
     public static $category = 'Secure storage can hold only a little but will prevent the contents from falling into the wrong hands.';
 
-    /**
-     * SecureStorage constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'SecureStorage';
-    }
+    protected static $singleTableType = 'Secure Storage';
 }

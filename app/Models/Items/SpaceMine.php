@@ -24,12 +24,5 @@ class SpaceMine extends Item
 {
     public static $category = 'Space mines are a cheap way to limit rival movements.';
 
-    /**
-     * SpaceMine constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'SpaceMine';
-    }
+    protected static $singleTableType = 'Space Mine';
 }

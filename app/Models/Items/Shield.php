@@ -24,12 +24,5 @@ class Shield extends Item
 {
     public static $category = 'Electromagnetic shields protect your ship from damage. It is more effective against beam weapons than kinetic weapons.';
 
-    /**
-     * Shield constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'Shield';
-    }
+    protected static $singleTableType = 'Shield';
 }

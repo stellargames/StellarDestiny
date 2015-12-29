@@ -24,12 +24,5 @@ class KineticWeapon extends Item
 {
     public static $category = 'Kinetic weapons can damage other ships. They are not very effective against armor plating though.';
 
-    /**
-     * KineticWeapon constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'KineticWeapon';
-    }
+    protected static $singleTableType = 'Kinetic Weapon';
 }

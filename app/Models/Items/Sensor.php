@@ -24,12 +24,5 @@ class Sensor extends Item
 {
     public static $category = 'Sensors and scanner to detect and analyze whatever you may encounter.';
 
-    /**
-     * Sensor constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'Sensor';
-    }
+    protected static $singleTableType = 'Sensor';
 }

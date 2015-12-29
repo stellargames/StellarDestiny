@@ -24,12 +24,5 @@ class BeamWeapon extends Item
 {
     public static $category = 'Beam weapons can damage other ships. They are not very effective against electromagnetic shields though.';
 
-    /**
-     * BeamWeapon constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'BeamWeapon';
-    }
+    protected static $singleTableType = 'Beam Weapon';
 }

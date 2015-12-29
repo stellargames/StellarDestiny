@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Stellar\Models\Items\CargoPod;
+use Stellar\Models\Items\BiologyCargo;
 use Stellar\Models\Items\JumpStore;
+use Stellar\Models\Items\LuxuryCargo;
+use Stellar\Models\Items\TechnologyCargo;
 
 class ItemTableSeeder extends Seeder
 {
@@ -23,9 +25,19 @@ class ItemTableSeeder extends Seeder
             'description' => 'A simple basic jump energy store.',
             'value'       => 1
         ]);
-        CargoPod::create([
-            'name'        => 'Easy Hold Basic',
-            'description' => 'A simple basic cargo storage container.',
+        BiologyCargo::create([
+            'name'        => 'Biology Cargo',
+            'description' => 'A simple cargo storage container filled with biologicals.',
+            'value'       => 1
+        ]);
+        TechnologyCargo::create([
+            'name'        => 'Technology Cargo',
+            'description' => 'A simple cargo storage container filled with high technology.',
+            'value'       => 1
+        ]);
+        LuxuryCargo::create([
+            'name'        => 'Luxury Cargo',
+            'description' => 'A simple cargo storage container filled with luxury items.',
             'value'       => 1
         ]);
     }

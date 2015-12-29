@@ -20,7 +20,12 @@ Info
                 <li class="list-group-item">
                      Affiliation <span class="badge">{{ $data->user->affiliation }}</span>
                 </li>
+                <li class="list-group-item">
+                    Credits <span class="badge">{{ $data->user->ship->credits }}</span>
+                </li>
             </ul>
+        </div>
+        <div class="col-sm-4">
             <ul class="list-group">
                 <li class="list-group-item active">
                      Ship <span class="badge">{{ $data->user->ship->name }}</span>
@@ -35,10 +40,19 @@ Info
                      Energy <span class="badge">{{ $data->user->ship->energy }}/{{ $data->user->ship->energy_capacity }}</span>
                 </li>
                 <li class="list-group-item">
-                     Hardpoints <span class="badge">{{ count($data->user->ship->items) }}/{{ $data->user->ship->type->slots }}</span>
+                     Unused capacity <span class="badge">{{ $data->user->ship->type->slots - count($data->user->ship->items) }}/{{ $data->user->ship->type->slots }}</span>
                 </li>
                 <li class="list-group-item">
-                     Cargo <span class="badge">{{ $data->user->ship->cargo_capacity }}</span>
+                     Shields <span class="badge">{{ $data->user->ship->shields }}</span>
+                </li>
+                <li class="list-group-item">
+                     Armor <span class="badge">{{ $data->user->ship->armor }}</span>
+                </li>
+                <li class="list-group-item">
+                     Kinetic weapon power <span class="badge">{{ $data->user->ship->kinetics }}</span>
+                </li>
+                <li class="list-group-item">
+                     Beam weapon power <span class="badge">{{ $data->user->ship->beams }}</span>
                 </li>
             </ul>
         </div>

@@ -24,13 +24,6 @@ class Armor extends Item
 {
     public static $category = 'Armor plating protects your ship from damage. It is more effective against kinetic weapons than beam weapons.';
 
-    /**
-     * Armor constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->type = 'Armor';
-    }
+    protected static $singleTableType = 'Armor';
 
 }
