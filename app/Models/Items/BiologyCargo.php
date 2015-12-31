@@ -5,11 +5,11 @@ namespace Stellar\Models\Items;
 /**
  * Stellar\Models\Items\BiologyCargo
  *
- * @property integer $id
- * @property string $type
- * @property string $name
- * @property string $description
- * @property integer $value
+ * @property integer        $id
+ * @property string         $type
+ * @property string         $name
+ * @property string         $description
+ * @property integer        $value
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BiologyCargo whereId($value)
@@ -22,6 +22,7 @@ namespace Stellar\Models\Items;
  */
 class BiologyCargo extends Item
 {
+
     public static $category = 'Biology Cargo consists of plants, animals, organic materials and other biologicals.';
 
     protected static $singleTableType = 'Biology Cargo';

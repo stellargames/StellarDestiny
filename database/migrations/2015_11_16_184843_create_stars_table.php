@@ -3,18 +3,22 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateStarsTable extends Migration {
+class CreateStarsTable extends Migration
+{
 
-	public function up()
-	{
-		Schema::create('stars', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 64)->unique();
-		});
-	}
+    public function up()
+    {
+        Schema::create(
+            'stars', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 64)->unique();
+        }
+        );
+    }
 
-	public function down()
-	{
-		Schema::drop('stars');
-	}
+
+    public function down()
+    {
+        Schema::drop('stars');
+    }
 }

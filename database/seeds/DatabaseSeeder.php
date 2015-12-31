@@ -1,18 +1,19 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder {
+class DatabaseSeeder extends Seeder
+{
 
-	public function run()
-	{
-		Model::unguard();
+    public function run()
+    {
+        Model::unguard();
 
-		$this->call('UserTableSeeder');
-		$this->call('ItemTableSeeder');
-		$this->call('ShipTypeTableSeeder');
+        $this->call('UserTableSeeder');
+        $this->call('ItemTableSeeder');
+        $this->call('ShipTypeTableSeeder');
 
-		Model::reguard();
-	}
+        Model::reguard();
+    }
 }

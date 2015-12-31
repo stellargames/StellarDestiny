@@ -34,19 +34,19 @@ define('USER_STATUS_SPAMMER', 2);
  * @property-read \Stellar\Models\Ship                                            $ship
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Ship[] $ships
  * @property-read \Stellar\Models\Faction                                         $faction
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereId( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereName( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereStatus( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereFactionId( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereReputation( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAlignment( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAffiliation( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCurrentShip( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereEmail( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User wherePassword( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereRememberToken( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCreatedAt( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereUpdatedAt( $value )
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereFactionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereReputation($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAlignment($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereAffiliation($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCurrentShip($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereUpdatedAt($value)
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
@@ -82,7 +82,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
         'remember_token',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
 
@@ -128,10 +128,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function hasRole($role)
     {
-        $bit      = array_search($role, $this::$statusEnum);
-        $has_role = $bit && $this->status & $bit == 1;
+        $bit     = array_search($role, $this::$statusEnum);
+        $hasRole = $bit && $this->status & $bit == 1;
 
-        return $has_role;
+        return $hasRole;
     }
 
 

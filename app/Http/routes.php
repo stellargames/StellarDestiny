@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::get(
+    '/', function () {
     return View::make('home');
-});
+}
+);
 
 /**
  * API
@@ -24,12 +26,14 @@ Route::post('api', 'ApiController@request');
 /**
  * Client
  */
-Route::group([ 'prefix' => 'client', 'namespace' => 'Client', 'middleware' => 'auth' ], function () {
+Route::group(
+    [ 'prefix' => 'client', 'namespace' => 'Client', 'middleware' => 'auth' ], function () {
     Route::get('navigation', 'ClientController@navigation');
     Route::get('inventory', 'ClientController@inventory');
     Route::get('trade', 'ClientController@trade');
     Route::get('info', 'ClientController@info');
-});
+}
+);
 
 /**
  * Authentication
@@ -54,7 +58,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 /**
  * Administration
  */
-Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:Admin' ], function () {
+Route::group(
+    [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:Admin' ], function () {
     // User management.
     Route::get('user', 'UserController@index');
     Route::any('user/edit', 'UserController@edit');
@@ -73,11 +78,14 @@ Route::group([ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'aut
     Route::resource('shiptype', 'ShipTypeController');
     Route::resource('mine', 'MineController');
     Route::resource('faction', 'FactionController');
-});
+}
+);
 
-Route::post('deploy', function () {
+Route::post(
+    'deploy', function () {
     $payload = json_decode(Input::get('payload'));
     if ($payload->status_message == 'Passed') {
         touch(storage_path('app/deploy'));
     }
-});
+}
+);
