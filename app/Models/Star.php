@@ -13,16 +13,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Ship[]   $ships
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Star[]   $exits
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Mine[]   $mines
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereId( $value )
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereName( $value )
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star random()
  */
 class Star extends Model
 {
 
-    protected $table = 'stars';
-
     public $timestamps = false;
+
+    protected $table = 'stars';
 
     protected $hidden = [ 'pivot' ];
 
@@ -32,6 +32,18 @@ class Star extends Model
      * @var array
      */
     protected $fillable = [ 'name' ];
+
+
+    /**
+     * Find a starting star for a new player.
+     *
+     * @return Star
+     */
+    public static function findStartLocation()
+    {
+        // @TODO: Write some algorithm to start new players in a relatively safe part of the galaxy.
+        return self::random()->first();
+    }
 
 
     public function scopeRandom($query)
@@ -84,17 +96,5 @@ class Star extends Model
     public function mines()
     {
         return $this->hasMany('Stellar\Models\Mine');
-    }
-
-
-    /**
-     * Find a starting star for a new player.
-     *
-     * @return Star
-     */
-    public static function findStartLocation()
-    {
-        // @TODO: Write some algorithm to start new players in a relatively safe part of the galaxy.
-        return self::random()->first();
     }
 }

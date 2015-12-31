@@ -15,12 +15,14 @@ class ShipTypeTableSeeder extends Seeder
     {
         DB::table('ship_types')->delete();
 
-        ShipType::create([
-            'name'        => 'Explorer',
-            'description' => 'The most basic ship available. With limited cargo storage and no weapons.',
-            'slots'       => 10,
-            'structure'   => 100,
-        ]);
+        ShipType::create(
+            [
+                'name'        => 'Explorer',
+                'description' => 'The most basic ship available. With limited cargo storage and no weapons.',
+                'slots'       => 10,
+                'structure'   => 100,
+            ]
+        );
 
     }
 }

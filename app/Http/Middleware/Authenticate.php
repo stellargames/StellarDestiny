@@ -9,12 +9,14 @@ use Illuminate\Http\Request;
 
 class Authenticate
 {
+
     /**
      * The Guard implementation.
      *
      * @var Guard
      */
     protected $auth;
+
 
     /**
      * Create a new filter instance.
@@ -26,12 +28,13 @@ class Authenticate
         $this->auth = $auth;
     }
 
+
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure                 $next
-     * @param  string               $role
+     * @param  string                   $role
      *
      * @return mixed
      */
@@ -45,7 +48,7 @@ class Authenticate
             }
         }
         // Deny access to users when a certain role is required.
-        if ($role && !Auth::user()->hasRole($role)) {
+        if ($role && ! Auth::user()->hasRole($role)) {
             return response('Unauthorized.', 403);
         }
 

@@ -11,6 +11,7 @@ use Stellar\Models\User;
  */
 class UserRegistered extends Event
 {
+
     use SerializesModels;
 
     /**
@@ -29,6 +30,7 @@ class UserRegistered extends Event
         $this->user = $user;
     }
 
+
     /**
      * Get the channels the event should be broadcast on.
      *
@@ -36,6 +38,6 @@ class UserRegistered extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return [ ];
     }
 }

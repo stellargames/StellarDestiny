@@ -23,9 +23,11 @@ class UserController extends Controller
         $filter->build();
 
         $grid = \DataGrid::source($filter)->attributes([ 'class' => 'table table-hover table-striped' ]);
-        $grid->add('id', 'ID', true)->cell(function ($value) {
-            return link_to(action('Admin\UserController@edit') . '?show=' . $value, $value);
-        });;
+        $grid->add('id', 'ID', true)->cell(
+            function ($value) {
+                return link_to(action('Admin\UserController@edit') . '?show=' . $value, $value);
+            }
+        );;
         $grid->add('status', 'Status', true);
         $grid->add('name', 'Name', true);
         $grid->add('faction.name', 'Faction', true);

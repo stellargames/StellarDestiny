@@ -5,11 +5,11 @@ namespace Stellar\Models\Items;
 /**
  * Stellar\Models\Items\SpaceMine
  *
- * @property integer $id
- * @property string $type
- * @property string $name
- * @property string $description
- * @property integer $value
+ * @property integer        $id
+ * @property string         $type
+ * @property string         $name
+ * @property string         $description
+ * @property integer        $value
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SpaceMine whereId($value)
@@ -22,6 +22,7 @@ namespace Stellar\Models\Items;
  */
 class SpaceMine extends Item
 {
+
     public static $category = 'Space mines are a cheap way to limit rival movements.';
 
     protected static $singleTableType = 'Space Mine';

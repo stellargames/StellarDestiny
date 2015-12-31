@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Stellar\Models\Mine
  *
- * @property integer $star_id
- * @property integer $user_id
- * @property integer $item_id
- * @property integer $trigger
+ * @property integer                   $star_id
+ * @property integer                   $user_id
+ * @property integer                   $item_id
+ * @property integer                   $trigger
  * @property-read \Stellar\Models\User $owner
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereStarId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereUserId($value)
@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
 class Mine extends Model
 {
 
-    protected $table = 'mines';
-
     public $timestamps = false;
+
+    protected $table = 'mines';
 
 
     public function owner()

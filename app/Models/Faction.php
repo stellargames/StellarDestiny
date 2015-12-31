@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Stellar\Models\Faction
  *
- * @property integer $id
- * @property string $name
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property integer                                                              $id
+ * @property string                                                               $name
+ * @property \Carbon\Carbon                                                       $created_at
+ * @property \Carbon\Carbon                                                       $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\User[] $users
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereName($value)
@@ -20,9 +20,9 @@ use Illuminate\Database\Eloquent\Model;
 class Faction extends Model
 {
 
-    protected $table = 'factions';
-
     public $timestamps = true;
+
+    protected $table = 'factions';
 
 
     public function users()

@@ -5,11 +5,11 @@ namespace Stellar\Models\Items;
 /**
  * Stellar\Models\Items\Shield
  *
- * @property integer $id
- * @property string $type
- * @property string $name
- * @property string $description
- * @property integer $value
+ * @property integer        $id
+ * @property string         $type
+ * @property string         $name
+ * @property string         $description
+ * @property integer        $value
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Shield whereId($value)
@@ -22,6 +22,7 @@ namespace Stellar\Models\Items;
  */
 class Shield extends Item
 {
+
     public static $category = 'Electromagnetic shields protect your ship from damage. It is more effective against beam weapons than kinetic weapons.';
 
     protected static $singleTableType = 'Shield';

@@ -5,11 +5,11 @@ namespace Stellar\Models\Items;
 /**
  * Stellar\Models\Items\SecureStorage
  *
- * @property integer $id
- * @property string $type
- * @property string $name
- * @property string $description
- * @property integer $value
+ * @property integer        $id
+ * @property string         $type
+ * @property string         $name
+ * @property string         $description
+ * @property integer        $value
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SecureStorage whereId($value)
@@ -22,6 +22,7 @@ namespace Stellar\Models\Items;
  */
 class SecureStorage extends Item
 {
+
     public static $category = 'Secure storage can hold only a little but will prevent the contents from falling into the wrong hands.';
 
     protected static $singleTableType = 'Secure Storage';

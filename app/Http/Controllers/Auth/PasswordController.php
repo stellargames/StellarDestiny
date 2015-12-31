@@ -46,11 +46,13 @@ class PasswordController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'token'    => 'required',
-            'email'    => 'required|email',
+        return Validator::make(
+            $data, [
+            'token' => 'required',
+            'email' => 'required|email',
             'password' => 'required|confirmed|min:8',
-        ]);
+        ]
+        );
     }
 
 
@@ -71,16 +73,20 @@ class PasswordController extends Controller
 
         $credentials = $request->only('email', 'password', 'password_confirmation', 'token');
 
-        $response = Password::reset($credentials, function ($user, $password) {
+        $response = Password::reset(
+            $credentials, function ($user, $password) {
             $this->resetPassword($user, $password);
-        });
+        }
+        );
 
         switch ($response) {
             case Password::PASSWORD_RESET:
                 return redirect($this->redirectPath())->with('status', trans($response));
 
             default:
-                return redirect()->back()->withInput($request->only('email'))->withErrors([ 'email' => trans($response) ]);
+                return redirect()->back()->withInput($request->only('email'))->withErrors(
+                    [ 'email' => trans($response) ]
+                );
         }
     }
 }
