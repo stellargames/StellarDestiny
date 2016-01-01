@@ -13,8 +13,7 @@ class StarController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         $starCount     = Star::all()->count();
         $starLinkCount = DB::table('star_links')->count('destination') / 2;
 
@@ -27,8 +26,7 @@ class StarController extends Controller
      *
      * @return string
      */
-    protected function generateName()
-    {
+    protected function generateName() {
         static $vowels = 'aeiuy';
         static $consonants = 'bcdfghkmnprstvwxz';
 
@@ -53,8 +51,7 @@ class StarController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function generate()
-    {
+    public function generate() {
         // Start with a clean slate.
         DB::table('stars')->delete();
         DB::table('star_links')->delete();

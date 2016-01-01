@@ -11,9 +11,7 @@ class MineController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-
+    public function index() {
     }
 
 
@@ -22,9 +20,7 @@ class MineController extends Controller
      *
      * @return Response
      */
-    public function edit()
-    {
-
+    public function edit() {
     }
 
 }

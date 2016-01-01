@@ -57,8 +57,7 @@ class Ship extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function owner()
-    {
+    public function owner() {
         return $this->belongsTo('Stellar\Models\User', 'user_id');
     }
 
@@ -68,8 +67,7 @@ class Ship extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location()
-    {
+    public function location() {
         return $this->belongsTo('Stellar\Models\Star', 'star_id');
     }
 
@@ -79,8 +77,7 @@ class Ship extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type()
-    {
+    public function type() {
         return $this->belongsTo('Stellar\Models\ShipType', 'ship_type_id');
     }
 
@@ -90,8 +87,7 @@ class Ship extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function items()
-    {
+    public function items() {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'paid');
     }
 
@@ -101,8 +97,7 @@ class Ship extends Model
      *
      * @return int
      */
-    public function getEnergyCapacityAttribute()
-    {
+    public function getEnergyCapacityAttribute() {
         $capacity   = 10;
         $jumpStores = $this->items->where('type', 'JumpStore');
         foreach ($jumpStores as $jumpstore) {
@@ -118,8 +113,7 @@ class Ship extends Model
      *
      * @return int
      */
-    public function getShieldsAttribute()
-    {
+    public function getShieldsAttribute() {
         $value = 0;
         $items = $this->items->where('type', 'Shield');
         foreach ($items as $item) {
@@ -135,8 +129,7 @@ class Ship extends Model
      *
      * @return int
      */
-    public function getArmorAttribute()
-    {
+    public function getArmorAttribute() {
         $value = 0;
         $items = $this->items->where('type', 'Armor');
         foreach ($items as $item) {
@@ -152,8 +145,7 @@ class Ship extends Model
      *
      * @return int
      */
-    public function getKineticsAttribute()
-    {
+    public function getKineticsAttribute() {
         $value = 0;
         $items = $this->items->where('type', 'Kinetic Weapon');
         foreach ($items as $item) {
@@ -169,8 +161,7 @@ class Ship extends Model
      *
      * @return int
      */
-    public function getBeamsAttribute()
-    {
+    public function getBeamsAttribute() {
         $value = 0;
         $items = $this->items->where('type', 'Beam Weapon');
         foreach ($items as $item) {

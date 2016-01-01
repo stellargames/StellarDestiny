@@ -32,6 +32,7 @@ Route::group(
     Route::get('inventory', 'ClientController@inventory');
     Route::get('trade', 'ClientController@trade');
     Route::get('info', 'ClientController@info');
+    Route::get('comms', 'ClientController@comms');
 }
 );
 

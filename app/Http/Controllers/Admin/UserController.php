@@ -12,8 +12,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
+    public function index() {
         $filter = \DataFilter::source(User::with('faction'));
         $filter->add('name', 'Name', 'text');
         $filter->add('faction.name', 'Faction', 'autocomplete');
@@ -48,8 +47,7 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function edit()
-    {
+    public function edit() {
         $edit = \DataEdit::source(new User);
         $edit->link(action('Admin\UserController@index'), "Users", "TR")->back();
         $edit->add('status', 'Status', 'checkboxgroup')->options(User::$statusEnum);

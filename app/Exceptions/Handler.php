@@ -35,8 +35,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function report(Exception $e)
-    {
+    public function report(Exception $e) {
         parent::report($e);
     }
 
@@ -49,8 +48,7 @@ class Handler extends ExceptionHandler
      *
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
-    {
+    public function render($request, Exception $e) {
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }

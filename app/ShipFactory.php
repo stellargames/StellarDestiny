@@ -21,8 +21,7 @@ class ShipFactory
      *
      * @return Ship
      */
-    public static function getStartingShip(User $player)
-    {
+    public static function getStartingShip(User $player) {
         $ship = new Ship([ 'name' => self::randomShipName() ]);
         // Start with an 'Explorer' class hip.
         $shipType = ShipType::whereName('Explorer')->first();
@@ -63,8 +62,7 @@ class ShipFactory
      *
      * @return mixed
      */
-    public static function randomShipName()
-    {
+    public static function randomShipName() {
         // @todo: replace with a proper generator. Possibly a Faker provider.
         $names = [
             'Adamant',

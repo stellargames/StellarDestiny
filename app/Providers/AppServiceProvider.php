@@ -12,8 +12,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         //
     }
 
@@ -23,8 +22,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         if ($this->app->environment() == 'local') {
             $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
             $this->app->register('Barryvdh\Debugbar\ServiceProvider');

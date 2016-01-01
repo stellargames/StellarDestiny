@@ -33,8 +33,7 @@ class AuthController extends Controller
      * Create a new authentication controller instance.
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', [ 'except' => 'getLogout' ]);
     }
 
@@ -46,14 +45,13 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make(
             $data, [
-            'name'     => 'required|max:64',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:8',
-        ]
+                'name'     => 'required|max:64',
+                'email'    => 'required|email|max:255|unique:users',
+                'password' => 'required|confirmed|min:8',
+            ]
         );
     }
 
@@ -65,8 +63,7 @@ class AuthController extends Controller
      *
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         // Agreement is the honeypot field. Append it to the password so that bots can register but never log in.
         $user = new User(
             [

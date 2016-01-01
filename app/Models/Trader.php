@@ -28,14 +28,12 @@ class Trader extends Model
     protected $table = 'traders';
 
 
-    public function star()
-    {
+    public function star() {
         return $this->belongsTo('Stellar\Models\Star');
     }
 
 
-    public function items()
-    {
+    public function items() {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'wanted', 'balance');
     }
 

@@ -91,8 +91,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function ship()
-    {
+    public function ship() {
         return $this->belongsTo('Stellar\Models\Ship', 'current_ship');
     }
 
@@ -102,8 +101,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function ships()
-    {
+    public function ships() {
         return $this->hasMany('Stellar\Models\Ship');
     }
 
@@ -113,8 +111,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function faction()
-    {
+    public function faction() {
         return $this->belongsTo('Stellar\Models\Faction');
     }
 
@@ -126,8 +123,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return bool
      */
-    public function hasRole($role)
-    {
+    public function hasRole($role) {
         $bit     = array_search($role, $this::$statusEnum);
         $hasRole = $bit && $this->status & $bit == 1;
 
@@ -140,8 +136,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @return bool
      */
-    public function isAdmin()
-    {
+    public function isAdmin() {
         return $this->hasRole('Admin');
     }
 
@@ -149,8 +144,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     /**
      * Attach a basic starter ship to the player.
      */
-    public function setStartingShip()
-    {
+    public function setStartingShip() {
         $ship = ShipFactory::getStartingShip($this);
         // Make the ship belong to the player.
         $this->current_ship = $ship->id;

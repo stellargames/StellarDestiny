@@ -39,15 +39,13 @@ class Star extends Model
      *
      * @return Star
      */
-    public static function findStartLocation()
-    {
+    public static function findStartLocation() {
         // @TODO: Write some algorithm to start new players in a relatively safe part of the galaxy.
         return self::random()->first();
     }
 
 
-    public function scopeRandom($query)
-    {
+    public function scopeRandom($query) {
         $totalRows = static::count() - 1;
         $skip      = $totalRows > 0 ? mt_rand(0, $totalRows) : 0;
 
@@ -60,8 +58,7 @@ class Star extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function traders()
-    {
+    public function traders() {
         return $this->hasMany('Stellar\Models\Trader');
     }
 
@@ -71,8 +68,7 @@ class Star extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function ships()
-    {
+    public function ships() {
         return $this->hasMany('Stellar\Models\Ship');
     }
 
@@ -82,8 +78,7 @@ class Star extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function exits()
-    {
+    public function exits() {
         return $this->belongsToMany('Stellar\Models\Star', 'star_links', 'star_id', 'destination');
     }
 
@@ -93,8 +88,7 @@ class Star extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function mines()
-    {
+    public function mines() {
         return $this->hasMany('Stellar\Models\Mine');
     }
 }

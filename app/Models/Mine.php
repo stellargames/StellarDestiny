@@ -25,8 +25,7 @@ class Mine extends Model
     protected $table = 'mines';
 
 
-    public function owner()
-    {
+    public function owner() {
         return $this->belongsTo('Stellar\Models\User');
     }
 

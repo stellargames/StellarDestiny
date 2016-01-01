@@ -15,8 +15,7 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function request(Request $request)
-    {
+    public function request(Request $request) {
         $player = auth()->user()->load(
             [
                 'ship.type',
@@ -35,8 +34,7 @@ class ApiController extends Controller
     }
 
 
-    public function testForm(Request $request)
-    {
+    public function testForm(Request $request) {
         return view('api.testform');
     }
 

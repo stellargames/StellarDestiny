@@ -31,8 +31,7 @@ class PasswordController extends Controller
      * Create a new password controller instance.
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
@@ -44,14 +43,13 @@ class PasswordController extends Controller
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make(
             $data, [
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
-        ]
+                'token'    => 'required',
+                'email'    => 'required|email',
+                'password' => 'required|confirmed|min:8',
+            ]
         );
     }
 
@@ -63,8 +61,7 @@ class PasswordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function postReset(Request $request)
-    {
+    public function postReset(Request $request) {
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {

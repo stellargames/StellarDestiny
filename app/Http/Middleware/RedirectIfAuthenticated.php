@@ -21,8 +21,7 @@ class RedirectIfAuthenticated
      *
      * @param  Guard $auth
      */
-    public function __construct(Guard $auth)
-    {
+    public function __construct(Guard $auth) {
         $this->auth = $auth;
     }
 
@@ -35,8 +34,7 @@ class RedirectIfAuthenticated
      *
      * @return mixed
      */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         if ($this->auth->check()) {
             return redirect('/');
         }

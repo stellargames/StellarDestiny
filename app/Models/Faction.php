@@ -25,8 +25,7 @@ class Faction extends Model
     protected $table = 'factions';
 
 
-    public function users()
-    {
+    public function users() {
         return $this->hasMany('Stellar\Models\User');
     }
 

@@ -11,9 +11,7 @@ class ShipController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-
+    public function index() {
     }
 
 
@@ -24,9 +22,7 @@ class ShipController extends Controller
      *
      * @return Response
      */
-    public function edit($id)
-    {
-
+    public function edit($id) {
     }
 
 }

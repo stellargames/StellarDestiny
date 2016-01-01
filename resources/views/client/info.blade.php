@@ -9,50 +9,50 @@ Info
         <div class="col-sm-4">
             <ul class="list-group">
                 <li class="list-group-item active">
-                     Captain <span class="badge">{{ $data->user->name }}</span>
+                     Captain <span class="badge">{{ $data->name }}</span>
                 </li>
                 <li class="list-group-item">
-                     Reputation <span class="badge">{{ $data->user->reputation }}</span>
+                     Reputation <span class="badge">{{ $data->reputation }}</span>
                 </li>
                 <li class="list-group-item">
-                     Alignment <span class="badge">{{ $data->user->alignment }}</span>
+                     Alignment <span class="badge">{{ $data->alignment }}</span>
                 </li>
                 <li class="list-group-item">
-                     Affiliation <span class="badge">{{ $data->user->affiliation }}</span>
+                     Affiliation <span class="badge">{{ $data->affiliation }}</span>
                 </li>
                 <li class="list-group-item">
-                    Credits <span class="badge">{{ $data->user->ship->credits }}</span>
+                    Credits <span class="badge">{{ $data->ship->credits }}</span>
                 </li>
             </ul>
         </div>
         <div class="col-sm-4">
             <ul class="list-group">
                 <li class="list-group-item active">
-                     Ship <span class="badge">{{ $data->user->ship->name }}</span>
+                     Ship <span class="badge">{{ $data->ship->name }}</span>
                 </li>
                 <li class="list-group-item">
-                     Class <span class="badge" data-toggle="tooltip" data-placement="right" title="{{ $data->user->ship->type->description }}">{{ $data->user->ship->type->name }}</span>
+                     Class <span class="badge" data-toggle="tooltip" data-placement="right" title="{{ $data->ship->type->description }}">{{ $data->ship->type->name }}</span>
                 </li>
                 <li class="list-group-item">
-                     Structure <span class="badge">{{ $data->user->ship->structure }}/{{ $data->user->ship->type->structure }}</span>
+                     Structure <span class="badge">{{ $data->ship->structure }}/{{ $data->ship->type->structure }}</span>
                 </li>
                 <li class="list-group-item">
-                     Energy <span class="badge">{{ $data->user->ship->energy }}/{{ $data->user->ship->energy_capacity }}</span>
+                     Energy <span class="badge">{{ $data->ship->energy }}/{{ $data->ship->energy_capacity }}</span>
                 </li>
                 <li class="list-group-item">
-                     Unused capacity <span class="badge">{{ $data->user->ship->type->slots - count($data->user->ship->items) }}/{{ $data->user->ship->type->slots }}</span>
+                     Unused capacity <span class="badge">{{ $data->ship->type->slots - count($data->ship->items) }}/{{ $data->ship->type->slots }}</span>
                 </li>
                 <li class="list-group-item">
-                     Shields <span class="badge">{{ $data->user->ship->shields }}</span>
+                     Shields <span class="badge">{{ $data->ship->shields }}</span>
                 </li>
                 <li class="list-group-item">
-                     Armor <span class="badge">{{ $data->user->ship->armor }}</span>
+                     Armor <span class="badge">{{ $data->ship->armor }}</span>
                 </li>
                 <li class="list-group-item">
-                     Kinetic weapon power <span class="badge">{{ $data->user->ship->kinetics }}</span>
+                     Kinetic weapon power <span class="badge">{{ $data->ship->kinetics }}</span>
                 </li>
                 <li class="list-group-item">
-                     Beam weapon power <span class="badge">{{ $data->user->ship->beams }}</span>
+                     Beam weapon power <span class="badge">{{ $data->ship->beams }}</span>
                 </li>
             </ul>
         </div>

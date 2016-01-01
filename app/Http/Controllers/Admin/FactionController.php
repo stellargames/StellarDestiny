@@ -11,9 +11,7 @@ class FactionController extends Controller
      *
      * @return Response
      */
-    public function index()
-    {
-
+    public function index() {
     }
 
 
@@ -22,8 +20,6 @@ class FactionController extends Controller
      *
      * @return Response
      */
-    public function edit()
-    {
-
+    public function edit() {
     }
 }
