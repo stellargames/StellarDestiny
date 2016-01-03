@@ -22,7 +22,9 @@
     "zofe/rapyd": "2.2.*",
     "nanigans/single-table-inheritance": "dev-master",
     "barryvdh/laravel-ide-helper": "^2.1",
-    "predis/predis": "^1.0"
+    "predis/predis": "^1.0",
+    "league/fractal": "^0.13.0",
+    "fguillot/json-rpc": "@stable"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

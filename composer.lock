@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a6793c636c1a867edc4deb53dcbfc4e4",
-    "content-hash": "ae2f9863d62c2a964a7ccb1d99f0022f",
+    "hash": "67aa92829e3473902daaf4c65c3d5e07",
+    "content-hash": "6342022ccbb0a0ad1087f35bab9b4f46",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -223,6 +223,42 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "fguillot/json-rpc",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fguillot/JsonRPC.git",
+                "reference": "0a77cd311783431c851e4c8eed33858663c17277"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fguillot/JsonRPC/zipball/0a77cd311783431c851e4c8eed33858663c17277",
+                "reference": "0a77cd311783431c851e4c8eed33858663c17277",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonRPC": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frédéric Guillot"
+                }
+            ],
+            "description": "Simple Json-RPC client/server library that just works",
+            "homepage": "https://github.com/fguillot/JsonRPC",
+            "time": "2015-09-19 02:27:10"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -754,6 +790,69 @@
                 "storage"
             ],
             "time": "2015-12-19 20:16:43"
+        },
+        {
+            "name": "league/fractal",
+            "version": "0.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/fractal.git",
+                "reference": "3caeefbad51bce7a06947321938128512f42346c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/3caeefbad51bce7a06947321938128512f42346c",
+                "reference": "3caeefbad51bce7a06947321938128512f42346c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "illuminate/contracts": "~5.0",
+                "mockery/mockery": "~0.9",
+                "pagerfanta/pagerfanta": "~1.0.0",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5",
+                "zendframework/zend-paginator": "~2.3"
+            },
+            "suggest": {
+                "illuminate/pagination": "The Illuminate Pagination component.",
+                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
+                "zendframework/zend-paginator": "Zend Framework Paginator"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Fractal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Sturgeon",
+                    "email": "me@philsturgeon.uk",
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle the output of complex data structures ready for API output.",
+            "homepage": "http://fractal.thephpleague.com/",
+            "keywords": [
+                "api",
+                "json",
+                "league",
+                "rest"
+            ],
+            "time": "2015-10-07 14:48:58"
         },
         {
             "name": "monolog/monolog",
@@ -2483,12 +2582,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "a687fba94685d73f0458dfa4c2eba3c850bd3cf5"
+                "reference": "841aa722f67f588dc43a224fd9d72a264f96d72a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/a687fba94685d73f0458dfa4c2eba3c850bd3cf5",
-                "reference": "a687fba94685d73f0458dfa4c2eba3c850bd3cf5",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/841aa722f67f588dc43a224fd9d72a264f96d72a",
+                "reference": "841aa722f67f588dc43a224fd9d72a264f96d72a",
                 "shasum": ""
             },
             "require": {
@@ -2555,7 +2654,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2015-12-30 13:41:20"
+            "time": "2016-01-03 12:49:54"
         },
         {
             "name": "codeclimate/php-test-reporter",
@@ -4889,6 +4988,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "nanigans/single-table-inheritance": 20,
+        "fguillot/json-rpc": 0,
         "codeception/codeception": 20
     },
     "prefer-stable": false,

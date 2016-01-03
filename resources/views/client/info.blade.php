@@ -37,10 +37,10 @@ Info
                      Structure <span class="badge">{{ $data->ship->structure }}/{{ $data->ship->type->structure }}</span>
                 </li>
                 <li class="list-group-item">
-                     Energy <span class="badge">{{ $data->ship->energy }}/{{ $data->ship->energy_capacity }}</span>
+                     Energy <span class="badge">{{ $data->ship->energy }}/{{ $data->ship->energyCapacity }}</span>
                 </li>
                 <li class="list-group-item">
-                     Unused capacity <span class="badge">{{ $data->ship->type->slots - count($data->ship->items) }}/{{ $data->ship->type->slots }}</span>
+                     Unused capacity <span class="badge">{{ $data->ship->type->slots - $data->ship->itemCount }}/{{ $data->ship->type->slots }}</span>
                 </li>
                 <li class="list-group-item">
                      Shields <span class="badge">{{ $data->ship->shields }}</span>

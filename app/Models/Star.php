@@ -24,7 +24,7 @@ class Star extends Model
 
     protected $table = 'stars';
 
-    protected $hidden = [ 'pivot' ];
+    protected $hidden = [ 'pivot', 'id' ];
 
     /**
      * The attributes that are mass assignable.
