@@ -28,10 +28,11 @@ Route::post('api', 'ApiController@request');
  */
 Route::group(
     [ 'prefix' => 'client', 'namespace' => 'Client', 'middleware' => 'auth' ], function () {
-    Route::get('navigation', 'ClientController@navigation');
+    Route::get('navigation', 'NavigationController@index');
+    Route::post('navigation', 'NavigationController@jump');
     Route::get('inventory', 'ClientController@inventory');
     Route::get('trade', 'ClientController@trade');
-    Route::get('info', 'ClientController@info');
+    Route::get('info', 'InfoController@index');
     Route::get('comms', 'ClientController@comms');
 }
 );
