@@ -11,7 +11,7 @@ class ShipTransformer extends TransformerAbstract
     protected $defaultIncludes = [
         'type',
         'location',
-        //'items',
+        'items',
     ];
 
 
@@ -43,5 +43,13 @@ class ShipTransformer extends TransformerAbstract
 
         return $this->item($star, new StarTransformer);
     }
+
+
+    public function includeItems(Ship $ship) {
+        $items = $ship->items;
+
+        return $this->collection($items, new ItemTransformer, 'embedded');
+    }
+
 
 }

@@ -5,9 +5,9 @@ namespace Stellar\Http\Controllers;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
-use League\Fractal\Serializer\ArraySerializer;
 use Response;
 use Stellar\Http\Requests;
+use Stellar\Transformers\ArraySerializer;
 use Stellar\Transformers\UserTransformer;
 
 class ApiController extends Controller
@@ -27,16 +27,16 @@ class ApiController extends Controller
     /**
      * Handle incoming request.
      *
-     * @param Request         $request
+     * @param Request $request
      *
      * @return \Illuminate\Http\Response
      */
     public function request(Request $request) {
         $player = auth()->user();
 
-
         $item = new Item($player, new UserTransformer);
         $data = $this->fractal->createData($item)->toArray();
+
         return Response::json($data);
     }
 
