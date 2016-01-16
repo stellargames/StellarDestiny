@@ -5,8 +5,40 @@
 @endsection
 
 @section('content')
-    <form method="post" action="{{ action('ApiController@request') }}">
+    <form method="post" id="apiform">
         {{ csrf_field() }}
-        <input type="submit"/>
+        <div class="form-group">
+        <label>Command
+            <input class="form-control" type="text" name="command" value="info"/>
+        </label>
+        </div>
+        <div class="form-group">
+        <label>Parameter
+            <input class="form-control" type="text" name="parameter" value=""/>
+        </label>
+        <label>Value
+            <input class="form-control" type="text" name="value" value=""/>
+        </label>
+        </div>
+        <div class="form-group">
+        <input type="submit" value="Execute"/>
+        </div>
     </form>
+    <pre id="results"></pre>
+@endsection
+
+@section('scripts')
+    <script>
+        $form = $('#apiform');
+
+        $form.submit(function (e) {
+            e.preventDefault();
+
+            $.post('{{ action('ApiController@request') }}', $form.serialize())
+                    .done(function( data ) {
+                        $('#results').text( JSON.stringify(data) );
+                        console.log(data);
+                    });
+        })
+    </script>
 @endsection
