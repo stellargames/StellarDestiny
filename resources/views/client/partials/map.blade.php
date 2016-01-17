@@ -1,7 +1,7 @@
 <script>
-    var elements = {!! json_encode($data->starMap) !!}
+    var elements = {!! json_encode($starMap) !!}
 </script>
 <h2>Star map</h2>
 <pre>
-{{ var_export($data->starMap, true) }}
+{{ var_export($starMap, true) }}
 </pre>

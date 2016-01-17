@@ -5,12 +5,14 @@ namespace Stellar\Http\Controllers\Client;
 class NavigationController extends ClientController
 {
     public function index() {
-        $data = $this->makeApiCall('navigation');
+        $response = $this->makeApiCall('info');
+
+        $player = $response->data->player;
 
         // Star map.
-        $data->starMap = $this->getStarMap($data);
+        $starMap = $this->getStarMap($player);
 
-        return view('client.navigation', compact('data'));
+        return view('client.navigation', compact('starMap', 'player'));
     }
 
     public function jump() {

@@ -41,5 +41,6 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 {!! Rapyd::scripts() !!}
 <script>$('[data-toggle="tooltip"]').tooltip();</script>
+@yield('scripts')
 </body>
 </html>

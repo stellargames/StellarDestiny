@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "74acc36c221f01e578f4eafbac7247c6",
-    "content-hash": "25e8db95ac3c8c53439f42e17e26561b",
+    "hash": "1b7dd8b43bc51bd3ede9e760467cf39e",
+    "content-hash": "373b7396c3a33541b4ae4a3d140dc8d3",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -619,16 +619,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.2.1",
+            "version": "v5.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "add2c74b144d0a25ba27a1506b7ce84e6bcadd64"
+                "reference": "c88b2d59a56ed2290fc5082a1a6099e357c9fdbc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/add2c74b144d0a25ba27a1506b7ce84e6bcadd64",
-                "reference": "add2c74b144d0a25ba27a1506b7ce84e6bcadd64",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/c88b2d59a56ed2290fc5082a1a6099e357c9fdbc",
+                "reference": "c88b2d59a56ed2290fc5082a1a6099e357c9fdbc",
                 "shasum": ""
             },
             "require": {
@@ -669,7 +669,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
-            "time": "2016-01-15 21:59:03"
+            "time": "2016-01-16 16:54:49"
         },
         {
             "name": "league/flysystem",
@@ -2619,6 +2619,46 @@
                 "unit testing"
             ],
             "time": "2016-01-15 10:07:36"
+        },
+        {
+            "name": "codeception/mockery-module",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/MockeryModule.git",
+                "reference": "ab1c965290f8ac78507c4da0a78b1111d3aebab2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/MockeryModule/zipball/ab1c965290f8ac78507c4da0a78b1111d3aebab2",
+                "reference": "ab1c965290f8ac78507c4da0a78b1111d3aebab2",
+                "shasum": ""
+            },
+            "require": {
+                "mockery/mockery": "~0.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codeception\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Bodnarchuk",
+                    "email": "davert.php@mailican.com"
+                },
+                {
+                    "name": "Jáchym Toušek",
+                    "email": "enumag@gmail.com"
+                }
+            ],
+            "description": "Mockery Module for Codeception",
+            "time": "2015-09-24 19:28:29"
         },
         {
             "name": "codeclimate/php-test-reporter",

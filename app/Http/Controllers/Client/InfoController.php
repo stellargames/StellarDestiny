@@ -5,7 +5,9 @@ namespace Stellar\Http\Controllers\Client;
 class InfoController extends ClientController
 {
     public function index() {
-        $data = $this->makeApiCall('info');
-        return view('client.info', compact('data'));
+        $response = $this->makeApiCall('info');
+        $player = $response->data->player;
+        $messages = $response->messages;
+        return view('client.info', compact('player', 'messages'));
     }
 }

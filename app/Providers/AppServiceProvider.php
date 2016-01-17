@@ -3,6 +3,7 @@
 namespace Stellar\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Stellar\Api\CommandHandler;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +29,12 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
             $this->app->register('Barryvdh\Debugbar\ServiceProvider');
         }
+
+        // Bind the command handler for the api.
+        $this->app->bind('Stellar\Contracts\CommandHandler', function ($app) {
+            $commands = $app['config']['api']['commands'];
+            return  new CommandHandler($commands);
+        });
+        //$this->app->bind('Stellar\Contracts\CommandHandler', 'Stellar\Api\CommandHandler');
     }
 }

@@ -2,13 +2,13 @@
 
 namespace Stellar\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
-use League\Fractal\Resource\Item;
 use Response;
+use Stellar\Contracts\CommandHandler;
 use Stellar\Http\Requests;
 use Stellar\Transformers\ArraySerializer;
-use Stellar\Transformers\UserTransformer;
 
 class ApiController extends Controller
 {
@@ -27,17 +27,36 @@ class ApiController extends Controller
     /**
      * Handle incoming request.
      *
-     * @param Request $request
+     * @param Request        $request
+     *
+     * @param CommandHandler $handler
      *
      * @return \Illuminate\Http\Response
      */
-    public function request(Request $request) {
-        $player = auth()->user();
+    public function request(Request $request, CommandHandler $handler) {
 
-        $item = new Item($player, new UserTransformer);
-        $data = $this->fractal->createData($item)->toArray();
+        $result = $handler->handle($request->command, $request->arguments);
 
-        return Response::json($data);
+        // Basic response variables.
+        $response = [
+            'success' => $result->succeeded(),
+            'messages' => $result->getMessages(),
+            'serverTime' => Carbon::now()->toIso8601String(),
+        ];
+
+        // Mark the response with the requestId.
+        if ($request->has('requestId')) {
+            $response['requestId'] = $request->requestId;
+        }
+
+        // Use fractal to transform the returned data.
+        if ($result->succeeded() && $result->hasData()) {
+            foreach ($result->getData() as $key => $value) {
+                $response['data'][$key] = $this->fractal->createData($value)->toArray();
+            }
+        }
+
+        return Response::json($response);
     }
 
 
