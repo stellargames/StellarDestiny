@@ -26,7 +26,7 @@ class ItemController extends Controller
             function ($value) {
                 return link_to(action('Admin\ItemController@edit') . '?show=' . $value, $value);
             }
-        );;
+        );
         $grid->add('type', 'Type', true);
         $grid->add('name', 'Name', true);
         $grid->add('description', 'Description', true);

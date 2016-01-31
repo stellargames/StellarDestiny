@@ -8,7 +8,7 @@ use Stellar\Models\Ship;
 class ShipTransformer extends TransformerAbstract
 {
 
-    protected $defaultIncludes = [
+    protected static $defaultIncludes = [
         'type',
         'location',
         'items',

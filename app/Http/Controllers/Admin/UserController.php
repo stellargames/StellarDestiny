@@ -26,7 +26,7 @@ class UserController extends Controller
             function ($value) {
                 return link_to(action('Admin\UserController@edit') . '?show=' . $value, $value);
             }
-        );;
+        );
         $grid->add('status', 'Status', true);
         $grid->add('name', 'Name', true);
         $grid->add('faction.name', 'Faction', true);
