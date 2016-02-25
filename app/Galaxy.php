@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kender
- * Date: 26-Jan-16
- * Time: 19:31
- */
 
 namespace Stellar;
 
-use Stellar\Helpers\NameGenerator;
+use Stellar\Contracts\NameGenerator;
+use Stellar\Exceptions\GalaxyException;
 
 /**
  * Class Galaxy
@@ -22,7 +17,7 @@ class Galaxy
     const GALAXY_LARGE = 500;
 
     /**
-     * @var array
+     * @var Star[]
      */
     protected $stars = [ ];
 
@@ -44,9 +39,15 @@ class Galaxy
 
     /**
      * @param Star $star
+     *
+     * @throws GalaxyException
      */
     public function addStar(Star $star) {
-        $this->stars[$star->getName()] = $star;
+        $name = $star->getName();
+        if (array_key_exists($name, $this->stars)) {
+            throw new GalaxyException('Duplicate star name: ' . $name);
+        }
+        $this->stars[$name] = $star;
     }
 
 
@@ -75,20 +76,26 @@ class Galaxy
     /**
      * @param Star $star
      * @param Star $otherStar
+     *
+     * @throws GalaxyException
      */
     protected function linkTwoStars(Star $star, Star $otherStar) {
+        if ($star === $otherStar) {
+            throw new GalaxyException('Stars cannot link to themselves.');
+        }
         $star->linkTo($otherStar);
         $otherStar->linkTo($star);
     }
 
 
     /**
-     *
+     * @throws GalaxyException
      */
     protected function linkAllStars() {
         $unlinkedStars = $this->getUnlinkedStars();
         $linkedStars   = $this->getLinkedStars();
         $star          = $this->getLinkStartingStar($linkedStars, $unlinkedStars);
+        unset($unlinkedStars[$star->getName()]);
         while (count($unlinkedStars) > 0) {
             $id           = array_rand($unlinkedStars);
             $unlinkedStar = $unlinkedStars[$id];
@@ -166,10 +173,19 @@ class Galaxy
      */
     protected function generateUniqueStarName() {
         do {
-            $name = $this->nameGenerator->generateStarName();
+            $name = $this->nameGenerator->generateName();
         } while (array_key_exists($name, $this->stars));
 
         return $name;
     }
+
+
+    /**
+     * @return Star
+     */
+    public function getStartingStar() {
+        return $this->stars[array_rand($this->stars)];
+    }
+
 
 }

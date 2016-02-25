@@ -1,6 +1,8 @@
 <?php
 
+use Stellar\Exceptions\GalaxyException;
 use Stellar\Galaxy;
+use Stellar\JumpPoint;
 use Stellar\Star;
 
 class GalaxyCest
@@ -13,22 +15,29 @@ class GalaxyCest
 
 
     public function _before(UnitTester $I) {
-        $this->galaxy = new Galaxy(new \Stellar\Helpers\NameGenerator());
+        $generator = Mockery::mock('\Stellar\Contracts\NameGenerator');
+        $generator->shouldReceive('generateName')->andReturnUsing(
+                function () {
+                    return str_random(12);
+                }
+            );
+        $this->galaxy = new Galaxy($generator);
     }
 
 
     public function _after(UnitTester $I) {
+        Mockery::close();
     }
 
 
-    public function aSmallGalaxyHasAFewStars(UnitTester $I) {
+    public function makeASmallGalaxy(UnitTester $I) {
         $this->galaxy->generateStars(Galaxy::GALAXY_SMALL);
         $size = $this->galaxy->getSize();
         $I->assertEquals(Galaxy::GALAXY_SMALL, $size);
     }
 
 
-    public function youCanAddMoreStars(UnitTester $I) {
+    public function addMoreStars(UnitTester $I) {
         $this->galaxy->generateStars(Galaxy::GALAXY_SMALL);
         $this->galaxy->generateStars(Galaxy::GALAXY_SMALL);
         $size = $this->galaxy->getSize();
@@ -36,13 +45,27 @@ class GalaxyCest
     }
 
 
-    public function allStarsHaveAName(UnitTester $I) {
+    public function checkThatAllStarsHaveAName(UnitTester $I) {
         /* @var Star $star */
         $this->galaxy->generateStars(Galaxy::GALAXY_SMALL);
         $stars = $this->galaxy->getAllStars();
         foreach ($stars as $star) {
             $I->assertNotEmpty($star->getName());
         }
+    }
+
+
+    public function duplicateStarNamesAreForbidden(UnitTester $I) {
+        $exceptionThrown = false;
+        $star            = new Star('a name');
+        $this->galaxy->addStar($star);
+        $anotherStar = new Star('a name');
+        try {
+            $this->galaxy->addStar($anotherStar);
+        } catch (GalaxyException $exception) {
+            $exceptionThrown = true;
+        }
+        $I->assertTrue($exceptionThrown);
     }
 
 
@@ -58,23 +81,35 @@ class GalaxyCest
 
 
     public function travelToAllStars(UnitTester $I) {
-        /* @var Star $star */
         $this->galaxy->generateStars(Galaxy::GALAXY_LARGE);
-        $stars                     = $this->galaxy->getAllStars();
-        $star                      = reset($stars);
-        $visited[$star->getName()] = true;
-        $queue                     = [ $star ];
+        $count = $this->howManyStarsCanWeVisit();
+        $I->assertEquals(Galaxy::GALAXY_LARGE, $count);
+    }
+
+
+    /**
+     * @return int
+     */
+    protected function howManyStarsCanWeVisit() {
+        /* @var Star $star */
+        /* @var JumpPoint $jumpPoint */
+        $stars   = $this->galaxy->getAllStars();
+        $star    = reset($stars);
+        $visited = [ $star ];
+        $queue   = [ $star ];
         while (count($queue) > 0) {
             $star       = array_pop($queue);
-            $jumpPoints = array_keys($star->getJumpPoints());
+            $jumpPoints = $star->getJumpPoints();
             foreach ($jumpPoints as $jumpPoint) {
-                if ( ! array_key_exists($jumpPoint, $visited)) {
-                    $queue[]             = $stars[$jumpPoint];
-                    $visited[$jumpPoint] = true;
+                $destination = $jumpPoint->getDestination();
+                if ( ! in_array($destination, $visited, true)) {
+                    $queue[]   = $destination;
+                    $visited[] = $destination;
                 }
             }
         }
-        $I->assertEquals(Galaxy::GALAXY_LARGE, count($visited));
+
+        return count($visited);
     }
 
 }

@@ -1,18 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kender
- * Date: 26-Jan-16
- * Time: 20:30
- */
 
 namespace Stellar;
 
 class Star
 {
 
+    /** @var string */
+    protected $name;
+
     /**
-     * @var array
+     * @var JumpPoint[]
      */
     protected $jumpPoints = [ ];
 
@@ -44,10 +41,11 @@ class Star
 
 
     /**
-     * @param Star $otherStar
+     * @param Star $star
      */
-    public function linkTo(Star $otherStar) {
-        $this->jumpPoints[$otherStar->getName()] = true;
+    public function linkTo(Star $star) {
+        $jumpPoint = new JumpPoint($this, $star);
+        $this->jumpPoints[] = $jumpPoint;
     }
 
 }

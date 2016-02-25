@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kender
- * Date: 31-Jan-16
- * Time: 15:53
- */
 
 namespace Stellar\Helpers;
 
-class NameGenerator
+use Stellar\Contracts\NameGenerator;
+
+class StarNameGenerator implements NameGenerator
 {
 
     // No j,l,o,q,v,w to avoid look-alikes.
@@ -21,7 +17,7 @@ class NameGenerator
      *
      * @return string
      */
-    public function generateStarName() {
+    public function generateName() {
 
         $letterPart = mt_rand(0, 1) ? $this->generateThreePartName(
             self::CONSONANTS, self::VOWELS
