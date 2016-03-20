@@ -10,7 +10,7 @@ class CreateMinesTable extends Migration
     {
         Schema::create(
             'mines', function (Blueprint $table) {
-            $table->integer('star_id')->unsigned();
+            $table->string('star_name', 8);
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('item_id')->unsigned();
             $table->integer('trigger')->unsigned()->nullable();

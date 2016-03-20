@@ -60,6 +60,8 @@ class PasswordController extends Controller
      * @param  \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @throws \Illuminate\Foundation\Validation\ValidationException
      */
     public function postReset(Request $request) {
         $validator = $this->validator($request->all());
@@ -76,14 +78,12 @@ class PasswordController extends Controller
         }
         );
 
-        switch ($response) {
-            case Password::PASSWORD_RESET:
-                return redirect($this->redirectPath())->with('status', trans($response));
-
-            default:
-                return redirect()->back()->withInput($request->only('email'))->withErrors(
-                    [ 'email' => trans($response) ]
-                );
+        if ($response === Password::PASSWORD_RESET) {
+            return redirect($this->redirectPath())->with('status', trans($response));
+        } else {
+            return redirect()->back()->withInput($request->only('email'))->withErrors(
+                [ 'email' => trans($response) ]
+            );
         }
     }
 }

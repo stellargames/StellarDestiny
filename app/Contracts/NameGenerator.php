@@ -5,7 +5,7 @@ interface NameGenerator
 {
 
     /**
-     * Generate a star name.
+     * Generate a name.
      *
      * @return string
      */

@@ -3,6 +3,8 @@
 namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Stellar\Contracts\Locatable;
+use Stellar\Exceptions\ShipException;
 
 /**
  * Stellar\Models\Ship
@@ -38,7 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read mixed                                                                 $kinetics
  * @property-read mixed                                                                 $beams
  */
-class Ship extends Model
+class Ship extends Model implements Locatable
 {
 
     public $timestamps = true;
@@ -47,7 +49,7 @@ class Ship extends Model
 
     protected $fillable = [ 'name' ];
 
-    protected $hidden = [ 'user_id', 'star_id', 'ship_type_id', 'created_at', 'updated_at' ];
+    protected $hidden = [ 'user_id', 'star_name', 'ship_type_id', 'created_at', 'updated_at' ];
 
     protected $appends = [ 'energy_capacity', 'shields', 'armor', 'kinetics', 'beams' ];
 
@@ -68,7 +70,7 @@ class Ship extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function location() {
-        return $this->belongsTo('Stellar\Models\Star', 'star_id');
+        return $this->belongsTo('Stellar\Models\Star', 'star_name');
     }
 
 
@@ -169,6 +171,113 @@ class Ship extends Model
         }
 
         return $value;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getEnergy() {
+        return $this->energy;
+    }
+
+
+    /**
+     * @param int $energy
+     *
+     * @return Ship
+     */
+    public function setEnergy($energy) {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+
+    /**
+     * @param int $amount
+     *
+     * @return Ship
+     */
+    public function addEnergy($amount) {
+        $this->energy += $amount;
+
+        return $this;
+    }
+
+
+    /**
+     * @param int $amount
+     *
+     * @return Ship
+     */
+    public function drainEnergy($amount) {
+        $this->energy = $amount;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Star
+     */
+    public function getLocation() {
+        return $this->location;
+    }
+
+
+    /**
+     * @param Star $location
+     *
+     * @return Ship
+     */
+    public function setLocation($location) {
+        $this->location = $location;
+
+        return $this;
+    }
+
+
+    /**
+     * Unset location.
+     */
+    public function unsetLocation() {
+        $this->location = null;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function scanForJumpPoints() {
+        if ($this->location === null) {
+            return [ ];
+        }
+
+        return $this->location->exits;
+    }
+
+
+    /**
+     * @param Star $destination
+     *
+     * @return $this
+     * @throws ShipException
+     */
+    public function jumpTo($destination) {
+        if ($this->energy <= 0) {
+            throw new ShipException('Not enough energy to make jump.');
+        }
+        $jumpPoints = $this->scanForJumpPoints();
+        foreach ($jumpPoints as $jumpPoint) {
+            if ($jumpPoint->name === $destination->name) {
+                $this->setLocation($destination);
+                $this->drainEnergy(1);
+
+                return $this;
+            }
+        }
+        throw new ShipException('No jumpPoint leading to destination found.');
     }
 
 }

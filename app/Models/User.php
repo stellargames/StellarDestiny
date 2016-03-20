@@ -124,10 +124,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @return bool
      */
     public function hasRole($role) {
-        $bit     = array_search($role, $this::$statusEnum);
-        $hasRole = $bit && $this->status & $bit == 1;
+        $bit = array_search($role, $this::$statusEnum, false);
 
-        return $hasRole;
+        return $bit && $this->status & $bit === 1;
     }
 
 
@@ -137,7 +136,19 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @return bool
      */
     public function isAdmin() {
-        return $this->hasRole('Admin');
+        return $this->hasRole(self::$statusEnum[USER_STATUS_ADMIN]);
+    }
+
+
+    public function isPlayer() {
+        if ($this->isAdmin()) {
+            return false;
+        }
+        if ($this->hasRole(self::$statusEnum[USER_STATUS_SPAMMER])) {
+            return false;
+        }
+
+        return true;
     }
 
 

@@ -6,5 +6,6 @@ class_name: UnitTester
 modules:
     enabled:
         - Asserts
-        - \Helper\Unit
+        - Laravel5:
+            environment_file: .env.testing
         - Mockery

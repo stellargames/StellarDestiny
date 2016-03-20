@@ -3,6 +3,7 @@
 namespace Stellar\Transformers;
 
 use League\Fractal\TransformerAbstract;
+use Stellar\Models\Trader;
 
 class TraderTransformer extends TransformerAbstract
 {

@@ -10,12 +10,10 @@ class CreateStarsTable extends Migration
     {
         Schema::create(
             'stars', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 64)->unique();
+            $table->string('name', 8)->unique();
         }
         );
     }
-
 
     public function down()
     {

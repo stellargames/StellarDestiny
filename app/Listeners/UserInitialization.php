@@ -26,6 +26,8 @@ class UserInitialization
     public function handle(UserRegistered $event) {
         // Give the player a ship.
         $player = $event->user;
-        $player->setStartingShip();
+        if ($player->status < 2) {
+            $player->setStartingShip();
+        }
     }
 }

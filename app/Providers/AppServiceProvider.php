@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register() {
         // Development helpers.
-        if ($this->app->environment() == 'local') {
+        if ($this->app->environment() === 'local') {
             $this->app->register('Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider');
             $this->app->register('Barryvdh\Debugbar\ServiceProvider');
         }
@@ -35,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
             $commands = $app['config']['api']['commands'];
             return  new CommandHandler($commands);
         });
-        //$this->app->bind('Stellar\Contracts\CommandHandler', 'Stellar\Api\CommandHandler');
+        $this->app->bind('Stellar\Contracts\NameGenerator', 'Stellar\Helpers\StarNameGenerator');
+        $this->app->bind('Stellar\Repositories\Contracts\StarRepositoryInterface', 'Stellar\Repositories\Eloquent\StarRepository');
     }
 }

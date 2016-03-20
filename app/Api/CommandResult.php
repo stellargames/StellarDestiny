@@ -38,7 +38,7 @@ class CommandResult implements \Stellar\Contracts\CommandResult
      * @return bool
      */
     public function succeeded() {
-        return $this->status == self::STATUS_OK;
+        return $this->status === self::STATUS_OK;
     }
 
 
@@ -46,7 +46,7 @@ class CommandResult implements \Stellar\Contracts\CommandResult
      * @return bool
      */
     public function failed() {
-        return $this->status == self::STATUS_ERROR;
+        return $this->status === self::STATUS_ERROR;
     }
 
 

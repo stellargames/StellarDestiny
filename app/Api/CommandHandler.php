@@ -28,9 +28,11 @@ class CommandHandler implements \Stellar\Contracts\CommandHandler
      * @param array  $arguments [optional] arguments for the command.
      *
      * @return \Stellar\Contracts\CommandResult
+     *
+     * @throws \InvalidArgumentException
      */
-    public function handle($command, $arguments = [ ]) {
-        if ( ! isset($this->commands[$command])) {
+    public function handle($command, array $arguments = [ ]) {
+        if ( ! array_key_exists($command, $this->commands)) {
             throw new \InvalidArgumentException('Unknown command ' . $command);
         }
         $command = new $this->commands[$command];

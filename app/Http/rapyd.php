@@ -23,7 +23,7 @@ Burp::get(
     null, 'ord=(-?)(\w+)', [
         'as' => 'orderby',
         function ($direction, $field) {
-            $direction = ($direction == '-') ? "DESC" : "ASC";
+            $direction = ($direction === '-') ? 'DESC' : 'ASC';
             BurpEvent::queue('dataset.sort', [ $direction, $field ]);
         },
     ]

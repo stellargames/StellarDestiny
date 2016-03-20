@@ -6,10 +6,10 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
 
-    public function run()
-    {
+    public function run() {
         Model::unguard();
 
+        $this->call('StarTableSeeder');
         $this->call('UserTableSeeder');
         $this->call('ItemTableSeeder');
         $this->call('ShipTypeTableSeeder');

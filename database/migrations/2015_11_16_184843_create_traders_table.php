@@ -11,7 +11,7 @@ class CreateTradersTable extends Migration
         Schema::create(
             'traders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('star_id')->unsigned();
+            $table->string('star_name', 8);
             $table->string('name', 64);
             $table->timestamps();
         }

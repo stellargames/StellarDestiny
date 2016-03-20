@@ -46,9 +46,15 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
+        'testing_setup' => [
             'driver'   => 'sqlite',
-            'database' => database_path('database.sqlite'),
+            'database' => database_path('setup.sqlite'),
+            'prefix'   => '',
+        ],
+        
+        'testing' => [
+            'driver'   => 'sqlite',
+            'database' => sys_get_temp_dir() . '/testing.sqlite',
             'prefix'   => '',
         ],
 

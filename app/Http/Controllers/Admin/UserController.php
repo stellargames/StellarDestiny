@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function edit() {
         $edit = \DataEdit::source(new User);
-        $edit->link(action('Admin\UserController@index'), "Users", "TR")->back();
+        $edit->link(action('Admin\UserController@index'), 'Users', 'TR')->back();
         $edit->add('status', 'Status', 'checkboxgroup')->options(User::$statusEnum);
         $edit->add('name', 'Name', 'text')->rule('required');
         $edit->add('faction.name', 'Faction', 'autocomplete');

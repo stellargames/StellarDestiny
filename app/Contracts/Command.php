@@ -9,5 +9,5 @@ interface Command
      *
      * @return CommandResult
      */
-    public function execute($arguments = [ ]);
+    public function execute(array $arguments = [ ]);
 }

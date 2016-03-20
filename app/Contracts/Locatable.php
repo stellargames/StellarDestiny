@@ -1,7 +1,7 @@
 <?php
 namespace Stellar\Contracts;
 
-use Stellar\Star;
+use Stellar\Models\Star;
 
 interface Locatable
 {

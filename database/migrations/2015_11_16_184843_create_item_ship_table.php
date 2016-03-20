@@ -13,7 +13,7 @@ class CreateItemShipTable extends Migration
             $table->integer('item_id')->unsigned();
             $table->integer('ship_id')->unsigned();
             $table->integer('amount')->unsigned();
-            $table->integer('paid');
+            $table->integer('paid')->default(0);
         }
         );
     }

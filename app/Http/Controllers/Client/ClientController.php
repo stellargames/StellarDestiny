@@ -11,7 +11,7 @@ use Stellar\Http\Requests;
 class ClientController extends Controller
 {
 
-    protected function makeApiCall($command, $arguments = [ ]) {
+    protected function makeApiCall($command, array $arguments = [ ]) {
         $request  = Request::create('api', 'POST', [ 'command' => $command, 'arguments' => $arguments]);
         $handler  = app()->make('Stellar\Contracts\CommandHandler');
         $response = app('\Stellar\Http\Controllers\ApiController')->request($request, $handler)->getContent();
@@ -31,7 +31,8 @@ class ClientController extends Controller
         $key      = 'ls:' . $player->ship->name . ':starmap';
         $json     = Redis::get($key);
         $starMap  = (array) json_decode($json);
-        if ( ! isset($starMap[$location->name])) {
+        
+        if ( ! array_key_exists($location->name, $starMap)) {
             $starMap[$location->name] = $location->exits;
             $json                     = Json::encode($starMap);
             Redis::set($key, $json);

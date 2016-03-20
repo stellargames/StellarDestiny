@@ -72,7 +72,8 @@ Route::group(
 
     // Star maps.
     Route::get('star', 'StarController@index');
-    Route::get('star/generate', 'StarController@generate');
+    Route::get('star/generate', 'StarController@getGenerate');
+    Route::post('star/generate', 'StarController@postGenerate');
 
     Route::resource('ship', 'ShipController');
     Route::resource('trader', 'TraderController');
@@ -86,7 +87,7 @@ Route::group(
 Route::post(
     'deploy', function () {
     $payload = json_decode(Input::get('payload'));
-    if ($payload->status_message == 'Passed') {
+    if ($payload->status_message === 'Passed') {
         touch(storage_path('app/deploy'));
     }
 }

@@ -20,7 +20,7 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'ships', function (Blueprint $table) {
-            $table->foreign('star_id')->references('id')->on('stars')->onDelete('set null')->onUpdate('set null');
+            $table->foreign('star_name')->references('name')->on('stars')->onDelete('set null')->onUpdate('set null');
         }
         );
         Schema::table(
@@ -32,17 +32,7 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'traders', function (Blueprint $table) {
-            $table->foreign('star_id')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
-        }
-        );
-        Schema::table(
-            'star_links', function (Blueprint $table) {
-            $table->foreign('star_id')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
-        }
-        );
-        Schema::table(
-            'star_links', function (Blueprint $table) {
-            $table->foreign('destination')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('star_name')->references('name')->on('stars')->onDelete('cascade')->onUpdate('cascade');
         }
         );
         Schema::table(
@@ -67,7 +57,7 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'mines', function (Blueprint $table) {
-            $table->foreign('star_id')->references('id')->on('stars')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('star_name')->references('name')->on('stars')->onDelete('cascade')->onUpdate('cascade');
         }
         );
         Schema::table(
@@ -102,7 +92,7 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'ships', function (Blueprint $table) {
-            $table->dropForeign('ships_star_id_foreign');
+            $table->dropForeign('ships_star_name_foreign');
         }
         );
         Schema::table(
@@ -112,12 +102,12 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'traders', function (Blueprint $table) {
-            $table->dropForeign('traders_star_id_foreign');
+            $table->dropForeign('traders_star_name_foreign');
         }
         );
         Schema::table(
             'star_links', function (Blueprint $table) {
-            $table->dropForeign('star_links_star_id_foreign');
+            $table->dropForeign('star_links_star_name_foreign');
         }
         );
         Schema::table(
@@ -147,7 +137,7 @@ class CreateForeignKeys extends Migration
         );
         Schema::table(
             'mines', function (Blueprint $table) {
-            $table->dropForeign('mines_star_id_foreign');
+            $table->dropForeign('mines_star_name_foreign');
         }
         );
         Schema::table(

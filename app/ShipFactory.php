@@ -8,8 +8,8 @@ use Stellar\Models\Items\LuxuryCargo;
 use Stellar\Models\Items\TechnologyCargo;
 use Stellar\Models\Ship;
 use Stellar\Models\ShipType;
-use Stellar\Models\Star;
 use Stellar\Models\User;
+use Stellar\Repositories\Eloquent\StarRepository;
 
 class ShipFactory
 {
@@ -17,7 +17,7 @@ class ShipFactory
     /**
      * Generate the starting ship for all players.
      *
-     * @param User $player
+     * @param User                    $player
      *
      * @return Ship
      */
@@ -27,7 +27,7 @@ class ShipFactory
         $shipType = ShipType::whereName('Explorer')->first();
         $ship->type()->associate($shipType);
         // Place it at a random star.
-        $star = Star::findStartLocation();
+        $star = StarRepository::getStartingStar();
         $ship->location()->associate($star);
         // Give it to the player.
         $ship->owner()->associate($player);

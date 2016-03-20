@@ -1,15 +1,17 @@
 <?php
 
-namespace Stellar;
+namespace Stellar\Repositories\Eloquent;
 
 use Stellar\Contracts\NameGenerator;
 use Stellar\Exceptions\GalaxyException;
+use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarRepositoryInterface;
 
 /**
- * Class Galaxy
+ * Class StarRepository
  * @package Stellar
  */
-class Galaxy
+class StarRepository implements StarRepositoryInterface
 {
 
     const GALAXY_SMALL = 50;
@@ -43,7 +45,7 @@ class Galaxy
      * @throws GalaxyException
      */
     public function addStar(Star $star) {
-        $name = $star->getName();
+        $name = $star->name;
         if (array_key_exists($name, $this->stars)) {
             throw new GalaxyException('Duplicate star name: ' . $name);
         }
@@ -55,21 +57,25 @@ class Galaxy
      * @return int
      */
     public function getSize() {
-        return count($this->stars);
+        return Star::all()->count();
     }
 
 
     /**
-     * @param int $size
+     * @param int $amount
+     *
+     * @throws GalaxyException
      */
-    public function generateStars($size) {
-        for ($i = 0; $i < $size; $i++) {
+    public function generateStars($amount) {
+        for ($i = 0; $i < $amount; $i++) {
             $name = $this->generateUniqueStarName();
-            $this->addStar(new Star($name));
+            $star = Star::create([ 'name' => $name ]);
+            $this->addStar($star);
         }
-        if ($size > 0) {
+        if ($amount > 0) {
             $this->linkAllStars();
         }
+        $this->save();
     }
 
 
@@ -95,7 +101,7 @@ class Galaxy
         $unlinkedStars = $this->getUnlinkedStars();
         $linkedStars   = $this->getLinkedStars();
         $star          = $this->getLinkStartingStar($linkedStars, $unlinkedStars);
-        unset($unlinkedStars[$star->getName()]);
+        unset($unlinkedStars[$star->name]);
         while (count($unlinkedStars) > 0) {
             $id           = array_rand($unlinkedStars);
             $unlinkedStar = $unlinkedStars[$id];
@@ -111,6 +117,10 @@ class Galaxy
      * @return array
      */
     public function getAllStars() {
+        if (count($this->stars) === 0) {
+            $this->stars = Star::all()->toArray();
+        }
+
         return $this->stars;
     }
 
@@ -122,8 +132,7 @@ class Galaxy
         /* @var Star $star */
         $unlinkedStars = [ ];
         foreach ($this->stars as $name => $star) {
-            $jumpPoints = $star->getJumpPoints();
-            if (count($jumpPoints) === 0) {
+            if ($star->exits()->get()->count() === 0) {
                 $unlinkedStars[$name] = $star;
             }
         }
@@ -139,8 +148,7 @@ class Galaxy
         /* @var Star $star */
         $linkedStars = [ ];
         foreach ($this->stars as $name => $star) {
-            $jumpPoints = $star->getJumpPoints();
-            if (count($jumpPoints) > 0) {
+            if ($star->exits()->get()->count() > 0) {
                 $linkedStars[$name] = $star;
             }
         }
@@ -150,6 +158,8 @@ class Galaxy
 
 
     /**
+     * Helper method to get a starting star when creating links.
+     *
      * @param $linkedStars
      * @param $unlinkedStars
      *
@@ -183,9 +193,35 @@ class Galaxy
     /**
      * @return Star
      */
-    public function getStartingStar() {
-        return $this->stars[array_rand($this->stars)];
+    public static function getStartingStar() {
+        return Star::all()->random();
     }
 
+
+    /**
+     * @return void
+     */
+    public function save() {
+        foreach ($this->stars as $star) {
+            $star->push();
+        }
+    }
+
+
+    /**
+     * @param $size
+     * 
+     * @throws GalaxyException
+     */
+    public function createNew($size) {
+        $this->deleteAllStars();
+        $this->generateStars($size);
+    }
+
+
+    public function deleteAllStars() {
+        Star::getQuery()->delete();
+        $this->stars = [ ];
+    }
 
 }

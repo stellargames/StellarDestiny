@@ -46,7 +46,7 @@ class ItemController extends Controller
      */
     public function edit() {
         $edit = \DataEdit::source(new Item);
-        $edit->link(action('Admin\ItemController@index'), "Items", "TR")->back();
+        $edit->link(action('Admin\ItemController@index'), 'Items', 'TR')->back();
         $edit->add('type', 'Type', 'select')->options(array_keys(Item::getSingleTableTypeMap()))->rule('required');
         $edit->add('name', 'Name', 'text')->rule('required');
         $edit->add('description', 'Description', 'textarea');
