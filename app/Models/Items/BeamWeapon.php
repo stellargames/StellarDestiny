@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BeamWeapon whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BeamWeapon whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BeamWeapon whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class BeamWeapon extends Item
 {

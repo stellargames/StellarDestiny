@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereItemId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereTrigger($value)
+ * @property string $star_name
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Mine whereStarName($value)
+ * @mixin \Eloquent
  */
 class Mine extends Model
 {

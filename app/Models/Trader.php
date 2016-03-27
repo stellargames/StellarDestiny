@@ -19,6 +19,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereUpdatedAt($value)
+ * @property string $star_name
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereStarName($value)
+ * @mixin \Eloquent
  */
 class Trader extends Model
 {

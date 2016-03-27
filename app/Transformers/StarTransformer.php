@@ -3,13 +3,14 @@
 namespace Stellar\Transformers;
 
 use League\Fractal\TransformerAbstract;
+use Stellar\Models\Ship;
 use Stellar\Models\Star;
 
 class StarTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-        'traders',
+        //'traders',
     ];
 
 
@@ -19,7 +20,7 @@ class StarTransformer extends TransformerAbstract
             $exits[] = $exit->name;
         }
         $ships = [ ];
-        foreach ($star->ships as $ship) {
+        foreach (Ship::atLocation($star) as $ship) {
             $ships[$ship->id] = $ship->name;
         }
 

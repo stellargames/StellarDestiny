@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SpaceMine whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SpaceMine whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SpaceMine whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class SpaceMine extends Item
 {

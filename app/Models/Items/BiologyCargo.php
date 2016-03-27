@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BiologyCargo whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BiologyCargo whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\BiologyCargo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class BiologyCargo extends Item
 {

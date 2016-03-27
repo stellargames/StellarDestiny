@@ -12,7 +12,7 @@
         </div>
         <div class="collapse navbar-collapse">
 
-            @if (Auth::check())
+            @if (Auth::check() && Auth::user()->isPlayer())
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/client/info') }}">Info</a></li>
                     <li><a href="{{ url('/client/navigation') }}">Navigation</a></li>

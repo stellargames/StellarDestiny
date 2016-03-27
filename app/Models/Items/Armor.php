@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Armor whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Armor whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Armor whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Armor extends Item
 {

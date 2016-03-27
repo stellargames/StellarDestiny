@@ -47,6 +47,7 @@ define('USER_STATUS_SPAMMER', 2);
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {

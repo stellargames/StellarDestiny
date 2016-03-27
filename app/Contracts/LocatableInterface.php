@@ -3,7 +3,7 @@ namespace Stellar\Contracts;
 
 use Stellar\Models\Star;
 
-interface Locatable
+interface LocatableInterface
 {
 
     /**

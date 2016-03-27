@@ -63,7 +63,6 @@ class ShipFactory
      * @return mixed
      */
     public static function randomShipName() {
-        // @todo: replace with a proper generator. Possibly a Faker provider.
         $names = [
             'Adamant',
             'Adventurer of Barka',

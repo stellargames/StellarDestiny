@@ -2,7 +2,9 @@
 
 namespace Stellar\Api;
 
-class CommandHandler implements \Stellar\Contracts\CommandHandler
+use Stellar\Contracts\CommandHandlerInterface;
+
+class CommandHandler implements CommandHandlerInterface
 {
 
     /**
@@ -27,7 +29,7 @@ class CommandHandler implements \Stellar\Contracts\CommandHandler
      * @param string $command   The command to execute.
      * @param array  $arguments [optional] arguments for the command.
      *
-     * @return \Stellar\Contracts\CommandResult
+     * @return \Stellar\Contracts\CommandResultInterface
      *
      * @throws \InvalidArgumentException
      */

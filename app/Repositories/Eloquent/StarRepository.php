@@ -2,7 +2,7 @@
 
 namespace Stellar\Repositories\Eloquent;
 
-use Stellar\Contracts\NameGenerator;
+use Stellar\Contracts\NameGeneratorInterface;
 use Stellar\Exceptions\GalaxyException;
 use Stellar\Models\Star;
 use Stellar\Repositories\Contracts\StarRepositoryInterface;
@@ -24,7 +24,7 @@ class StarRepository implements StarRepositoryInterface
     protected $stars = [ ];
 
     /**
-     * @var NameGenerator
+     * @var NameGeneratorInterface
      */
     protected $nameGenerator;
 
@@ -32,9 +32,9 @@ class StarRepository implements StarRepositoryInterface
     /**
      * Galaxy constructor.
      *
-     * @param NameGenerator $nameGenerator
+     * @param NameGeneratorInterface $nameGenerator
      */
-    public function __construct(NameGenerator $nameGenerator) {
+    public function __construct(NameGeneratorInterface $nameGenerator) {
         $this->nameGenerator = $nameGenerator;
     }
 
@@ -86,9 +86,6 @@ class StarRepository implements StarRepositoryInterface
      * @throws GalaxyException
      */
     protected function linkTwoStars(Star $star, Star $otherStar) {
-        if ($star === $otherStar) {
-            throw new GalaxyException('Stars cannot link to themselves.');
-        }
         $star->linkTo($otherStar);
         $otherStar->linkTo($star);
     }
@@ -119,6 +116,7 @@ class StarRepository implements StarRepositoryInterface
     public function getAllStars() {
         if (count($this->stars) === 0) {
             $this->stars = Star::all()->toArray();
+            dd('getAllStars called on empty galaxy');
         }
 
         return $this->stars;

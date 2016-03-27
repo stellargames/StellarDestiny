@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\KineticWeapon whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\KineticWeapon whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\KineticWeapon whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class KineticWeapon extends Item
 {

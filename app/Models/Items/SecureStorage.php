@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SecureStorage whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SecureStorage whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\SecureStorage whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class SecureStorage extends Item
 {

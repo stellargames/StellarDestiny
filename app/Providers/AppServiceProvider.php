@@ -31,11 +31,11 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Bind the command handler for the api.
-        $this->app->bind('Stellar\Contracts\CommandHandler', function ($app) {
+        $this->app->bind('Stellar\Contracts\CommandHandlerInterface', function ($app) {
             $commands = $app['config']['api']['commands'];
             return  new CommandHandler($commands);
         });
-        $this->app->bind('Stellar\Contracts\NameGenerator', 'Stellar\Helpers\StarNameGenerator');
+        $this->app->bind('Stellar\Contracts\NameGeneratorInterface', 'Stellar\Helpers\StarNameGenerator');
         $this->app->bind('Stellar\Repositories\Contracts\StarRepositoryInterface', 'Stellar\Repositories\Eloquent\StarRepository');
     }
 }

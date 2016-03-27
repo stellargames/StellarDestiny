@@ -3,8 +3,9 @@
 namespace Stellar\Api;
 
 use League\Fractal\Resource\ResourceInterface;
+use Stellar\Contracts\CommandResultInterface;
 
-class CommandResult implements \Stellar\Contracts\CommandResult
+class CommandResult implements CommandResultInterface
 {
 
     const STATUS_ERROR = false;
@@ -55,7 +56,7 @@ class CommandResult implements \Stellar\Contracts\CommandResult
      *
      * @param $message
      *
-     * @return \Stellar\Contracts\CommandResult
+     * @return \Stellar\Contracts\CommandResultInterface
      */
     public function fail($message) {
         $this->addMessage($message);
@@ -85,7 +86,7 @@ class CommandResult implements \Stellar\Contracts\CommandResult
      * @param string            $key
      * @param ResourceInterface $item
      *
-     * @return \Stellar\Contracts\CommandResult
+     * @return \Stellar\Contracts\CommandResultInterface
      */
     public function addItem($key, $item) {
         $this->data[$key] = $item;
@@ -105,7 +106,7 @@ class CommandResult implements \Stellar\Contracts\CommandResult
     /**
      * @param string $message
      *
-     * @return \Stellar\Contracts\CommandResult
+     * @return \Stellar\Contracts\CommandResultInterface
      */
     public function addMessage($message) {
         $this->messages[] = $message;

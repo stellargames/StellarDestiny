@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Star[] $exits
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereName($value)
+ * @mixin \Eloquent
  */
 class Star extends Model
 {

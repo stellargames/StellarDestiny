@@ -6,12 +6,15 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
 use Response;
-use Stellar\Contracts\CommandHandler;
+use Stellar\Contracts\CommandHandlerInterface;
 use Stellar\Http\Requests;
 use Stellar\Transformers\ArraySerializer;
 
 class ApiController extends Controller
 {
+
+    protected $fractal;
+
 
     /**
      * ApiController constructor.
@@ -27,13 +30,13 @@ class ApiController extends Controller
     /**
      * Handle incoming request.
      *
-     * @param Request        $request
+     * @param Request                 $request
      *
-     * @param CommandHandler $handler
+     * @param CommandHandlerInterface $handler
      *
      * @return \Illuminate\Http\Response
      */
-    public function request(Request $request, CommandHandler $handler) {
+    public function request(Request $request, CommandHandlerInterface $handler) {
 
         $result = $handler->handle($request->command, $request->arguments);
 

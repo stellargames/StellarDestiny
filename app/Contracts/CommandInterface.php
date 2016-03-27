@@ -1,13 +1,13 @@
 <?php
 namespace Stellar\Contracts;
 
-interface Command
+interface CommandInterface
 {
 
     /**
      * @param array $arguments
      *
-     * @return CommandResult
+     * @return CommandResultInterface
      */
     public function execute(array $arguments = [ ]);
 }

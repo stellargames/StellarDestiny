@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Shield whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Shield whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Shield whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Shield extends Item
 {

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Faction whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Faction extends Model
 {

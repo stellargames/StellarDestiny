@@ -22,6 +22,7 @@ use Nanigans\SingleTableInheritance\SingleTableInheritanceTrait;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Item whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Item whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Item whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Item extends Model
 {

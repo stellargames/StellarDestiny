@@ -14,7 +14,7 @@ class GalaxyCest
 
 
     public function _before(FunctionalTester $I) {
-        $generator = Mockery::mock('\Stellar\Contracts\NameGenerator');
+        $generator = Mockery::mock('\Stellar\Contracts\NameGeneratorInterface');
         $generator->shouldReceive('generateName')->andReturnUsing(
             function () {
                 return str_random(8);
@@ -67,7 +67,7 @@ class GalaxyCest
         $I->assertTrue($exceptionThrown);
     }
 
-
+    
     public function allStarsHaveAtLeastOneJumpPoint(FunctionalTester $I) {
         $this->galaxy->createNew(StarRepository::GALAXY_SMALL);
         $stars = $this->galaxy->getAllStars();

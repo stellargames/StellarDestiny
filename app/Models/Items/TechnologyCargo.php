@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\TechnologyCargo whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\TechnologyCargo whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\TechnologyCargo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class TechnologyCargo extends Item
 {

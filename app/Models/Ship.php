@@ -3,7 +3,7 @@
 namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Stellar\Contracts\Locatable;
+use Stellar\Contracts\LocatableInterface;
 use Stellar\Exceptions\ShipException;
 
 /**
@@ -39,8 +39,11 @@ use Stellar\Exceptions\ShipException;
  * @property-read mixed                                                                 $armor
  * @property-read mixed                                                                 $kinetics
  * @property-read mixed                                                                 $beams
+ * @property string $star_name
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStarName($value)
+ * @mixin \Eloquent
  */
-class Ship extends Model implements Locatable
+class Ship extends Model implements LocatableInterface
 {
 
     public $timestamps = true;
@@ -278,6 +281,16 @@ class Ship extends Model implements Locatable
             }
         }
         throw new ShipException('No jumpPoint leading to destination found.');
+    }
+
+
+    public function scanForShips() {
+        $star = $this->getLocation();
+        return self::atLocation($star);
+    }
+
+    public static function atLocation(Star $star) {
+        return Ship::whereStarName($star->name);
     }
 
 }

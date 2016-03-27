@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b7dd8b43bc51bd3ede9e760467cf39e",
-    "content-hash": "373b7396c3a33541b4ae4a3d140dc8d3",
+    "hash": "a9b6c150909af822e496cfd105a1864a",
+    "content-hash": "bd6b35ff5e300602652f8bdb5b719fba",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -491,16 +491,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.23",
+            "version": "v5.2.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "87c090845f135ca94eba903f1c8462e60e3a6e36"
+                "reference": "b73ac62506c5c2bd49d87fcb1089f7759431e173"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/87c090845f135ca94eba903f1c8462e60e3a6e36",
-                "reference": "87c090845f135ca94eba903f1c8462e60e3a6e36",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b73ac62506c5c2bd49d87fcb1089f7759431e173",
+                "reference": "b73ac62506c5c2bd49d87fcb1089f7759431e173",
                 "shasum": ""
             },
             "require": {
@@ -513,7 +513,7 @@
                 "monolog/monolog": "~1.11",
                 "mtdowling/cron-expression": "~1.0",
                 "nesbot/carbon": "~1.20",
-                "paragonie/random_compat": "~1.1",
+                "paragonie/random_compat": "~1.4",
                 "php": ">=5.5.9",
                 "psy/psysh": "0.7.*",
                 "swiftmailer/swiftmailer": "~5.1",
@@ -615,7 +615,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-03-14 14:22:33"
+            "time": "2016-03-25 17:12:52"
         },
         {
             "name": "laravelcollective/html",
@@ -941,16 +941,16 @@
         },
         {
             "name": "nanigans/single-table-inheritance",
-            "version": "dev-master",
+            "version": "0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nanigans/single-table-inheritance.git",
-                "reference": "f92e2b60a32f4a5af9326de0dfe2a0d619daa61e"
+                "reference": "d620a03b09c6e929b89c3687fcbc10ede5ad272a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nanigans/single-table-inheritance/zipball/f92e2b60a32f4a5af9326de0dfe2a0d619daa61e",
-                "reference": "f92e2b60a32f4a5af9326de0dfe2a0d619daa61e",
+                "url": "https://api.github.com/repos/Nanigans/single-table-inheritance/zipball/d620a03b09c6e929b89c3687fcbc10ede5ad272a",
+                "reference": "d620a03b09c6e929b89c3687fcbc10ede5ad272a",
                 "shasum": ""
             },
             "require": {
@@ -993,7 +993,7 @@
                 "single",
                 "table"
             ],
-            "time": "2016-03-04 15:16:58"
+            "time": "2016-03-04 15:14:45"
         },
         {
             "name": "nesbot/carbon",
@@ -2387,16 +2387,16 @@
         },
         {
             "name": "zofe/rapyd",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zofe/rapyd-laravel.git",
-                "reference": "bf7d938e8fde2a90f9c8a547e6fca0d1c2a9c339"
+                "reference": "b77ffac0303d5c3533ec1add04f3b73207351b43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zofe/rapyd-laravel/zipball/bf7d938e8fde2a90f9c8a547e6fca0d1c2a9c339",
-                "reference": "bf7d938e8fde2a90f9c8a547e6fca0d1c2a9c339",
+                "url": "https://api.github.com/repos/zofe/rapyd-laravel/zipball/b77ffac0303d5c3533ec1add04f3b73207351b43",
+                "reference": "b77ffac0303d5c3533ec1add04f3b73207351b43",
                 "shasum": ""
             },
             "require": {
@@ -2437,7 +2437,7 @@
                 "form",
                 "laravel"
             ],
-            "time": "2015-12-28 16:00:32"
+            "time": "2016-03-26 20:05:28"
         }
     ],
     "packages-dev": [
@@ -2551,12 +2551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "4f18729185c3b2d829d20bf4e95f472f0cbf6f97"
+                "reference": "8af928626b61e7b5aa323ff22f2c1514a9f462a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/4f18729185c3b2d829d20bf4e95f472f0cbf6f97",
-                "reference": "4f18729185c3b2d829d20bf4e95f472f0cbf6f97",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/8af928626b61e7b5aa323ff22f2c1514a9f462a0",
+                "reference": "8af928626b61e7b5aa323ff22f2c1514a9f462a0",
                 "shasum": ""
             },
             "require": {
@@ -2624,7 +2624,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2016-03-17 17:23:10"
+            "time": "2016-03-27 01:55:48"
         },
         {
             "name": "codeception/mockery-module",
@@ -3369,16 +3369,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.1.1",
+            "version": "6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "c6851d6e48f63b69357cbfa55bca116448140e0c"
+                "reference": "d094e337976dff9d8e2424e8485872194e768662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c6851d6e48f63b69357cbfa55bca116448140e0c",
-                "reference": "c6851d6e48f63b69357cbfa55bca116448140e0c",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d094e337976dff9d8e2424e8485872194e768662",
+                "reference": "d094e337976dff9d8e2424e8485872194e768662",
                 "shasum": ""
             },
             "require": {
@@ -3394,7 +3394,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.1-dev"
+                    "dev-master": "6.2-dev"
                 }
             },
             "autoload": {
@@ -3427,7 +3427,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-11-23 00:47:50"
+            "time": "2016-03-21 20:02:09"
         },
         {
             "name": "guzzlehttp/promises",
@@ -3687,16 +3687,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.4.1",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed"
+                "reference": "385ecb015e97c13818074f1517928b24d4a26067"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/5528ce1e93a1efa090c9404aba3395c329b4e6ed",
-                "reference": "5528ce1e93a1efa090c9404aba3395c329b4e6ed",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/385ecb015e97c13818074f1517928b24d4a26067",
+                "reference": "385ecb015e97c13818074f1517928b24d4a26067",
                 "shasum": ""
             },
             "require": {
@@ -3761,7 +3761,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2016-01-01 10:17:54"
+            "time": "2016-03-20 20:34:32"
         },
         {
             "name": "phpspec/prophecy",
@@ -5002,7 +5002,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "nanigans/single-table-inheritance": 20,
         "codeception/codeception": 20
     },
     "prefer-stable": false,

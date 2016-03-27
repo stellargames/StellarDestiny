@@ -1,7 +1,7 @@
 <?php
 namespace Stellar\Contracts;
 
-interface NameGenerator
+interface NameGeneratorInterface
 {
 
     /**

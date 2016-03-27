@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\ShipType whereStructure($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\ShipType whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\ShipType whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class ShipType extends Model
 {

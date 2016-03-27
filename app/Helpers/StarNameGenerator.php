@@ -2,9 +2,9 @@
 
 namespace Stellar\Helpers;
 
-use Stellar\Contracts\NameGenerator;
+use Stellar\Contracts\NameGeneratorInterface;
 
-class StarNameGenerator implements NameGenerator
+class StarNameGenerator implements NameGeneratorInterface
 {
 
     // No j,l,o,q,v,w to avoid look-alikes.

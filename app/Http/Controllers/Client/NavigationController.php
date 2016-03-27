@@ -17,6 +17,7 @@ class NavigationController extends ClientController
 
     public function jump() {
         $data = $this->makeApiCall('jump');
+        dd($data);
     }
 
 

@@ -2,14 +2,14 @@
 
 namespace Stellar\Contracts;
 
-interface CommandHandler
+interface CommandHandlerInterface
 {
 
     /**
      * @param string $command
      * @param array  $arguments
      *
-     * @return \Stellar\Contracts\CommandResult
+     * @return \Stellar\Contracts\CommandResultInterface
      */
     public function handle($command, array $arguments = [ ]);
 }

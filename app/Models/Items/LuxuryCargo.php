@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\LuxuryCargo whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\LuxuryCargo whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\LuxuryCargo whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class LuxuryCargo extends Item
 {

@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Sensor whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Sensor whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\Sensor whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class Sensor extends Item
 {
