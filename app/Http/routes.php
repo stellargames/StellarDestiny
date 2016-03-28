@@ -18,11 +18,11 @@ Route::group([
   'prefix'    => 'api/v1',
   'namespace' => 'Api',
 ], function () {
-    $this->post('login', 'ApiController@login');
-    $this->get('logout', 'ApiController@logout');
+    $this->post('login', 'ApiAuthController@login');
+    $this->get('logout', 'ApiAuthController@logout');
 
     Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('', 'ApiController@request');
+        Route::post('command', 'ApiController@request');
     });
 });
 
@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Portal', 'middleware' => ['web']], function () {
     Route::get('/', function () {
         return View::make('home');
     });
+
 // Authentication routes...
     Route::get('auth/login', 'AuthController@getLogin');
     Route::post('auth/login', 'AuthController@postLogin');

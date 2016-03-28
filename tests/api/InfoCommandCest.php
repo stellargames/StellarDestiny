@@ -1,35 +1,43 @@
 <?php
 namespace api;
 
-use FunctionalTester;
-use Stellar\Contracts\CommandHandlerInterface;
+use ApiTester;
+use Stellar\Models\User;
 
 class InfoCommandCest
 {
 
-    /**
-     * @var CommandHandlerInterface
-     */
-    protected $handler;
-
-    public function _before(FunctionalTester $I)
+    public function _before(ApiTester $I)
     {
-        // Get the command handler.
-        $this->handler = $I->getApplication()->make('Stellar\Contracts\CommandHandlerInterface');
+        // Log in to get a token.
+        $I->haveModel(User::class, [
+          'name'     => 'John Doe',
+          'email'    => 'john@doe.com',
+          'status'   => User::REGISTERED,
+          'password' => bcrypt('password'),
+        ]);
+        $I->sendPOST('login',
+          ['email' => 'john@doe.com', 'password' => 'password']);
+        $token = $I->grabDataFromResponseByJsonPath("$['data']['token']");
+        $I->amBearerAuthenticated($token[0]);
     }
 
 
-    public function _after(FunctionalTester $I)
+    public function _after(ApiTester $I)
     {
+        //$I->sendGET('logout');
     }
 
 
-    public function tryToCallInfoCommand(FunctionalTester $I)
+    public function tryToCallInfoCommand(ApiTester $I)
     {
-        //$result = $this->handler->handle('info');
-        //$I->assertTrue($result->succeeded(), 'Checking command success');
+        $request = [
+          'command'   => 'info',
+          'arguments' => [],
+        ];
+
+        $I->sendPOST('command', $request);
+        dd($I->grabResponse());
     }
-
-
 
 }

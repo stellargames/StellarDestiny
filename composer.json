@@ -22,7 +22,8 @@
     "nanigans/single-table-inheritance": "0.6.*",
     "predis/predis": "^1.0",
     "league/fractal": "^0.13.0",
-    "tymon/jwt-auth": "dev-develop"
+    "tymon/jwt-auth": "dev-develop",
+    "flow/jsonpath": "^0.3.1"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

@@ -9,3 +9,6 @@ $I->haveModel(\Stellar\Models\User::class, [
 ]);
 $I->sendPOST('login', ['email' => 'john@doe.com', 'password' => 'password']);
 $I->seeResponseCodeIs(200);
+$I->seeResponseIsJson();
+$I->seeResponseContains('"success":true');
+
