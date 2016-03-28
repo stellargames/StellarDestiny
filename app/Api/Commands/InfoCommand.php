@@ -2,24 +2,40 @@
 
 namespace Stellar\Api\Commands;
 
+use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
-use Stellar\Api\CommandResult;
+use Stellar\Api\Results\InfoCommandResult;
 use Stellar\Contracts\CommandInterface;
+use Stellar\Transformers\ArraySerializer;
 use Stellar\Transformers\UserTransformer;
 
 class InfoCommand implements CommandInterface
 {
 
-    public function execute(array $arguments = [ ]) {
+    protected $fractal;
 
-        $result = new CommandResult();
+
+    /**
+     * InfoCommand constructor.
+     */
+    public function __construct()
+    {
+        $this->fractal = new Manager();
+        $this->fractal->setSerializer(new ArraySerializer());
+    }
+
+
+    public function execute(array $arguments = [])
+    {
+        $result = new InfoCommandResult();
 
         $player = auth()->user();
 
-        $result->addItem('player', new Item($player, new UserTransformer));
+        $item       = new Item($player, new UserTransformer);
+        $playerData = $this->fractal->createData($item)->toArray();
+
+        $result->addItem('player', $playerData);
 
         return $result;
-
-
     }
 }

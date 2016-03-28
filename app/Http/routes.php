@@ -11,57 +11,71 @@
 |
 */
 
-Route::get(
-    '/', function () {
-    return View::make('home');
-}
-);
-
 /**
  * API
  */
-Route::get('api', 'ApiController@testForm');
-Route::post('api', 'ApiController@request');
+Route::group([
+  'prefix'    => 'api/v1',
+  'namespace' => 'Api',
+], function () {
+    $this->post('login', 'ApiController@login');
+    $this->get('logout', 'ApiController@logout');
+
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('', 'ApiController@request');
+    });
+});
 
 /**
  * Client
  */
-Route::group(
-    [ 'prefix' => 'client', 'namespace' => 'Client', 'middleware' => 'auth' ], function () {
+Route::group([
+  'prefix'     => 'client',
+  'namespace'  => 'Client',
+  'middleware' => ['web', 'auth', 'role:Registered'],
+], function () {
     Route::get('navigation', 'NavigationController@index');
     Route::post('navigation', 'NavigationController@jump');
     Route::get('inventory', 'ClientController@inventory');
     Route::get('trade', 'ClientController@trade');
     Route::get('info', 'InfoController@index');
     Route::get('comms', 'ClientController@comms');
-}
-);
+});
 
 /**
- * Authentication
+ * Portal
  */
+Route::group(['namespace' => 'Portal', 'middleware' => ['web']], function () {
+//  Homepage...
+    Route::get('/', function () {
+        return View::make('home');
+    });
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+    Route::get('auth/login', 'AuthController@getLogin');
+    Route::post('auth/login', 'AuthController@postLogin');
+    Route::get('auth/logout', 'AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+    Route::get('auth/register', 'AuthController@getRegister');
+    Route::post('auth/register', 'AuthController@postRegister');
 
 // Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
+    Route::get('password/email', 'PasswordController@getEmail');
+    Route::post('password/email', 'PasswordController@postEmail');
 
 // Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+    Route::get('password/reset/{token}', 'PasswordController@getReset');
+    Route::post('password/reset', 'PasswordController@postReset');
+});
 
 /**
  * Administration
  */
-Route::group(
-    [ 'prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth:Admin' ], function () {
+Route::group([
+  'prefix'     => 'admin',
+  'namespace'  => 'Admin',
+  'middleware' => ['web', 'auth', 'role:Admin'],
+], function () {
     // User management.
     Route::get('user', 'UserController@index');
     Route::any('user/edit', 'UserController@edit');
@@ -81,14 +95,11 @@ Route::group(
     Route::resource('shiptype', 'ShipTypeController');
     Route::resource('mine', 'MineController');
     Route::resource('faction', 'FactionController');
-}
-);
+});
 
-Route::post(
-    'deploy', function () {
+Route::post('deploy', function () {
     $payload = json_decode(Input::get('payload'));
     if ($payload->status_message === 'Passed') {
         touch(storage_path('app/deploy'));
     }
-}
-);
+});

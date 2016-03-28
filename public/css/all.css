@@ -2,3 +2,8 @@ body {
     background-image: url('/img/space.png');
     background-size: cover;
 }
+
+#results {
+    color: black;
+    font-family: Consolas, monospace;
+}

@@ -3,6 +3,7 @@
 namespace Stellar\Api;
 
 use Stellar\Contracts\CommandHandlerInterface;
+use Stellar\Contracts\CommandInterface;
 
 class CommandHandler implements CommandHandlerInterface
 {
@@ -30,13 +31,12 @@ class CommandHandler implements CommandHandlerInterface
      * @param array  $arguments [optional] arguments for the command.
      *
      * @return \Stellar\Contracts\CommandResultInterface
-     *
-     * @throws \InvalidArgumentException
      */
     public function handle($command, array $arguments = [ ]) {
         if ( ! array_key_exists($command, $this->commands)) {
-            throw new \InvalidArgumentException('Unknown command ' . $command);
+            return null;
         }
+        /** @var CommandInterface $command */
         $command = new $this->commands[$command];
 
         $result = $command->execute($arguments);

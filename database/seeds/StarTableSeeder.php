@@ -15,7 +15,7 @@ class StarTableSeeder extends Seeder
         DB::table('stars')->delete();
         DB::table('star_links')->delete();
 
-        $galaxy = app()->make(StarRepositoryInterface::class);
+        $galaxy = app()->make('StarRepository');
         $galaxy->createNew($galaxy::GALAXY_LARGE);
         
     }

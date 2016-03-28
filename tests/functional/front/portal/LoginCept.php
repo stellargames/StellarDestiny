@@ -1,16 +1,16 @@
 <?php
+use Stellar\Models\User;
+
 $I = new FunctionalTester($scenario);
 $I->wantTo('login as a player');
-$I->haveRecord(
-    'users', [
+$I->haveRecord('users', [
     'name'       => 'John Doe',
     'email'      => 'john@doe.com',
-    'status'     => USER_STATUS_REGISTERED,
+    'status'     => User::REGISTERED,
     'password'   => bcrypt('password'),
     'created_at' => new DateTime(),
     'updated_at' => new DateTime(),
-]
-);
+  ]);
 
 $I->amOnPage('/auth/login');
 $I->fillField('email', 'john@doe.com');

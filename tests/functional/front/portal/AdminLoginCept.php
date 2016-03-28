@@ -1,11 +1,13 @@
 <?php
+use Stellar\Models\User;
+
 $I = new FunctionalTester($scenario);
 $I->wantTo('login as an administrator');
 $I->haveRecord('users', [
     'name' =>  'Ad Min',
     'email' =>  'admintester@admin.tester',
     'password' => bcrypt('password'),
-    'status' => 1,
+    'status' => User::ADMIN,
     'created_at' => new DateTime(),
     'updated_at' => new DateTime(),
 ]);

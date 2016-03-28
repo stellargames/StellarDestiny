@@ -9,7 +9,7 @@ class StarGeneratorCest
             'users', [
             'name'       => 'admin',
             'email'      => $email,
-            'status'     => 1,
+            'status'     => \Stellar\Models\User::ADMIN,
             'password'   => bcrypt('password'),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),

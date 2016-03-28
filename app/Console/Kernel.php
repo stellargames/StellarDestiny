@@ -1,5 +1,4 @@
 <?php
-
 namespace Stellar\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -14,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \Stellar\Console\Commands\Inspire::class,
+        // Commands\Inspire::class,
     ];
 
 
@@ -25,7 +24,9 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function schedule(Schedule $schedule) {
-        $schedule->command('inspire')->hourly();
+    protected function schedule(Schedule $schedule)
+    {
+        // $schedule->command('inspire')
+        //          ->hourly();
     }
 }

@@ -3,9 +3,8 @@
 namespace Stellar\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class RoleMiddleware
 {
 
     /**
@@ -13,14 +12,15 @@ class RedirectIfAuthenticated
      *
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure                 $next
-     * @param  string|null              $guard
+     *
+     * @param  string                   $role
      *
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $role)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/');
+        if (! $request->user()->hasRole($role)) {
+            return response('Unauthorized.', 403);
         }
         return $next($request);
     }

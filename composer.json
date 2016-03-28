@@ -1,7 +1,6 @@
 {
   "name": "stellargames/stellar-destiny",
   "description": "Stellar Destiny",
-  "type": "project",
   "keywords": [
     "game",
     "website"
@@ -16,14 +15,14 @@
     }
   ],
   "require": {
-    "php": ">=5.6",
+    "php": ">=5.5.9",
     "laravel/framework": "5.2.*",
     "laravelcollective/html": "5.2.*",
     "zofe/rapyd": "2.2.*",
     "nanigans/single-table-inheritance": "0.6.*",
-    "barryvdh/laravel-ide-helper": "^2.1",
     "predis/predis": "^1.0",
-    "league/fractal": "^0.13.0"
+    "league/fractal": "^0.13.0",
+    "tymon/jwt-auth": "dev-develop"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -37,6 +36,7 @@
     "codeclimate/php-test-reporter": "^0.2.0",
     "codeception/c3": "^2.0",
     "barryvdh/laravel-debugbar": "^2.0",
+    "barryvdh/laravel-ide-helper": "^2.1",
     "doctrine/dbal": "~2.3"
   },
   "autoload": {
@@ -48,22 +48,20 @@
     }
   },
   "scripts": {
-    "post-install-cmd": [
-      "php artisan clear-compiled",
-      "php artisan optimize"
-    ],
-    "pre-update-cmd": [
-      "php artisan clear-compiled"
-    ],
-    "post-update-cmd": [
-      "php artisan ide-helper:generate",
-      "php artisan optimize"
-    ],
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
       "php artisan key:generate"
+    ],
+    "post-install-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize"
+    ],
+    "post-update-cmd": [
+      "php artisan clear-compiled",
+      "php artisan ide-helper:generate",
+      "php artisan optimize"
     ]
   },
   "config": {

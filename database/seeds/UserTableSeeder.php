@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
         User::create(
             [
                 'name'     => 'admin',
-                'status'   => USER_STATUS_ADMIN,
+                'status'   => User::ADMIN,
                 'email'    => 'admin@stellardestiny.online',
                 'password' => '$2y$10$pHhnHCu.EvVEJDlYVAYnkeEb8JUTb4c1MoaKw9z7Tf18bP87Y52JC',
             ]
@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
         $user = User::create(
             [
                 'name'     => 'tester',
-                'status'   => USER_STATUS_REGISTERED,
+                'status'   => User::REGISTERED,
                 'email'    => 'tester@stellardestiny.online',
                 'password' => '$2y$10$pHhnHCu.EvVEJDlYVAYnkeEb8JUTb4c1MoaKw9z7Tf18bP87Y52JC',
             ]

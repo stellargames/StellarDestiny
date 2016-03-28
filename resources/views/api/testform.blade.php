@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
         <label>Parameter
-            <input class="form-control" type="text" name="parameter" value=""/>
+            <input class="form-control" type="text" name="arguments[]" value=""/>
         </label>
         <label>Value
             <input class="form-control" type="text" name="value" value=""/>
@@ -24,7 +24,7 @@
         <input type="submit" value="Execute"/>
         </div>
     </form>
-    <pre id="results"></pre>
+    <textarea id="results" cols="120" rows="12"></textarea>
 @endsection
 
 @section('scripts')

@@ -1,8 +1,6 @@
 <?php
 namespace Stellar\Contracts;
 
-use League\Fractal\Resource\ResourceInterface;
-
 interface CommandResultInterface
 {
 
@@ -21,7 +19,7 @@ interface CommandResultInterface
     /**
      * Mark the result as a failure.
      *
-     * @param $message
+     * @param string $message
      *
      * @return \Stellar\Contracts\CommandResultInterface
      */
@@ -41,8 +39,8 @@ interface CommandResultInterface
 
 
     /**
-     * @param string            $key
-     * @param ResourceInterface $item
+     * @param string $key
+     * @param string $item
      *
      * @return CommandResultInterface
      */

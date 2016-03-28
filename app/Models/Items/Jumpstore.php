@@ -19,6 +19,7 @@ namespace Stellar\Models\Items;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\JumpStore whereValue($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\JumpStore whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Items\JumpStore whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class JumpStore extends Item
 {

@@ -74,5 +74,6 @@ class ShipCest
         $this->ship->jumpTo($this->destinationStar);
         $I->assertLessThan($before, $this->ship->getEnergy());
     }
+    
 
 }

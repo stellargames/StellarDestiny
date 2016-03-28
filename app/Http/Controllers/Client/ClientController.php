@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Psy\Util\Json;
 use Stellar\Http\Controllers\Controller;
-use Stellar\Http\Requests;
 
 class ClientController extends Controller
 {
 
-    protected function makeApiCall($command, array $arguments = [ ]) {
-        $request  = Request::create('api', 'POST', [ 'command' => $command, 'arguments' => $arguments]);
-        $handler  = app()->make('Stellar\Contracts\CommandHandler');
-        $response = app('\Stellar\Http\Controllers\ApiController')->request($request, $handler)->getContent();
+    protected function makeApiCall($command, array $arguments = [])
+    {
+        $request  = Request::create('api', 'POST',
+          ['command' => $command, 'arguments' => $arguments]);
+        $handler  = app()->make('Stellar\Contracts\CommandHandlerInterface');
+        $response = app('\Stellar\Http\Controllers\Api\ApiController')
+          ->request($request, $handler)
+          ->getContent();
         $data     = json_decode($response);
 
         return $data;
@@ -26,13 +29,14 @@ class ClientController extends Controller
      *
      * @return mixed
      */
-    protected function getStarMap($player) {
+    protected function getStarMap($player)
+    {
         $location = $player->ship->location;
         $key      = 'ls:' . $player->ship->name . ':starmap';
         $json     = Redis::get($key);
-        $starMap  = (array) json_decode($json);
-        
-        if ( ! array_key_exists($location->name, $starMap)) {
+        $starMap  = (array)json_decode($json);
+
+        if (!array_key_exists($location->name, $starMap)) {
             $starMap[$location->name] = $location->exits;
             $json                     = Json::encode($starMap);
             Redis::set($key, $json);
