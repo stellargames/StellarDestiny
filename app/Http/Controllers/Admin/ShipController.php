@@ -1,7 +1,6 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
-use Response;
 
 class ShipController extends Controller
 {
@@ -9,9 +8,10 @@ class ShipController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
     }
 
 
@@ -20,9 +20,10 @@ class ShipController extends Controller
      *
      * @param  int $id
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
     }
 
 }

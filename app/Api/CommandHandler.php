@@ -19,7 +19,8 @@ class CommandHandler implements CommandHandlerInterface
      *
      * @param $commands
      */
-    public function __construct($commands) {
+    public function __construct($commands)
+    {
         $this->commands = $commands;
     }
 
@@ -32,12 +33,13 @@ class CommandHandler implements CommandHandlerInterface
      *
      * @return \Stellar\Contracts\CommandResultInterface
      */
-    public function handle($command, array $arguments = [ ]) {
-        if ( ! array_key_exists($command, $this->commands)) {
+    public function handle($command, array $arguments = [])
+    {
+        if (!array_key_exists($command, $this->commands)) {
             return null;
         }
         /** @var CommandInterface $command */
-        $command = new $this->commands[$command];
+        $command = new $this->commands[$command]();
 
         $result = $command->execute($arguments);
 

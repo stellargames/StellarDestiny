@@ -12,6 +12,12 @@ interface StarRepositoryInterface
 {
 
     /**
+     * @return Star
+     */
+    public static function getStartingStar();
+
+
+    /**
      * @param Star $star
      *
      * @throws GalaxyException
@@ -38,18 +44,14 @@ interface StarRepositoryInterface
 
 
     /**
-     * @return Star
-     */
-    public static function getStartingStar();
-
-
-    /**
      * @return void
      */
     public function save();
-    
+
+
     public function createNew($size);
+
+
     public function deleteAllStars();
-    
-    
+
 }

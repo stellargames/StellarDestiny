@@ -11,7 +11,8 @@ class UserInitialization
      * Create the event listener.
      *
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
@@ -23,7 +24,8 @@ class UserInitialization
      *
      * @return void
      */
-    public function handle(UserRegistered $event) {
+    public function handle(UserRegistered $event)
+    {
         // Give the player a ship.
         $player = $event->user;
         if ($player->isPlayer()) {

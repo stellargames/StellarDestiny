@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Stellar\Models\Star
  *
- * @property integer                                                              $id
  * @property string                                                               $name
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Star[] $exits
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereName($value)
  * @mixin \Eloquent
  */
@@ -25,20 +23,21 @@ class Star extends Model
 
     protected $primaryKey = 'name';
 
-    protected $hidden = [ 'pivot' ];
+    protected $hidden = ['pivot'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'name' ];
+    protected $fillable = ['name'];
 
 
     /**
      * @param Star $star
      */
-    public function linkTo(Star $star) {
+    public function linkTo(Star $star)
+    {
         $this->exits()->attach($star);
     }
 
@@ -48,7 +47,8 @@ class Star extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function exits() {
+    public function exits()
+    {
         return $this->belongsToMany('Stellar\Models\Star', 'star_links', 'star_name', 'destination');
     }
 

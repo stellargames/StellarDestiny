@@ -17,13 +17,11 @@ class StarNameGenerator implements NameGeneratorInterface
      *
      * @return string
      */
-    public function generateName() {
+    public function generateName()
+    {
 
-        $letterPart = mt_rand(0, 1) ? $this->generateThreePartName(
-            self::CONSONANTS, self::VOWELS
-        ) : $this->generateThreePartName(
-            self::VOWELS, self::CONSONANTS
-        );
+        $letterPart = mt_rand(0, 1) ? $this->generateThreePartName(self::CONSONANTS,
+          self::VOWELS) : $this->generateThreePartName(self::VOWELS, self::CONSONANTS);
 
         return $letterPart . '-' . $this->generateRandomNumber();
     }
@@ -35,10 +33,9 @@ class StarNameGenerator implements NameGeneratorInterface
      *
      * @return string
      */
-    protected function generateThreePartName($firstSet, $secondSet) {
-        return $this->generateRandomLetter($firstSet) . $this->generateRandomLetter(
-            $secondSet
-        ) . $this->generateRandomLetter($firstSet);
+    protected function generateThreePartName($firstSet, $secondSet)
+    {
+        return $this->generateRandomLetter($firstSet) . $this->generateRandomLetter($secondSet) . $this->generateRandomLetter($firstSet);
     }
 
 
@@ -47,7 +44,8 @@ class StarNameGenerator implements NameGeneratorInterface
      *
      * @return string
      */
-    protected function generateRandomLetter($letters) {
+    protected function generateRandomLetter($letters)
+    {
         return $letters[array_rand(str_split($letters))];
     }
 
@@ -55,7 +53,8 @@ class StarNameGenerator implements NameGeneratorInterface
     /**
      * @return string
      */
-    protected function generateRandomNumber() {
+    protected function generateRandomNumber()
+    {
         return sprintf('%03d', mt_rand(0, 999));
     }
 }

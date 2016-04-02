@@ -25,7 +25,8 @@ class UserRegistered extends Event
      *
      * @param User $user
      */
-    public function __construct(User $user) {
+    public function __construct(User $user)
+    {
         $this->user = $user;
     }
 
@@ -35,7 +36,8 @@ class UserRegistered extends Event
      *
      * @return array
      */
-    public function broadcastOn() {
-        return [ ];
+    public function broadcastOn()
+    {
+        return [];
     }
 }

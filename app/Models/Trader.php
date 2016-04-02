@@ -14,13 +14,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon                                                             $updated_at
  * @property-read \Stellar\Models\Star                                                  $star
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Items\Item[] $items
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereStarId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereUpdatedAt($value)
- * @property string $star_name
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader whereStarName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereStarId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereUpdatedAt($value)
+ * @property string                                                                     $star_name
+ * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Trader        whereStarName($value)
  * @mixin \Eloquent
  */
 class Trader extends Model
@@ -31,12 +31,14 @@ class Trader extends Model
     protected $table = 'traders';
 
 
-    public function star() {
+    public function star()
+    {
         return $this->belongsTo('Stellar\Models\Star');
     }
 
 
-    public function items() {
+    public function items()
+    {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'wanted', 'balance');
     }
 

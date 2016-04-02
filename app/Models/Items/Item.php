@@ -32,17 +32,17 @@ class Item extends Model
     protected static $singleTableTypeField = 'type';
 
     protected static $singleTableSubclasses = [
-        BiologyCargo::class,
-        TechnologyCargo::class,
-        LuxuryCargo::class,
-        Armor::class,
-        Shield::class,
-        BeamWeapon::class,
-        KineticWeapon::class,
-        JumpStore::class,
-        SpaceMine::class,
-        SecureStorage::class,
-        Sensor::class,
+      BiologyCargo::class,
+      TechnologyCargo::class,
+      LuxuryCargo::class,
+      Armor::class,
+      Shield::class,
+      BeamWeapon::class,
+      KineticWeapon::class,
+      JumpStore::class,
+      SpaceMine::class,
+      SecureStorage::class,
+      Sensor::class,
 
     ];
 
@@ -50,7 +50,7 @@ class Item extends Model
 
     protected $table = 'items';
 
-    protected $hidden = [ 'created_at', 'updated_at' ];
+    protected $hidden = ['created_at', 'updated_at'];
 
 }
 

@@ -11,5 +11,5 @@ interface CommandHandlerInterface
      *
      * @return \Stellar\Contracts\CommandResultInterface
      */
-    public function handle($command, array $arguments = [ ]);
+    public function handle($command, array $arguments = []);
 }

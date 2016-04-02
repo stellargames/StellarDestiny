@@ -9,21 +9,23 @@ class UserTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-        'ship',
+      'ship',
     ];
 
 
-    public function transform(User $user) {
+    public function transform(User $user)
+    {
         return [
-            'name'        => $user->name,
-            'reputation'  => $user->reputation,
-            'alignment'   => $user->alignment,
-            'affiliation' => $user->affiliation,
+          'name'        => $user->name,
+          'reputation'  => $user->reputation,
+          'alignment'   => $user->alignment,
+          'affiliation' => $user->affiliation,
         ];
     }
 
 
-    public function includeShip(User $user) {
+    public function includeShip(User $user)
+    {
         $ship = $user->ship;
 
         return $this->item($ship, new ShipTransformer);

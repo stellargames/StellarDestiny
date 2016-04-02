@@ -20,6 +20,7 @@ class InfoCommandCest
           ['email' => 'john@doe.com', 'password' => 'password']);
         $token = $I->grabDataFromResponseByJsonPath("$['data']['token']");
         $I->amBearerAuthenticated($token[0]);
+        $I->haveHttpHeader('Accept', 'application/json');
     }
 
 

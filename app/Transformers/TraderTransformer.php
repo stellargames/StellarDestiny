@@ -12,9 +12,10 @@ class TraderTransformer extends TransformerAbstract
     ];
 
 
-    public function transform(Trader $trader) {
+    public function transform(Trader $trader)
+    {
         return [
-            'name' => $trader->name,
+          'name' => $trader->name,
         ];
     }
 

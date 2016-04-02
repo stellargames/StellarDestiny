@@ -18,7 +18,8 @@ class StarController extends Controller
      *
      * @param StarRepositoryInterface $galaxy
      */
-    public function __construct(StarRepositoryInterface $galaxy) {
+    public function __construct(StarRepositoryInterface $galaxy)
+    {
         $this->galaxy = $galaxy;
     }
 
@@ -28,18 +29,21 @@ class StarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $starCount = $this->galaxy->getSize();
 
         return view('admin.star.index', compact('starCount'));
-    }    
-    
+    }
+
+
     /**
      * Display the galaxy create form.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getGenerate() {
+    public function getGenerate()
+    {
         return view('admin.star.generate');
     }
 
@@ -51,13 +55,12 @@ class StarController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postGenerate(Request $request) {
+    public function postGenerate(Request $request)
+    {
         $size = $request->input('amount');
         $this->galaxy->createNew($size);
 
-        return redirect(action('Admin\StarController@index'))->with(
-            'status', 'Generated ' . $size . ' stars.'
-        );
+        return redirect(action('Admin\StarController@index'))->with('status', 'Generated ' . $size . ' stars.');
     }
 
 }

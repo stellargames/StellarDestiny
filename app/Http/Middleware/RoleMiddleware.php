@@ -19,7 +19,7 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
-        if (! $request->user()->hasRole($role)) {
+        if (!$request->user()->hasRole($role)) {
             return response('Unauthorized.', 403);
         }
         return $next($request);

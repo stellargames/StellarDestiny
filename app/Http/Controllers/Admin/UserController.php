@@ -1,7 +1,6 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
-use Response;
 use Stellar\Models\User;
 
 class UserController extends Controller
@@ -10,9 +9,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         $filter = \DataFilter::source(User::with('faction'));
         $filter->add('name', 'Name', 'text');
         $filter->add('faction.name', 'Faction', 'autocomplete');
@@ -21,12 +21,10 @@ class UserController extends Controller
         $filter->reset('reset');
         $filter->build();
 
-        $grid = \DataGrid::source($filter)->attributes([ 'class' => 'table table-hover table-striped' ]);
-        $grid->add('id', 'ID', true)->cell(
-            function ($value) {
-                return link_to(action('Admin\UserController@edit') . '?show=' . $value, $value);
-            }
-        );
+        $grid = \DataGrid::source($filter)->attributes(['class' => 'table table-hover table-striped']);
+        $grid->add('id', 'ID', true)->cell(function ($value) {
+            return link_to(action('Admin\UserController@edit') . '?show=' . $value, $value);
+        });
         $grid->add('status', 'Status', true);
         $grid->add('name', 'Name', true);
         $grid->add('faction.name', 'Faction', true);
@@ -45,9 +43,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function edit() {
+    public function edit()
+    {
         $edit = \DataEdit::source(new User);
         $edit->link(action('Admin\UserController@index'), 'Users', 'TR')->back();
         $edit->add('status', 'Status', 'checkboxgroup')->options(User::STATUS_ENUM);

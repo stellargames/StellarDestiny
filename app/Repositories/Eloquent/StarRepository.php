@@ -21,7 +21,7 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @var Star[]
      */
-    protected $stars = [ ];
+    protected $stars = [];
 
     /**
      * @var NameGeneratorInterface
@@ -34,7 +34,8 @@ class StarRepository implements StarRepositoryInterface
      *
      * @param NameGeneratorInterface $nameGenerator
      */
-    public function __construct(NameGeneratorInterface $nameGenerator) {
+    public function __construct(NameGeneratorInterface $nameGenerator)
+    {
         $this->nameGenerator = $nameGenerator;
     }
 
@@ -44,7 +45,8 @@ class StarRepository implements StarRepositoryInterface
      *
      * @throws GalaxyException
      */
-    public function addStar(Star $star) {
+    public function addStar(Star $star)
+    {
         $name = $star->name;
         if (array_key_exists($name, $this->stars)) {
             throw new GalaxyException('Duplicate star name: ' . $name);
@@ -56,7 +58,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return int
      */
-    public function getSize() {
+    public function getSize()
+    {
         return Star::all()->count();
     }
 
@@ -66,10 +69,11 @@ class StarRepository implements StarRepositoryInterface
      *
      * @throws GalaxyException
      */
-    public function generateStars($amount) {
+    public function generateStars($amount)
+    {
         for ($i = 0; $i < $amount; $i++) {
             $name = $this->generateUniqueStarName();
-            $star = Star::create([ 'name' => $name ]);
+            $star = Star::create(['name' => $name]);
             $this->addStar($star);
         }
         if ($amount > 0) {
@@ -85,7 +89,8 @@ class StarRepository implements StarRepositoryInterface
      *
      * @throws GalaxyException
      */
-    protected function linkTwoStars(Star $star, Star $otherStar) {
+    protected function linkTwoStars(Star $star, Star $otherStar)
+    {
         $star->linkTo($otherStar);
         $otherStar->linkTo($star);
     }
@@ -94,7 +99,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @throws GalaxyException
      */
-    protected function linkAllStars() {
+    protected function linkAllStars()
+    {
         $unlinkedStars = $this->getUnlinkedStars();
         $linkedStars   = $this->getLinkedStars();
         $star          = $this->getLinkStartingStar($linkedStars, $unlinkedStars);
@@ -113,7 +119,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return array
      */
-    public function getAllStars() {
+    public function getAllStars()
+    {
         if (count($this->stars) === 0) {
             $this->stars = Star::all()->toArray();
             dd('getAllStars called on empty galaxy');
@@ -126,9 +133,10 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return array
      */
-    protected function getUnlinkedStars() {
+    protected function getUnlinkedStars()
+    {
         /* @var Star $star */
-        $unlinkedStars = [ ];
+        $unlinkedStars = [];
         foreach ($this->stars as $name => $star) {
             if ($star->exits()->get()->count() === 0) {
                 $unlinkedStars[$name] = $star;
@@ -142,9 +150,10 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return array
      */
-    protected function getLinkedStars() {
+    protected function getLinkedStars()
+    {
         /* @var Star $star */
-        $linkedStars = [ ];
+        $linkedStars = [];
         foreach ($this->stars as $name => $star) {
             if ($star->exits()->get()->count() > 0) {
                 $linkedStars[$name] = $star;
@@ -163,7 +172,8 @@ class StarRepository implements StarRepositoryInterface
      *
      * @return mixed
      */
-    protected function getLinkStartingStar($linkedStars, $unlinkedStars) {
+    protected function getLinkStartingStar($linkedStars, $unlinkedStars)
+    {
         if (count($linkedStars) === 0) {
             $star = $unlinkedStars[array_rand($unlinkedStars)];
 
@@ -179,7 +189,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return string
      */
-    protected function generateUniqueStarName() {
+    protected function generateUniqueStarName()
+    {
         do {
             $name = $this->nameGenerator->generateName();
         } while (array_key_exists($name, $this->stars));
@@ -191,7 +202,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return Star
      */
-    public static function getStartingStar() {
+    public static function getStartingStar()
+    {
         return Star::all()->random();
     }
 
@@ -199,7 +211,8 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @return void
      */
-    public function save() {
+    public function save()
+    {
         foreach ($this->stars as $star) {
             $star->push();
         }
@@ -208,18 +221,20 @@ class StarRepository implements StarRepositoryInterface
 
     /**
      * @param $size
-     * 
+     *
      * @throws GalaxyException
      */
-    public function createNew($size) {
+    public function createNew($size)
+    {
         $this->deleteAllStars();
         $this->generateStars($size);
     }
 
 
-    public function deleteAllStars() {
+    public function deleteAllStars()
+    {
         Star::getQuery()->delete();
-        $this->stars = [ ];
+        $this->stars = [];
     }
 
 }

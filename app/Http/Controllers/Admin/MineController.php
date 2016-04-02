@@ -1,7 +1,6 @@
 <?php namespace Stellar\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
-use Response;
 
 class MineController extends Controller
 {
@@ -9,18 +8,20 @@ class MineController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
     }
 
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function edit() {
+    public function edit()
+    {
     }
 
 }

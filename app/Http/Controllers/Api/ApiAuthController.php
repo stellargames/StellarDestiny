@@ -43,8 +43,7 @@ class ApiAuthController extends Controller
 
         $token = Auth::guard($this->getGuard())->attempt($credentials);
         if ($token) {
-            return $this->handleUserWasAuthenticated($request, $throttles,
-              $token);
+            return $this->handleUserWasAuthenticated($request, $throttles, $token);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -75,8 +74,7 @@ class ApiAuthController extends Controller
         }
 
         if (method_exists($this, 'authenticated')) {
-            return $this->authenticated($request,
-              Auth::guard($this->getGuard())->user(), $token);
+            return $this->authenticated($request, Auth::guard($this->getGuard())->user(), $token);
         }
 
         return redirect()->intended($this->redirectPath());
@@ -93,13 +91,13 @@ class ApiAuthController extends Controller
     protected function authenticated(Request $request, $user, $token)
     {
         $identifier = $this->loginUsername();
-        $response = [
+        $response   = [
           'success'    => true,
           'messages'   => [],
           'serverTime' => Carbon::now()->toIso8601String(),
           'data'       => [
             $identifier => $user->$identifier,
-            'token'    => $token,
+            'token'     => $token,
           ],
         ];
         // Mark the response with the requestId.

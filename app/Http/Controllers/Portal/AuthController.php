@@ -49,10 +49,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|max:64',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:8|confirmed',
-          ]);
+          'name'     => 'required|max:64',
+          'email'    => 'required|email|max:255|unique:users',
+          'password' => 'required|min:8|confirmed',
+        ]);
     }
 
 
@@ -67,10 +67,10 @@ class AuthController extends Controller
     {
         // Agreement is the honeypot field. Append it to the password so that bots can register but never log in.
         $user = new User([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => bcrypt($data['password'] . $data['agreement']),
-          ]);
+          'name'     => $data['name'],
+          'email'    => $data['email'],
+          'password' => bcrypt($data['password'] . $data['agreement']),
+        ]);
         // Also mark user as spammer when agreement is filled.
         if (!empty($data['agreement'])) {
             $user->status |= $user::SPAMMER;

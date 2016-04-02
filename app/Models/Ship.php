@@ -39,7 +39,7 @@ use Stellar\Exceptions\ShipException;
  * @property-read mixed                                                                 $armor
  * @property-read mixed                                                                 $kinetics
  * @property-read mixed                                                                 $beams
- * @property string $star_name
+ * @property string                                                                     $star_name
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStarName($value)
  * @mixin \Eloquent
  */
@@ -50,11 +50,23 @@ class Ship extends Model implements LocatableInterface
 
     protected $table = 'ships';
 
-    protected $fillable = [ 'name' ];
+    protected $fillable = ['name'];
 
-    protected $hidden = [ 'user_id', 'star_name', 'ship_type_id', 'created_at', 'updated_at' ];
+    protected $hidden = [
+      'user_id',
+      'star_name',
+      'ship_type_id',
+      'created_at',
+      'updated_at',
+    ];
 
-    protected $appends = [ 'energy_capacity', 'shields', 'armor', 'kinetics', 'beams' ];
+    protected $appends = [
+      'energy_capacity',
+      'shields',
+      'armor',
+      'kinetics',
+      'beams',
+    ];
 
 
     /**
@@ -62,7 +74,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function owner() {
+    public function owner()
+    {
         return $this->belongsTo('Stellar\Models\User', 'user_id');
     }
 
@@ -72,7 +85,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location() {
+    public function location()
+    {
         return $this->belongsTo('Stellar\Models\Star', 'star_name');
     }
 
@@ -82,7 +96,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function type() {
+    public function type()
+    {
         return $this->belongsTo('Stellar\Models\ShipType', 'ship_type_id');
     }
 
@@ -92,7 +107,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function items() {
+    public function items()
+    {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'paid');
     }
 
@@ -102,7 +118,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return int
      */
-    public function getEnergyCapacityAttribute() {
+    public function getEnergyCapacityAttribute()
+    {
         $capacity   = 10;
         $jumpStores = $this->items->where('type', 'JumpStore');
         foreach ($jumpStores as $jumpstore) {
@@ -118,7 +135,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return int
      */
-    public function getShieldsAttribute() {
+    public function getShieldsAttribute()
+    {
         $value = 0;
         $items = $this->items->where('type', 'Shield');
         foreach ($items as $item) {
@@ -134,7 +152,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return int
      */
-    public function getArmorAttribute() {
+    public function getArmorAttribute()
+    {
         $value = 0;
         $items = $this->items->where('type', 'Armor');
         foreach ($items as $item) {
@@ -150,7 +169,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return int
      */
-    public function getKineticsAttribute() {
+    public function getKineticsAttribute()
+    {
         $value = 0;
         $items = $this->items->where('type', 'Kinetic Weapon');
         foreach ($items as $item) {
@@ -166,7 +186,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return int
      */
-    public function getBeamsAttribute() {
+    public function getBeamsAttribute()
+    {
         $value = 0;
         $items = $this->items->where('type', 'Beam Weapon');
         foreach ($items as $item) {
@@ -180,7 +201,8 @@ class Ship extends Model implements LocatableInterface
     /**
      * @return int
      */
-    public function getEnergy() {
+    public function getEnergy()
+    {
         return $this->energy;
     }
 
@@ -190,7 +212,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return Ship
      */
-    public function setEnergy($energy) {
+    public function setEnergy($energy)
+    {
         $this->energy = $energy;
 
         return $this;
@@ -202,7 +225,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return Ship
      */
-    public function addEnergy($amount) {
+    public function addEnergy($amount)
+    {
         $this->energy += $amount;
 
         return $this;
@@ -214,7 +238,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return Ship
      */
-    public function drainEnergy($amount) {
+    public function drainEnergy($amount)
+    {
         $this->energy = $amount;
 
         return $this;
@@ -224,7 +249,8 @@ class Ship extends Model implements LocatableInterface
     /**
      * @return Star
      */
-    public function getLocation() {
+    public function getLocation()
+    {
         return $this->location;
     }
 
@@ -234,7 +260,8 @@ class Ship extends Model implements LocatableInterface
      *
      * @return Ship
      */
-    public function setLocation($location) {
+    public function setLocation($location)
+    {
         $this->location = $location;
 
         return $this;
@@ -244,7 +271,8 @@ class Ship extends Model implements LocatableInterface
     /**
      * Unset location.
      */
-    public function unsetLocation() {
+    public function unsetLocation()
+    {
         $this->location = null;
     }
 
@@ -252,9 +280,10 @@ class Ship extends Model implements LocatableInterface
     /**
      * @return array
      */
-    public function scanForJumpPoints() {
+    public function scanForJumpPoints()
+    {
         if ($this->location === null) {
-            return [ ];
+            return [];
         }
 
         return $this->location->exits;
@@ -267,7 +296,8 @@ class Ship extends Model implements LocatableInterface
      * @return $this
      * @throws ShipException
      */
-    public function jumpTo($destination) {
+    public function jumpTo($destination)
+    {
         if ($this->energy <= 0) {
             throw new ShipException('Not enough energy to make jump.');
         }
@@ -284,12 +314,15 @@ class Ship extends Model implements LocatableInterface
     }
 
 
-    public function scanForShips() {
+    public function scanForShips()
+    {
         $star = $this->getLocation();
         return self::atLocation($star);
     }
 
-    public static function atLocation(Star $star) {
+
+    public static function atLocation(Star $star)
+    {
         return Ship::whereStarName($star->name);
     }
 

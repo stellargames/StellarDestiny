@@ -70,6 +70,19 @@ abstract class CommandResult implements CommandResultInterface
 
 
     /**
+     * @param string $message
+     *
+     * @return \Stellar\Contracts\CommandResultInterface
+     */
+    public function addMessage($message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+
+    /**
      * @return array
      */
     public function getData()
@@ -107,19 +120,6 @@ abstract class CommandResult implements CommandResultInterface
     public function getMessages()
     {
         return $this->messages;
-    }
-
-
-    /**
-     * @param string $message
-     *
-     * @return \Stellar\Contracts\CommandResultInterface
-     */
-    public function addMessage($message)
-    {
-        $this->messages[] = $message;
-
-        return $this;
     }
 
 }

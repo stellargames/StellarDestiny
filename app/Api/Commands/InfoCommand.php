@@ -2,6 +2,7 @@
 
 namespace Stellar\Api\Commands;
 
+use Auth;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
 use Stellar\Api\Results\InfoCommandResult;
@@ -17,6 +18,8 @@ class InfoCommand implements CommandInterface
 
     /**
      * InfoCommand constructor.
+     *
+     * @param \League\Fractal\Manager $fractal
      */
     public function __construct()
     {
@@ -29,7 +32,7 @@ class InfoCommand implements CommandInterface
     {
         $result = new InfoCommandResult();
 
-        $player = auth()->user();
+        $player = Auth::user();
 
         $item       = new Item($player, new UserTransformer);
         $playerData = $this->fractal->createData($item)->toArray();

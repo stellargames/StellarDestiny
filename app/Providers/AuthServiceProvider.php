@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'Stellar\Model' => 'Stellar\Policies\ModelPolicy',
+      'Stellar\Model' => 'Stellar\Policies\ModelPolicy',
     ];
 
 
@@ -25,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate) {
+    public function boot(GateContract $gate)
+    {
         $this->registerPolicies($gate);
         //
     }

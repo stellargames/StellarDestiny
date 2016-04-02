@@ -12,12 +12,9 @@ class ClientController extends Controller
 
     protected function makeApiCall($command, array $arguments = [])
     {
-        $request  = Request::create('api', 'POST',
-          ['command' => $command, 'arguments' => $arguments]);
+        $request  = Request::create('api', 'POST', ['command' => $command, 'arguments' => $arguments]);
         $handler  = app()->make('Stellar\Contracts\CommandHandlerInterface');
-        $response = app('\Stellar\Http\Controllers\Api\ApiController')
-          ->request($request, $handler)
-          ->getContent();
+        $response = app('\Stellar\Http\Controllers\Api\ApiController')->request($request, $handler)->getContent();
         $data     = json_decode($response);
 
         return $data;
