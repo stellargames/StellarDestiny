@@ -2,7 +2,8 @@
 
 namespace Stellar\Http\Controllers\Client;
 
-use Illuminate\Http\Request;
+use Auth;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Redis;
 use Psy\Util\Json;
 use Stellar\Http\Controllers\Controller;
@@ -10,14 +11,38 @@ use Stellar\Http\Controllers\Controller;
 class ClientController extends Controller
 {
 
+    protected $token;
+
+
     protected function makeApiCall($command, array $arguments = [])
     {
-        $request  = Request::create('api', 'POST', ['command' => $command, 'arguments' => $arguments]);
-        $handler  = app()->make('Stellar\Contracts\CommandHandlerInterface');
-        $response = app('\Stellar\Http\Controllers\Api\ApiController')->request($request, $handler)->getContent();
-        $data     = json_decode($response);
+        $token    = $this->authenticate();
+        $client   = new Client([
+          'base_uri' => config('app.url') . '/api/v1/',
+          'headers'  => [
+            'Accept'        => 'application/json',
+            'Authorization' => 'Bearer ' . $token,
+          ],
+        ]);
+        $response = $client->request('POST', 'command', ['command' => $command, 'arguments' => $arguments]);
 
-        return $data;
+        //$request = Request::create('api/v1/command', 'POST', ['command' => $command, 'arguments' => $arguments]);
+        //$request->headers->add(['Authorization' => 'Bearer ' . $token]);
+        //$handler  = app()->make('Stellar\Contracts\CommandHandlerInterface');
+        //$response = app('\Stellar\Http\Controllers\Api\ApiController')->request($request, $handler)->getContent();
+
+        $json = $response->getBody()->getContents();
+
+        return json_decode($json);
+    }
+
+
+    protected function authenticate()
+    {
+        if ($this->token === null) {
+            $this->token = Auth::guard('api')->login(request()->user());
+        }
+        return $this->token;
     }
 
 

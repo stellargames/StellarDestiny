@@ -10,6 +10,7 @@ class InfoController extends ClientController
         $response = $this->makeApiCall('info');
         $player   = $response->data->player;
         $messages = $response->messages;
+        
         return view('client.info', compact('player', 'messages'));
     }
 }

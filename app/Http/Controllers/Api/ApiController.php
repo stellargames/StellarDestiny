@@ -4,6 +4,7 @@ namespace Stellar\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Log;
 use Stellar\Api\CommandResultInterface;
 use Stellar\Contracts\CommandHandlerInterface;
 use Stellar\Http\Controllers\Controller;

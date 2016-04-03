@@ -96,7 +96,7 @@ abstract class CommandResult implements CommandResultInterface
      */
     public function hasData()
     {
-        return count($this->data) === 0;
+        return count($this->data) !== 0;
     }
 
 
