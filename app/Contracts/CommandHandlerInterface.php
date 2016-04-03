@@ -6,9 +6,9 @@ interface CommandHandlerInterface
 {
 
     /**
-     * @param PlayerInterface   $player
-     * @param string $command
-     * @param array  $arguments
+     * @param PlayerInterface $player
+     * @param string          $command
+     * @param array           $arguments
      *
      * @return \Stellar\Api\CommandResultInterface
      */

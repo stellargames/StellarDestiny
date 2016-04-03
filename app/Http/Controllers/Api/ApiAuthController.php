@@ -16,6 +16,7 @@ class ApiAuthController extends Controller
 
     protected $guard = 'api';
 
+
     /**
      * Handle a login request to the application.
      *
@@ -131,6 +132,7 @@ class ApiAuthController extends Controller
      * @param \Illuminate\Http\Request $request
      *
      * @return mixed
+     * @throws \Illuminate\Foundation\Validation\ValidationException
      */
     public function register(Request $request)
     {

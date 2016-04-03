@@ -43,12 +43,6 @@ class ApiController extends Controller
     }
 
 
-    public function testForm(Request $request)
-    {
-        return view('api.testform');
-    }
-
-
     /**
      * @param CommandResultInterface $result
      *
