@@ -4,6 +4,7 @@ namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Stellar\Contracts\LocatableInterface;
+use Stellar\Contracts\ShipInterface;
 use Stellar\Exceptions\ShipException;
 
 /**
@@ -43,7 +44,7 @@ use Stellar\Exceptions\ShipException;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStarName($value)
  * @mixin \Eloquent
  */
-class Ship extends Model implements LocatableInterface
+class Ship extends Model implements LocatableInterface, ShipInterface
 {
 
     public $timestamps = true;
@@ -326,4 +327,58 @@ class Ship extends Model implements LocatableInterface
         return Ship::whereStarName($star->name);
     }
 
+
+    /**
+     * Calculate the total energy storage from the available jumpstores.
+     *
+     * @return int
+     */
+    public function getEnergyCapacity()
+    {
+        return $this->energyCapacity;
+    }
+
+
+    /**
+     * Calculate the total shield capacity from the available shields.
+     *
+     * @return int
+     */
+    public function getShields()
+    {
+        return $this->shields;
+    }
+
+
+    /**
+     * Calculate the total armor value from the available armor items.
+     *
+     * @return int
+     */
+    public function getArmor()
+    {
+        return $this->armor;
+    }
+
+
+    /**
+     * Calculate the total power from the available kinetic weapons.
+     *
+     * @return int
+     */
+    public function getKinetics()
+    {
+        return $this->kinetics;
+    }
+
+
+    /**
+     * Calculate the total power value from the available beam weapons.
+     *
+     * @return int
+     */
+    public function getBeams()
+    {
+        return $this->beams;
+    }
 }

@@ -9,73 +9,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Stellar\Contracts\PlayerInterface;
 use Stellar\ShipFactory;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-/**
- * Stellar\Models\User
- *
- * @property integer
- *             $id
- * @property string
- *             $name
- * @property boolean
- *             $status
- * @property integer
- *             $faction_id
- * @property integer
- *             $reputation
- * @property integer
- *             $alignment
- * @property integer
- *             $affiliation
- * @property integer
- *             $current_ship
- * @property string
- *             $email
- * @property string
- *             $password
- * @property string
- *             $remember_token
- * @property \Carbon\Carbon
- *             $created_at
- * @property \Carbon\Carbon
- *             $updated_at
- * @property-read \Stellar\Models\Ship
- *                  $ship
- * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Ship[]
- *                $ships
- * @property-read \Stellar\Models\Faction
- *                  $faction
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereStatus($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereFactionId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereReputation($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereAlignment($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereAffiliation($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereCurrentShip($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\User
- *         whereUpdatedAt($value)
- * @mixin \Eloquent
- */
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, JWTSubject
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, JWTSubject, PlayerInterface
 {
 
     use Authenticatable, Authorizable, CanResetPassword;
@@ -221,5 +159,79 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+
+    /**
+     * Get the name of the player.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * Get the reputation of the player.
+     *
+     * This represents the "level" or status of the player.
+     *
+     * @return int
+     */
+    public function getReputation()
+    {
+        return $this->reputation;
+    }
+
+
+    /**
+     * Get the alignment of the player.
+     *
+     * An alignment of 0 is neutral, a positive alignment represents good, a negative alignment evil.
+     * This is adjusted based on the actions of the player and can affect reactions of others.
+     *
+     * @return int
+     */
+    public function getAlignment()
+    {
+        return $this->alignment;
+    }
+
+
+    /**
+     * Get the affiliation of the player.
+     *
+     * This represents the balance between nature and technology.
+     * Negative is associated with technology and positive with nature.
+     *
+     * @return int
+     */
+    public function getAffiliation()
+    {
+        return $this->affiliation;
+    }
+
+
+    /**
+     * Get the ship the player is currently using.
+     *
+     * @return \Stellar\Contracts\ShipInterface
+     */
+    public function getShip()
+    {
+        return $this->ship();
+    }
+
+
+    /**
+     * Get all the ships the player owns.
+     *
+     * @return array
+     */
+    public function getShips()
+    {
+        return $this->ships()->flatten();
     }
 }
