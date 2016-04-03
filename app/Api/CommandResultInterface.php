@@ -1,5 +1,5 @@
 <?php
-namespace Stellar\Contracts;
+namespace Stellar\Api;
 
 interface CommandResultInterface
 {
@@ -21,7 +21,7 @@ interface CommandResultInterface
      *
      * @param string $message
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function fail($message);
 
@@ -42,7 +42,7 @@ interface CommandResultInterface
      * @param string $key
      * @param string $item
      *
-     * @return CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function addItem($key, $item);
 
@@ -56,7 +56,7 @@ interface CommandResultInterface
     /**
      * @param string $message
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function addMessage($message);
 }

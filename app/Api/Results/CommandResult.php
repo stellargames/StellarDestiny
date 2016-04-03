@@ -2,7 +2,7 @@
 
 namespace Stellar\Api\Results;
 
-use Stellar\Contracts\CommandResultInterface;
+use Stellar\Api\CommandResultInterface;
 
 abstract class CommandResult implements CommandResultInterface
 {
@@ -58,7 +58,7 @@ abstract class CommandResult implements CommandResultInterface
      *
      * @param $message
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function fail($message)
     {
@@ -72,7 +72,7 @@ abstract class CommandResult implements CommandResultInterface
     /**
      * @param string $message
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function addMessage($message)
     {
@@ -96,7 +96,7 @@ abstract class CommandResult implements CommandResultInterface
      */
     public function hasData()
     {
-        return !empty($this->data);
+        return count($this->data) === 0;
     }
 
 
@@ -104,7 +104,7 @@ abstract class CommandResult implements CommandResultInterface
      * @param string $key
      * @param string $item
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
     public function addItem($key, $item)
     {

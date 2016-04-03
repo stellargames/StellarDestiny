@@ -3,7 +3,7 @@
 namespace Stellar\Api;
 
 use Stellar\Contracts\CommandHandlerInterface;
-use Stellar\Contracts\CommandInterface;
+use Stellar\Contracts\PlayerInterface;
 
 class CommandHandler implements CommandHandlerInterface
 {
@@ -28,21 +28,20 @@ class CommandHandler implements CommandHandlerInterface
     /**
      * Handle the execution of the specified command.
      *
-     * @param string $command   The command to execute.
-     * @param array  $arguments [optional] arguments for the command.
+     * @param PlayerInterface $player
+     * @param string          $command   The command to execute.
+     * @param array           $arguments [optional] arguments for the command.
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
-    public function handle($command, array $arguments = [])
+    public function handle($player, $command, array $arguments = [])
     {
         if (!array_key_exists($command, $this->commands)) {
             return null;
         }
-        /** @var CommandInterface $command */
-        $command = new $this->commands[$command]();
+        /** @var \Stellar\Api\CommandInterface $command */
+        $command = new $this->commands[$command]($player);
 
-        $result = $command->execute($arguments);
-
-        return $result;
+        return $command->execute($arguments);
     }
 }

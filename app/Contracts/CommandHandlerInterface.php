@@ -6,10 +6,11 @@ interface CommandHandlerInterface
 {
 
     /**
+     * @param PlayerInterface   $player
      * @param string $command
      * @param array  $arguments
      *
-     * @return \Stellar\Contracts\CommandResultInterface
+     * @return \Stellar\Api\CommandResultInterface
      */
-    public function handle($command, array $arguments = []);
+    public function handle($player, $command, array $arguments = []);
 }

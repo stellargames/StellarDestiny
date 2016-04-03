@@ -38,7 +38,6 @@ class InfoCommandCest
         ];
 
         $I->sendPOST('command', $request);
-        dd($I->grabResponse());
     }
 
 }
