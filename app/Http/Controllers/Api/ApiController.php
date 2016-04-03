@@ -4,8 +4,8 @@ namespace Stellar\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Stellar\Api\CommandResultInterface;
 use Stellar\Contracts\CommandHandlerInterface;
-use Stellar\Contracts\CommandResultInterface;
 use Stellar\Http\Controllers\Controller;
 
 class ApiController extends Controller
@@ -22,9 +22,10 @@ class ApiController extends Controller
      */
     public function request(Request $request, CommandHandlerInterface $handler)
     {
-        $command   = $request->input('command');
-        $arguments = $request->input('arguments');
-        $result    = $handler->handle($command, $arguments);
+        $player    = $request->user('api');
+        $command   = $request->input('command', 'info');
+        $arguments = $request->input('arguments', []);
+        $result    = $handler->handle($player, $command, $arguments);
 
         $response = $this->getResponse($result);
 

@@ -4,7 +4,7 @@ namespace Stellar\Http\Controllers\Api;
 
 use Auth;
 use Carbon\Carbon;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Stellar\Http\Controllers\Controller;
 use Stellar\Models\User;
@@ -12,10 +12,9 @@ use Stellar\Models\User;
 class ApiAuthController extends Controller
 {
 
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesUsers;
 
     protected $guard = 'api';
-
 
     /**
      * Handle a login request to the application.
