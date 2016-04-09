@@ -60,7 +60,6 @@ class AuthenticationCest
     {
         $I->sendPOST('login', ['email' => 'john@doe.com', 'password' => 'password']);
         $token = $this->tryToGrabToken($I);
-        $I->assertNotEmpty($token, 'Token is present');
         $I->amBearerAuthenticated($token[0]);
         $I->sendPOST('command');
         $I->seeResponseCodeIs(200);
@@ -69,9 +68,7 @@ class AuthenticationCest
 
     public function logoutToInvalidateToken(ApiTester $I)
     {
-        $I->sendPOST('login', ['email' => 'john@doe.com', 'password' => 'password']);
-        $token = $this->tryToGrabToken($I);
-        $I->amBearerAuthenticated($token[0]);
+        $this->grabTokenAndAuthenticate($I);
         $I->sendGET('logout');
         $I->sendPOST('command');
         $I->seeResponseCodeIs(401);
@@ -81,6 +78,20 @@ class AuthenticationCest
     protected function tryToGrabToken(ApiTester $I)
     {
         return $I->grabDataFromResponseByJsonPath("$['data']['token']");
+    }
+
+
+    /**
+     * @param \ApiTester $I
+     *
+     * @return array
+     */
+    protected function grabToken(ApiTester $I)
+    {
+        $I->sendPOST('login', ['email' => 'john@doe.com', 'password' => 'password']);
+        $token = $this->tryToGrabToken($I);
+        $I->assertNotEmpty($token, 'Token is present');
+        return $token;
     }
 
 }

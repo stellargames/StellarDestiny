@@ -86,7 +86,7 @@ class ApiAuthController extends Controller
      * @param User                     $user
      * @param string                   $token
      *
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     protected function authenticated(Request $request, $user, $token)
     {
@@ -100,10 +100,7 @@ class ApiAuthController extends Controller
             'token'     => $token,
           ],
         ];
-        // Mark the response with the requestId.
-        if ($request->has('requestId')) {
-            $response['requestId'] = $request->input('requestId');
-        }
+
         return response()->json($response);
     }
 
@@ -111,7 +108,7 @@ class ApiAuthController extends Controller
     /**
      * @param \Illuminate\Http\Request $request
      *
-     * @return mixed
+     * @return \Illuminate\Http\JsonResponse
      */
     protected function sendFailedLoginResponse(Request $request)
     {
@@ -120,10 +117,7 @@ class ApiAuthController extends Controller
           'messages'   => [$this->getFailedLoginMessage()],
           'serverTime' => Carbon::now()->toIso8601String(),
         ];
-        // Mark the response with the requestId.
-        if ($request->has('requestId')) {
-            $response['requestId'] = $request->input('requestId');
-        }
+
         return response()->json($response);
     }
 

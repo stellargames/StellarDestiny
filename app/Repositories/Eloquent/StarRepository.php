@@ -170,19 +170,12 @@ class StarRepository implements StarRepositoryInterface
      * @param $linkedStars
      * @param $unlinkedStars
      *
-     * @return mixed
+     * @return Star
      */
     protected function getLinkStartingStar($linkedStars, $unlinkedStars)
     {
-        if (count($linkedStars) === 0) {
-            $star = $unlinkedStars[array_rand($unlinkedStars)];
-
-            return $star;
-        } else {
-            $star = $linkedStars[array_rand($linkedStars)];
-
-            return $star;
-        }
+        $stars = (count($linkedStars) === 0) ? $unlinkedStars : $linkedStars;
+        return $stars[array_rand($stars)];
     }
 
 
@@ -222,19 +215,26 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @param $size
      *
-     * @throws GalaxyException
+     * @return $this
+     * @throws \Exception
      */
     public function createNew($size)
     {
         $this->deleteAllStars();
         $this->generateStars($size);
+        return $this;
     }
 
 
+    /**
+     * @return $this
+     * @throws \Exception
+     */
     public function deleteAllStars()
     {
         Star::getQuery()->delete();
         $this->stars = [];
+        return $this;
     }
 
 }

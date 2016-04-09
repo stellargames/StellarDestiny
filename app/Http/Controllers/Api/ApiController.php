@@ -30,11 +30,6 @@ class ApiController extends Controller
 
         $response = $this->getResponse($result);
 
-        // Mark the response with the requestId.
-        if ($request->has('requestId')) {
-            $response['requestId'] = $request->input('requestId');
-        }
-
         // Add any data.
         if ($result->hasData()) {
             $response['data'] = $result->getData();

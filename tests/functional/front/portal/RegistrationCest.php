@@ -56,10 +56,7 @@ class RegistrationCest
 
 
     public function testValidRegistration(FunctionalTester $I) {
-        $I->fillField('name', $this->tester['name']);
-        $I->fillField('email', $this->tester['email']);
-        $I->fillField('password', $this->tester['password']);
-        $I->fillField('password_confirmation', $this->tester['password']);
+        $this->fillRegistrationFields($I);
         $I->click('Register', 'button');
         $I->dontSeeFormErrors();
         $I->seeRecord(
@@ -73,10 +70,7 @@ class RegistrationCest
 
 
     public function testSpamRegistration(FunctionalTester $I) {
-        $I->fillField('name', $this->tester['name']);
-        $I->fillField('email', $this->tester['email']);
-        $I->fillField('password', $this->tester['password']);
-        $I->fillField('password_confirmation', $this->tester['password']);
+        $this->fillRegistrationFields($I);
         $I->fillField('agreement', 'yes');
         $I->click('Register', 'button');
         $I->dontSeeFormErrors();
@@ -87,6 +81,18 @@ class RegistrationCest
         $I->click('Login', 'button');
         $I->seeFormHasErrors();
         $I->dontSeeAuthentication();
+    }
+
+
+    /**
+     * @param \FunctionalTester $I
+     */
+    protected function fillRegistrationFields(FunctionalTester $I)
+    {
+        $I->fillField('name', $this->tester['name']);
+        $I->fillField('email', $this->tester['email']);
+        $I->fillField('password', $this->tester['password']);
+        $I->fillField('password_confirmation', $this->tester['password']);
     }
 
 }

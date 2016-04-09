@@ -34,8 +34,8 @@ class ShipFactory
         $ship->owner()->associate($player);
         $ship->save();
         // Add a jumpstore and a cargo item.
-        $item = JumpStore::whereValue(1)->get()->random();
-        $ship->items()->attach($item, ['amount' => 1]);
+        $jumpStore = JumpStore::whereValue(1)->get()->random();
+        $ship->items()->attach($jumpStore, ['amount' => 1]);
         switch (mt_rand(0, 2)) {
             case 0:
                 $item = BiologyCargo::whereValue(1)->get()->random();

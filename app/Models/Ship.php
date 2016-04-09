@@ -138,13 +138,8 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      */
     public function getShieldsAttribute()
     {
-        $value = 0;
         $items = $this->items->where('type', 'Shield');
-        foreach ($items as $item) {
-            $value += $item->value;
-        }
-
-        return $value;
+        return $this->calculateItemsValue($items);
     }
 
 
@@ -155,13 +150,8 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      */
     public function getArmorAttribute()
     {
-        $value = 0;
         $items = $this->items->where('type', 'Armor');
-        foreach ($items as $item) {
-            $value += $item->value;
-        }
-
-        return $value;
+        return $this->calculateItemsValue($items);
     }
 
 
@@ -172,13 +162,8 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      */
     public function getKineticsAttribute()
     {
-        $value = 0;
         $items = $this->items->where('type', 'Kinetic Weapon');
-        foreach ($items as $item) {
-            $value += $item->value;
-        }
-
-        return $value;
+        return $this->calculateItemsValue($items);
     }
 
 
@@ -189,13 +174,8 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      */
     public function getBeamsAttribute()
     {
-        $value = 0;
         $items = $this->items->where('type', 'Beam Weapon');
-        foreach ($items as $item) {
-            $value += $item->value;
-        }
-
-        return $value;
+        return $this->calculateItemsValue($items);
     }
 
 
@@ -241,7 +221,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      */
     public function drainEnergy($amount)
     {
-        $this->energy = $amount;
+        $this->energy -= $amount;
 
         return $this;
     }
@@ -380,5 +360,21 @@ class Ship extends Model implements LocatableInterface, ShipInterface
     public function getBeams()
     {
         return $this->beams;
+    }
+
+
+    /**
+     * @param $items
+     *
+     * @return int
+     */
+    protected function calculateItemsValue($items)
+    {
+        $value = 0;
+        foreach ($items as $item) {
+            $value += $item->value;
+        }
+
+        return $value;
     }
 }
