@@ -1,6 +1,6 @@
 <?php
 
-namespace Stellar\Transformers;
+namespace Stellar\Api\Transformers;
 
 class ArraySerializer extends \League\Fractal\Serializer\ArraySerializer
 {

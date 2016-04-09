@@ -1,4 +1,7 @@
 <?php
+namespace api;
+
+use ApiTester;
 
 class AuthenticationCest
 {

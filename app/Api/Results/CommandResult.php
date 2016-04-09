@@ -2,6 +2,7 @@
 
 namespace Stellar\Api\Results;
 
+use League\Fractal\Resource\ResourceInterface;
 use Stellar\Api\CommandResultInterface;
 
 abstract class CommandResult implements CommandResultInterface
@@ -101,8 +102,8 @@ abstract class CommandResult implements CommandResultInterface
 
 
     /**
-     * @param string $key
-     * @param string $item
+     * @param string            $key
+     * @param ResourceInterface $item
      *
      * @return \Stellar\Api\CommandResultInterface
      */

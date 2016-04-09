@@ -20,7 +20,7 @@ Route::group([
 ], function () {
     $this->post('login', 'ApiAuthController@login');
 
-    Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => ['api', 'auth:api']], function () {
         Route::get('logout', 'ApiAuthController@logout');
         Route::post('command', 'ApiController@request');
     });

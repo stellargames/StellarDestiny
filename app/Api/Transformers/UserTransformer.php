@@ -1,6 +1,6 @@
 <?php
 
-namespace Stellar\Transformers;
+namespace Stellar\Api\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use Stellar\Models\User;
@@ -9,7 +9,7 @@ class UserTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-      'ship',
+      //'ship',
     ];
 
 

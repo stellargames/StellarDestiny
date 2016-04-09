@@ -4,13 +4,29 @@ namespace Stellar\Http\Controllers\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Log;
+use League\Fractal\Manager;
 use Stellar\Api\CommandResultInterface;
+use Stellar\Api\Transformers\ArraySerializer;
 use Stellar\Contracts\CommandHandlerInterface;
 use Stellar\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
+
+    protected $dataTransformer;
+
+
+    /**
+     * ApiController constructor.
+     *
+     * @param Manager $fractal
+     */
+    public function __construct(Manager $fractal)
+    {
+        $fractal->setSerializer(new ArraySerializer());
+        $this->dataTransformer = $fractal;
+    }
+
 
     /**
      * Handle incoming request.
@@ -30,9 +46,16 @@ class ApiController extends Controller
 
         $response = $this->getResponse($result);
 
-        // Add any data.
-        if ($result->hasData()) {
-            $response['data'] = $result->getData();
+        // Mark the response with the requestId.
+        if ($request->has('requestId')) {
+            $response['requestId'] = $request->input('requestId');
+        }
+
+        // Use dataTransformer to transform the returned data.
+        if ($result->succeeded() && $result->hasData()) {
+            foreach ($result->getData() as $key => $value) {
+                $response['data'][$key] = $this->dataTransformer->createData($value)->toArray();
+            }
         }
 
         return response()->json($response);
