@@ -38,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
             return new CommandHandler($commands);
         });
         $this->app->bind('Stellar\Contracts\NameGeneratorInterface', 'Stellar\Helpers\StarNameGenerator');
-        $this->app->bind('Stellar\Repositories\Contracts\StarRepositoryInterface',
-          'Stellar\Repositories\Eloquent\StarRepository');
+
     }
 }

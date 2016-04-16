@@ -134,6 +134,7 @@ return [
         Stellar\Providers\AppServiceProvider::class,
         Stellar\Providers\AuthServiceProvider::class,
         Stellar\Providers\EventServiceProvider::class,
+        Stellar\Providers\GalaxyServiceProvider::class,
         Stellar\Providers\RouteServiceProvider::class,
         /*
          * Third party providers...
@@ -187,6 +188,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Galaxy'    => Stellar\Facades\Galaxy::class,
     ],
 
 ];
