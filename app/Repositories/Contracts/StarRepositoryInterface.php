@@ -2,7 +2,6 @@
 namespace Stellar\Repositories\Contracts;
 
 use Stellar\Exceptions\GalaxyException;
-use Stellar\Models\Star;
 
 /**
  * Class Galaxy
@@ -12,17 +11,17 @@ interface StarRepositoryInterface
 {
 
     /**
-     * @return Star
+     * @return StarInterface
      */
     public static function getStartingStar();
 
 
     /**
-     * @param Star $star
+     * @param StarInterface $star
      *
      * @throws GalaxyException
      */
-    public function addStar(Star $star);
+    public function addStar(StarInterface $star);
 
 
     /**
@@ -49,9 +48,33 @@ interface StarRepositoryInterface
     public function save();
 
 
+    /**
+     * @param $size
+     *
+     * @return StarRepositoryInterface
+     */
     public function createNew($size);
 
 
+    /**
+     * @return StarRepositoryInterface
+     */
     public function deleteAllStars();
+
+
+    /**
+     * @param string $name
+     *
+     * @return StarInterface
+     */
+    public function getStarByName($name);
+
+
+    /**
+     * @param $name
+     *
+     * @return StarInterface
+     */
+    public function createStar($name);
 
 }

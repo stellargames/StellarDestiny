@@ -2,7 +2,7 @@
 namespace Stellar\Api\Contracts;
 
 use Stellar\Exceptions\ShipException;
-use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarInterface;
 
 interface ShipInterface
 {
@@ -18,7 +18,7 @@ interface ShipInterface
     /**
      * The star the ship is currently at.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return StarInterface
      */
     public function location();
 
@@ -110,17 +110,17 @@ interface ShipInterface
 
 
     /**
-     * @return Star
+     * @return StarInterface
      */
     public function getLocation();
 
 
     /**
-     * @param Star $location
+     * @param StarInterface $location
      *
      * @return ShipInterface
      */
-    public function setLocation($location);
+    public function setLocation(StarInterface $location);
 
 
     /**
@@ -136,13 +136,18 @@ interface ShipInterface
 
 
     /**
-     * @param Star $destination
+     * @param StarInterface $destination
      *
      * @return $this
      * @throws ShipException
      */
-    public function jumpTo($destination);
+    public function jumpTo(StarInterface $destination);
 
 
+    /**
+     * Scan for ships in the same location.
+     * 
+     * @return array
+     */
     public function scanForShips();
 }

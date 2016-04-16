@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Stellar\Api\Contracts\ShipInterface;
 use Stellar\Contracts\LocatableInterface;
 use Stellar\Exceptions\ShipException;
+use Stellar\Repositories\Contracts\StarInterface;
 
 /**
  * Stellar\Models\Ship
@@ -21,7 +22,7 @@ use Stellar\Exceptions\ShipException;
  * @property \Carbon\Carbon                                                             $created_at
  * @property \Carbon\Carbon                                                             $updated_at
  * @property-read \Stellar\Api\Contracts\PlayerInterface                                $owner
- * @property-read \Stellar\Models\Star                                                  $location
+ * @property-read StarInterface                                                         $location
  * @property-read \Stellar\Models\ShipType                                              $type
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Items\Item[] $items
  * @property-read int                                                                   $energy_capacity
@@ -217,7 +218,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
     /**
      * @param int $amount
      *
-     * @return Ship
+     * @return ShipInterface
      */
     public function drainEnergy($amount)
     {
@@ -228,7 +229,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
 
 
     /**
-     * @return Star
+     * @return StarInterface
      */
     public function getLocation()
     {
@@ -237,11 +238,11 @@ class Ship extends Model implements LocatableInterface, ShipInterface
 
 
     /**
-     * @param Star $location
+     * @param StarInterface $location
      *
-     * @return Ship
+     * @return ShipInterface
      */
-    public function setLocation($location)
+    public function setLocation(StarInterface $location)
     {
         $this->location = $location;
 
@@ -267,24 +268,24 @@ class Ship extends Model implements LocatableInterface, ShipInterface
             return [];
         }
 
-        return $this->location->exits;
+        return $this->location->getJumpPoints();
     }
 
 
     /**
-     * @param Star $destination
+     * @param StarInterface $destination
      *
      * @return $this
      * @throws ShipException
      */
-    public function jumpTo($destination)
+    public function jumpTo(StarInterface $destination)
     {
         if ($this->energy <= 0) {
             throw new ShipException('Not enough energy to make jump.');
         }
         $jumpPoints = $this->scanForJumpPoints();
         foreach ($jumpPoints as $jumpPoint) {
-            if ($jumpPoint->name === $destination->name) {
+            if ($jumpPoint['name'] === $destination->getName()) {
                 $this->setLocation($destination);
                 $this->drainEnergy(1);
 
@@ -302,9 +303,9 @@ class Ship extends Model implements LocatableInterface, ShipInterface
     }
 
 
-    public static function atLocation(Star $star)
+    public static function atLocation(StarInterface $star)
     {
-        return Ship::whereStarName($star->name);
+        return Ship::whereStarName($star->getName());
     }
 
 

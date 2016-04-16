@@ -3,6 +3,7 @@
 namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Stellar\Repositories\Contracts\StarInterface;
 
 /**
  * Stellar\Models\Star
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Star whereName($value)
  * @mixin \Eloquent
  */
-class Star extends Model
+class Star extends Model implements StarInterface
 {
 
     public $incrementing = false;
@@ -34,9 +35,9 @@ class Star extends Model
 
 
     /**
-     * @param Star $star
+     * @param StarInterface $star
      */
-    public function linkTo(Star $star)
+    public function linkTo(StarInterface $star)
     {
         $this->exits()->attach($star);
     }
@@ -52,4 +53,31 @@ class Star extends Model
         return $this->belongsToMany('Stellar\Models\Star', 'star_links', 'star_name', 'destination');
     }
 
+
+    /**
+     * Get the star name.
+     * 
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    public function getTraders()
+    {
+        return $this->traders;
+    }
+
+
+    /**
+     * The stars that can be jumped to from this star.
+     *
+     * @return array
+     */
+    public function getJumpPoints()
+    {
+        return $this->exits->toArray();
+    }
 }

@@ -4,7 +4,7 @@ namespace Stellar\Api\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use Stellar\Models\Ship;
-use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarInterface;
 
 class StarTransformer extends TransformerAbstract
 {
@@ -14,10 +14,10 @@ class StarTransformer extends TransformerAbstract
     ];
 
 
-    public function transform(Star $star)
+    public function transform(StarInterface $star)
     {
         $exits = [];
-        foreach ($star->exits as $exit) {
+        foreach ($star->exits() as $exit) {
             $exits[] = $exit->name;
         }
         $ships = [];
@@ -26,16 +26,16 @@ class StarTransformer extends TransformerAbstract
         }
 
         return [
-          'name'  => $star->name,
+          'name'  => $star->getName(),
           'exits' => $exits,
           'ships' => $ships,
         ];
     }
 
 
-    public function includeTraders(Star $star)
+    public function includeTraders(StarInterface $star)
     {
-        $traders = $star->traders;
+        $traders = $star->getTraders();
 
         return $this->collection($traders, new TraderTransformer);
     }

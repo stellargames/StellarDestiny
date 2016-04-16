@@ -5,6 +5,7 @@ namespace Stellar\Repositories\Eloquent;
 use Stellar\Contracts\NameGeneratorInterface;
 use Stellar\Exceptions\GalaxyException;
 use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarInterface;
 use Stellar\Repositories\Contracts\StarRepositoryInterface;
 
 /**
@@ -41,17 +42,19 @@ class StarRepository implements StarRepositoryInterface
 
 
     /**
-     * @param Star $star
+     * @param StarInterface $star
      *
+     * @return StarRepositoryInterface
      * @throws GalaxyException
      */
-    public function addStar(Star $star)
+    public function addStar(StarInterface $star)
     {
-        $name = $star->name;
+        $name = $star->getName();
         if (array_key_exists($name, $this->stars)) {
             throw new GalaxyException('Duplicate star name: ' . $name);
         }
         $this->stars[$name] = $star;
+        return $this;
     }
 
 
@@ -67,6 +70,7 @@ class StarRepository implements StarRepositoryInterface
     /**
      * @param int $amount
      *
+     * @return StarRepositoryInterface
      * @throws GalaxyException
      */
     public function generateStars($amount)
@@ -80,6 +84,7 @@ class StarRepository implements StarRepositoryInterface
             $this->linkAllStars();
         }
         $this->save();
+        return $this;
     }
 
 
@@ -170,7 +175,7 @@ class StarRepository implements StarRepositoryInterface
      * @param $linkedStars
      * @param $unlinkedStars
      *
-     * @return Star
+     * @return StarInterface
      */
     protected function getLinkStartingStar($linkedStars, $unlinkedStars)
     {
@@ -193,7 +198,7 @@ class StarRepository implements StarRepositoryInterface
 
 
     /**
-     * @return Star
+     * @return StarInterface
      */
     public static function getStartingStar()
     {
@@ -237,4 +242,25 @@ class StarRepository implements StarRepositoryInterface
         return $this;
     }
 
+
+    /**
+     * @param string $name
+     *
+     * @return StarInterface
+     */
+    public function getStarByName($name)
+    {
+        return Star::find($name);
+    }
+
+
+    /**
+     * @param string $name
+     *
+     * @return StarInterface
+     */
+    public function createStar($name)
+    {
+        return Star::create(['name' => $name]);
+    }
 }

@@ -1,13 +1,13 @@
 <?php
 namespace Stellar\Contracts;
 
-use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarInterface;
 
 interface LocatableInterface
 {
 
     /**
-     * @return Star
+     * @return StarInterface
      */
     public function getLocation();
 }

@@ -2,7 +2,7 @@
 
 use Stellar\Exceptions\ShipException;
 use Stellar\Models\Ship;
-use Stellar\Models\Star;
+use Stellar\Repositories\Contracts\StarInterface;
 
 class ShipCest
 {
@@ -14,7 +14,7 @@ class ShipCest
     public function _before(FunctionalTester $I)
     {
         $this->ship   = new Ship();
-        $startingStar = Star::create(['name' => 'source']);
+        $startingStar = Galaxy::createStar('source');
         $this->ship->setLocation($startingStar);
     }
 
@@ -34,7 +34,7 @@ class ShipCest
 
     public function jumpToAnUnlinkedStar(FunctionalTester $I)
     {
-        $destinationStar = Star::create(['name' => 'unlinked']);
+        $destinationStar = Galaxy::createStar('unlinked');
         $this->assertJumpFails($I, $destinationStar);
     }
 
@@ -64,7 +64,7 @@ class ShipCest
 
     /**
      * @param \FunctionalTester $I
-     * @param Star              $destinationStar
+     * @param StarInterface     $destinationStar
      */
     protected function assertJumpFails(FunctionalTester $I, $destinationStar)
     {
@@ -75,7 +75,7 @@ class ShipCest
 
 
     /**
-     * @param Star $destinationStar
+     * @param StarInterface $destinationStar
      *
      * @return null|\Stellar\Models\Star
      * @throws \Stellar\Exceptions\ShipException
@@ -90,11 +90,11 @@ class ShipCest
     /**
      * Create a star that is linked to the ships current location.
      *
-     * @return Star
+     * @return StarInterface
      */
     protected function createLinkedStar()
     {
-        $star = Star::create(['name' => 'linked']);
+        $star = Galaxy::createStar('linked');
         $this->ship->getLocation()->linkTo($star);
         return $star;
     }
