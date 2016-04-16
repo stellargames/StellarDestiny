@@ -68,13 +68,9 @@ class ShipCest
      */
     protected function assertJumpFails(FunctionalTester $I, $destinationStar)
     {
-        $exceptionThrown = false;
-        try {
+        $I->seeException(ShipException::class, function () use ($destinationStar) {
             $this->ship->jumpTo($destinationStar);
-        } catch (ShipException $exception) {
-            $exceptionThrown = true;
-        }
-        $I->assertTrue($exceptionThrown, 'Expected exception not thrown.');
+        });
     }
 
 

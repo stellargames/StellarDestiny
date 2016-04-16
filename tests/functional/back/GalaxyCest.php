@@ -58,16 +58,12 @@ class GalaxyCest
 
     public function duplicateStarNamesAreForbidden(FunctionalTester $I)
     {
-        $exceptionThrown = false;
-        $star            = new Star(['name' => 'a name']);
+        $star = new Star(['name' => 'a name']);
         $this->galaxy->addStar($star);
         $anotherStar = new Star(['name' => 'a name']);
-        try {
+        $I->seeException(GalaxyException::class, function () use ($anotherStar) {
             $this->galaxy->addStar($anotherStar);
-        } catch (GalaxyException $exception) {
-            $exceptionThrown = true;
-        }
-        $I->assertTrue($exceptionThrown);
+        });
     }
 
 
