@@ -89,12 +89,12 @@ class StarRepository implements StarRepositoryInterface
 
 
     /**
-     * @param Star $star
-     * @param Star $otherStar
+     * @param StarInterface $star
+     * @param StarInterface $otherStar
      *
      * @throws GalaxyException
      */
-    protected function linkTwoStars(Star $star, Star $otherStar)
+    protected function linkTwoStars(StarInterface $star, StarInterface $otherStar)
     {
         $star->linkTo($otherStar);
         $otherStar->linkTo($star);
@@ -109,7 +109,7 @@ class StarRepository implements StarRepositoryInterface
         $unlinkedStars = $this->getUnlinkedStars();
         $linkedStars   = $this->getLinkedStars();
         $star          = $this->getLinkStartingStar($linkedStars, $unlinkedStars);
-        unset($unlinkedStars[$star->name]);
+        unset($unlinkedStars[$star->getName()]);
         while (count($unlinkedStars) > 0) {
             $id           = array_rand($unlinkedStars);
             $unlinkedStar = $unlinkedStars[$id];
@@ -250,7 +250,7 @@ class StarRepository implements StarRepositoryInterface
      */
     public function getStarByName($name)
     {
-        return Star::find($name);
+        return Star::where('name', $name)->first();
     }
 
 

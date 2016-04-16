@@ -76,7 +76,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function owner()
+    public function getOwner()
     {
         return $this->belongsTo('Stellar\Models\User', 'user_id');
     }
@@ -109,7 +109,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function items()
+    public function getItems()
     {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'paid');
     }
@@ -256,6 +256,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
     public function unsetLocation()
     {
         $this->location = null;
+        return $this;
     }
 
 
@@ -377,5 +378,16 @@ class Ship extends Model implements LocatableInterface, ShipInterface
         }
 
         return $value;
+    }
+
+
+    /**
+     * The type or class of ship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

@@ -22,7 +22,7 @@ class JumpCommand implements CommandInterface
         if (!array_key_exists('destination', $arguments)) {
             return $result->fail('No destination provided');
         }
-        $star = Galaxy::getStarByname($arguments['destination']);
+        $star = Galaxy::getStarByName($arguments['destination']);
         if (!$star instanceof StarInterface) {
             return $result->fail('Illegal destination provided');
         }

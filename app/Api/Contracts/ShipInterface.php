@@ -2,6 +2,7 @@
 namespace Stellar\Api\Contracts;
 
 use Stellar\Exceptions\ShipException;
+use Stellar\Models\ShipType;
 use Stellar\Repositories\Contracts\StarInterface;
 
 interface ShipInterface
@@ -10,33 +11,25 @@ interface ShipInterface
     /**
      * The player that owns the ship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return PlayerInterface
      */
-    public function owner();
-
-
-    /**
-     * The star the ship is currently at.
-     *
-     * @return StarInterface
-     */
-    public function location();
+    public function getOwner();
 
 
     /**
      * The type or class of ship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return ShipType
      */
-    public function type();
+    public function getType();
 
 
     /**
      * The items installed on the ship.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return array
      */
-    public function items();
+    public function getItems();
 
 
     /**
@@ -86,6 +79,12 @@ interface ShipInterface
 
 
     /**
+     * @return StarInterface
+     */
+    public function getLocation();
+
+
+    /**
      * @param int $energy
      *
      * @return ShipInterface
@@ -110,12 +109,6 @@ interface ShipInterface
 
 
     /**
-     * @return StarInterface
-     */
-    public function getLocation();
-
-
-    /**
      * @param StarInterface $location
      *
      * @return ShipInterface
@@ -125,6 +118,8 @@ interface ShipInterface
 
     /**
      * Unset location.
+     *
+     * @return ShipInterface
      */
     public function unsetLocation();
 
@@ -138,7 +133,7 @@ interface ShipInterface
     /**
      * @param StarInterface $destination
      *
-     * @return $this
+     * @return ShipInterface
      * @throws ShipException
      */
     public function jumpTo(StarInterface $destination);
@@ -146,7 +141,7 @@ interface ShipInterface
 
     /**
      * Scan for ships in the same location.
-     * 
+     *
      * @return array
      */
     public function scanForShips();

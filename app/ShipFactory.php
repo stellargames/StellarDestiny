@@ -11,7 +11,7 @@ use Stellar\Models\ShipType;
 use Stellar\Models\User;
 use Stellar\Repositories\Eloquent\StarRepository;
 
-class _ShipFactory
+class ShipFactory
 {
 
     /**
@@ -29,13 +29,13 @@ class _ShipFactory
         $ship->type()->associate($shipType);
         // Place it at a random star.
         $star = StarRepository::getStartingStar();
-        $ship->location()->associate($star);
+        $ship->getLocation()->associate($star);
         // Give it to the player.
-        $ship->owner()->associate($player);
+        $ship->getOwner()->associate($player);
         $ship->save();
         // Add a jumpstore and a cargo item.
         $jumpStore = JumpStore::whereValue(1)->get()->random();
-        $ship->items()->attach($jumpStore, ['amount' => 1]);
+        $ship->getItems()->attach($jumpStore, ['amount' => 1]);
         switch (mt_rand(0, 2)) {
             case 0:
                 $item = BiologyCargo::whereValue(1)->get()->random();
@@ -47,7 +47,7 @@ class _ShipFactory
                 $item = LuxuryCargo::whereValue(1)->get()->random();
                 break;
         }
-        $ship->items()->attach($item, ['amount' => 1]);
+        $ship->getItems()->attach($item, ['amount' => 1]);
         // Start with a bit of money and full energy.
         $ship->credits   = 1000;
         $ship->energy    = $ship->energy_capacity;

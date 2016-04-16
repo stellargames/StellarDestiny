@@ -5,8 +5,9 @@ namespace Stellar\Http\Controllers\Api;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
-use Stellar\Api\Contracts\CommandResultInterface;
 use Stellar\Api\Contracts\CommandHandlerInterface;
+use Stellar\Api\Contracts\CommandResultInterface;
+use Stellar\Exceptions\UnknownCommandException;
 use Stellar\Http\Controllers\Controller;
 
 class ApiController extends Controller
@@ -39,11 +40,15 @@ class ApiController extends Controller
     public function request(Request $request, CommandHandlerInterface $handler)
     {
         $player    = $request->user('api');
-        $command   = $request->input('command', 'info');
+        $command   = $request->input('command');
         $arguments = $request->input('arguments', []);
-        $result    = $handler->handle($player, $command, $arguments);
-
-        $response = $this->getResponse($result);
+        try {
+            $result   = $handler->handle($player, $command, $arguments);
+            $response = $this->getResponse($result);
+        } catch (UnknownCommandException $e) {
+            $result   = null;
+            $response = $this->getErrorResponse($e->getMessage());
+        }
 
         // Mark the response with the requestId.
         if ($request->has('requestId')) {
@@ -51,7 +56,7 @@ class ApiController extends Controller
         }
 
         // Use dataTransformer to transform the returned data.
-        if ($result->succeeded() && $result->hasData()) {
+        if ($result !== null && $result->succeeded() && $result->hasData()) {
             foreach ($result->getData() as $key => $value) {
                 $response['data'][$key] = $this->dataTransformer->createData($value)->toArray();
             }
@@ -79,13 +84,15 @@ class ApiController extends Controller
 
 
     /**
+     * @param string $message
+     *
      * @return array
      */
-    protected function getEmptyResponse()
+    protected function getErrorResponse($message)
     {
         $response = [
           'success'    => false,
-          'messages'   => ['No result'],
+          'messages'   => [$message],
           'serverTime' => Carbon::now()->toIso8601String(),
         ];
         return $response;
@@ -100,7 +107,7 @@ class ApiController extends Controller
     protected function getResponse(CommandResultInterface $result)
     {
         if ($result === null) {
-            return $this->getEmptyResponse();
+            return $this->getErrorResponse('No result');
         }
         return $this->getBasicResponse($result);
     }

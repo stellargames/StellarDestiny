@@ -3,6 +3,9 @@
 class JumpCommandCest
 {
 
+    protected $galaxy;
+
+
     public function _before(ApiTester $I)
     {
         $I->amAuthenticated();
@@ -51,5 +54,17 @@ class JumpCommandCest
     }
 
 
+    public function canJump(ApiTester $I)
+    {
+        $galaxy  = Galaxy::createNew(50);
+        $star    = $galaxy->getStartingStar();
+        $request = [
+          'command'   => 'jump',
+          'arguments' => ['destination' => [$star->getName()]],
+        ];
+
+        $I->sendPOST('command', $request);
+        $I->seeResponseContainsJson(['success' => true]);
+    }
 
 }

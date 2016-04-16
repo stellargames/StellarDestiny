@@ -2,33 +2,48 @@
 
 namespace Stellar\Api\Transformers;
 
+use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
-use Stellar\Models\User;
+use Stellar\Api\Contracts\PlayerInterface;
 
 class UserTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-      //'ship',
+        'ship',
     ];
 
 
-    public function transform(User $user)
+    /**
+     * @param \Stellar\Api\Contracts\PlayerInterface $player
+     *
+     * @return array
+     */
+    public function transform(PlayerInterface $player)
     {
         return [
-          'name'        => $user->name,
-          'reputation'  => $user->reputation,
-          'alignment'   => $user->alignment,
-          'affiliation' => $user->affiliation,
+          'name'        => $player->getName(),
+          'reputation'  => $player->getReputation(),
+          'alignment'   => $player->getAlignment(),
+          'affiliation' => $player->getAffiliation(),
         ];
     }
 
 
-    public function includeShip(User $user)
+    /**
+     * @param \Stellar\Api\Contracts\PlayerInterface $player
+     *
+     * @return \League\Fractal\Resource\Item
+     */
+    public function includeShip(PlayerInterface $player)
     {
-        $ship = $user->ship;
+        $ship = $player->getShip();
 
-        return $this->item($ship, new ShipTransformer);
+        if ($ship === null) {
+            return $this->null();
+        }
+
+        return $this->item($ship, new ShipTransformer());
     }
 
 }

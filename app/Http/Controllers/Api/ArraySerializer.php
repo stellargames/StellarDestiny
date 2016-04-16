@@ -23,4 +23,12 @@ class ArraySerializer extends \League\Fractal\Serializer\ArraySerializer
         return $resourceKey === self::RESOURCE_EMBEDDED_KEY ? $data : parent::collection($resourceKey, $data);
     }
 
+
+    /**
+     * @return array
+     */
+    public function null() {
+        return [];
+    }
+
 }

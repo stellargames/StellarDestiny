@@ -6,12 +6,8 @@ use ApiTester;
 class AuthenticationCest
 {
 
-    protected $testCommand;
-
-
     public function _before(ApiTester $I)
     {
-        $this->testCommand = 'command';
         $I->haveModel(\Stellar\Models\User::class, [
           'name'     => 'John Doe',
           'email'    => 'john@doe.com',

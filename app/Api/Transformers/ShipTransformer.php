@@ -3,7 +3,7 @@
 namespace Stellar\Api\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use Stellar\Models\Ship;
+use Stellar\Api\Contracts\ShipInterface;
 
 class ShipTransformer extends TransformerAbstract
 {
@@ -15,42 +15,42 @@ class ShipTransformer extends TransformerAbstract
     ];
 
 
-    public function transform(Ship $ship)
+    public function transform(ShipInterface $ship)
     {
         return [
-          'name'           => $ship->name,
-          'energy'         => $ship->energy,
-          'structure'      => $ship->structure,
-          'credits'        => $ship->credits,
-          'energyCapacity' => $ship->energy_capacity,
-          'shields'        => $ship->shields,
-          'armor'          => $ship->armor,
-          'kinetics'       => $ship->kinetics,
-          'beams'          => $ship->beams,
-          'itemCount'      => count($ship->items),
+          'name'           => $ship->getName(),
+          'energy'         => $ship->getEnergy(),
+          'structure'      => $ship->getStructure(),
+          'credits'        => $ship->getCredits(),
+          'energyCapacity' => $ship->getEnergyCapacity(),
+          'shields'        => $ship->getShields(),
+          'armor'          => $ship->getArmor(),
+          'kinetics'       => $ship->getKinetics(),
+          'beams'          => $ship->getBeams(),
+          'itemCount'      => count($ship->getItems()),
         ];
     }
 
 
-    public function includeType(Ship $ship)
+    public function includeType(ShipInterface $ship)
     {
-        $type = $ship->type;
+        $type = $ship->getType();
 
         return $this->item($type, new ShipTypeTransformer);
     }
 
 
-    public function includeLocation(Ship $ship)
+    public function includeLocation(ShipInterface $ship)
     {
-        $star = $ship->location;
+        $star = $ship->getLocation();
 
         return $this->item($star, new StarTransformer);
     }
 
 
-    public function includeItems(Ship $ship)
+    public function includeItems(ShipInterface $ship)
     {
-        $items = $ship->items;
+        $items = $ship->getItems();
 
         return $this->collection($items, new ItemTransformer, 'embedded');
     }

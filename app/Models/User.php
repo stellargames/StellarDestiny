@@ -221,7 +221,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function getShip()
     {
-        return $this->ship();
+        return $this->ship;
     }
 
 

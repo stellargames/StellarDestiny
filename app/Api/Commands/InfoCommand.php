@@ -12,7 +12,7 @@ class InfoCommand extends Command
     public function execute(array $arguments = [])
     {
         $result = new InfoCommandResult();
-        $result->addItem('player', new Item($this->player, new UserTransformer));
+        $result->addItem('player', new Item($this->player, new UserTransformer()));
 
         return $result;
     }

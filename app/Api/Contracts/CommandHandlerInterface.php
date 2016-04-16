@@ -11,6 +11,7 @@ interface CommandHandlerInterface
      * @param array           $arguments
      *
      * @return \Stellar\Api\Contracts\CommandResultInterface
+     * @throws \Stellar\Exceptions\UnknownCommandException
      */
     public function handle($player, $command, array $arguments = []);
 }
