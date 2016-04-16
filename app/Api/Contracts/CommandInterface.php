@@ -1,5 +1,5 @@
 <?php
-namespace Stellar\Api;
+namespace Stellar\Api\Contracts;
 
 interface CommandInterface
 {
@@ -7,7 +7,7 @@ interface CommandInterface
     /**
      * @param array $arguments
      *
-     * @return \Stellar\Api\CommandResultInterface
+     * @return \Stellar\Api\Contracts\CommandResultInterface
      */
     public function execute(array $arguments = []);
 }

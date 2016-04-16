@@ -1,6 +1,6 @@
 <?php
 
-namespace Stellar\Contracts;
+namespace Stellar\Api\Contracts;
 
 interface CommandHandlerInterface
 {
@@ -10,7 +10,7 @@ interface CommandHandlerInterface
      * @param string          $command
      * @param array           $arguments
      *
-     * @return \Stellar\Api\CommandResultInterface
+     * @return \Stellar\Api\Contracts\CommandResultInterface
      */
     public function handle($player, $command, array $arguments = []);
 }

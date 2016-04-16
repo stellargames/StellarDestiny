@@ -11,7 +11,7 @@ use Stellar\Models\ShipType;
 use Stellar\Models\User;
 use Stellar\Repositories\Eloquent\StarRepository;
 
-class ShipFactory
+class _ShipFactory
 {
 
     /**

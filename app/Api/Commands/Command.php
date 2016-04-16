@@ -1,7 +1,7 @@
 <?php
 namespace Stellar\Api\Commands;
 
-use Stellar\Contracts\PlayerInterface;
+use Stellar\Api\Contracts\PlayerInterface;
 
 abstract class Command
 {
@@ -12,7 +12,7 @@ abstract class Command
     /**
      * Command constructor.
      *
-     * @param \Stellar\Contracts\PlayerInterface $player
+     * @param \Stellar\Api\Contracts\PlayerInterface $player
      */
     public function __construct(PlayerInterface $player)
     {

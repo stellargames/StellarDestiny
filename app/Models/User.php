@@ -9,8 +9,8 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use Stellar\Contracts\PlayerInterface;
-use Stellar\ShipFactory;
+use Stellar\Api\Contracts\PlayerInterface;
+//use Stellar\ShipFactory;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, JWTSubject, PlayerInterface
@@ -132,10 +132,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function setStartingShip()
     {
-        $ship = ShipFactory::getStartingShip($this);
-        // Make the ship belong to the player.
-        $this->current_ship = $ship->id;
-        $this->save();
+        //$ship = ShipFactory::getStartingShip($this);
+        //// Make the ship belong to the player.
+        //$this->current_ship = $ship->id;
+        //$this->save();
     }
 
 
@@ -217,7 +217,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     /**
      * Get the ship the player is currently using.
      *
-     * @return \Stellar\Contracts\ShipInterface
+     * @return \Stellar\Api\Contracts\ShipInterface
      */
     public function getShip()
     {

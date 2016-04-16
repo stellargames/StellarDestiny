@@ -2,8 +2,8 @@
 
 namespace Stellar\Api\Commands;
 
-use Stellar\Api\CommandInterface;
-use Stellar\Api\CommandResultInterface;
+use Stellar\Api\Contracts\CommandInterface;
+use Stellar\Api\Contracts\CommandResultInterface;
 
 class JumpCommand implements CommandInterface
 {

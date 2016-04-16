@@ -5,9 +5,8 @@ namespace Stellar\Http\Controllers\Api;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use League\Fractal\Manager;
-use Stellar\Api\CommandResultInterface;
-use Stellar\Api\Transformers\ArraySerializer;
-use Stellar\Contracts\CommandHandlerInterface;
+use Stellar\Api\Contracts\CommandResultInterface;
+use Stellar\Api\Contracts\CommandHandlerInterface;
 use Stellar\Http\Controllers\Controller;
 
 class ApiController extends Controller

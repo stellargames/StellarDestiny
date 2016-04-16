@@ -1,5 +1,5 @@
 <?php
-namespace Stellar\Contracts;
+namespace Stellar\Api\Contracts;
 
 interface PlayerInterface
 {
@@ -47,7 +47,7 @@ interface PlayerInterface
     /**
      * Get the ship the player is currently using.
      *
-     * @return \Stellar\Contracts\ShipInterface
+     * @return \Stellar\Api\Contracts\ShipInterface
      */
     public function getShip();
 

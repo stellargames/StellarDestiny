@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Bind the command handler for the api.
-        $this->app->bind('Stellar\Contracts\CommandHandlerInterface', function ($app) {
+        $this->app->bind('Stellar\Api\Contracts\CommandHandlerInterface', function ($app) {
             $commands = $app['config']['api']['commands'];
             return new CommandHandler($commands);
         });

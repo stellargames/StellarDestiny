@@ -3,8 +3,8 @@
 namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Stellar\Api\Contracts\ShipInterface;
 use Stellar\Contracts\LocatableInterface;
-use Stellar\Contracts\ShipInterface;
 use Stellar\Exceptions\ShipException;
 
 /**
@@ -20,7 +20,7 @@ use Stellar\Exceptions\ShipException;
  * @property string                                                                     $name
  * @property \Carbon\Carbon                                                             $created_at
  * @property \Carbon\Carbon                                                             $updated_at
- * @property-read \Stellar\Models\User                                                  $owner
+ * @property-read \Stellar\Api\Contracts\PlayerInterface                                $owner
  * @property-read \Stellar\Models\Star                                                  $location
  * @property-read \Stellar\Models\ShipType                                              $type
  * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Items\Item[] $items

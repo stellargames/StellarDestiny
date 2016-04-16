@@ -3,7 +3,7 @@
 namespace Stellar\Api\Results;
 
 use League\Fractal\Resource\ResourceInterface;
-use Stellar\Api\CommandResultInterface;
+use Stellar\Api\Contracts\CommandResultInterface;
 
 abstract class CommandResult implements CommandResultInterface
 {
@@ -59,7 +59,7 @@ abstract class CommandResult implements CommandResultInterface
      *
      * @param $message
      *
-     * @return \Stellar\Api\CommandResultInterface
+     * @return \Stellar\Api\Contracts\CommandResultInterface
      */
     public function fail($message)
     {
@@ -73,7 +73,7 @@ abstract class CommandResult implements CommandResultInterface
     /**
      * @param string $message
      *
-     * @return \Stellar\Api\CommandResultInterface
+     * @return \Stellar\Api\Contracts\CommandResultInterface
      */
     public function addMessage($message)
     {
@@ -105,7 +105,7 @@ abstract class CommandResult implements CommandResultInterface
      * @param string            $key
      * @param ResourceInterface $item
      *
-     * @return \Stellar\Api\CommandResultInterface
+     * @return \Stellar\Api\Contracts\CommandResultInterface
      */
     public function addItem($key, $item)
     {
