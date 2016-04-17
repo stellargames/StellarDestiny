@@ -27,7 +27,7 @@ class ShipTransformer extends TransformerAbstract
           'armor'          => $ship->getArmor(),
           'kinetics'       => $ship->getKinetics(),
           'beams'          => $ship->getBeams(),
-          'itemCount'      => count($ship->getItems()),
+          'itemCount'      => count($ship->items()),
         ];
     }
 
@@ -50,7 +50,7 @@ class ShipTransformer extends TransformerAbstract
 
     public function includeItems(ShipInterface $ship)
     {
-        $items = $ship->getItems();
+        $items = $ship->items();
 
         return $this->collection($items, new ItemTransformer, 'embedded');
     }

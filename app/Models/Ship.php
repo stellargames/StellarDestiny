@@ -3,48 +3,12 @@
 namespace Stellar\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Stellar\Api\Contracts\PlayerInterface;
 use Stellar\Api\Contracts\ShipInterface;
 use Stellar\Contracts\LocatableInterface;
 use Stellar\Exceptions\ShipException;
 use Stellar\Repositories\Contracts\StarInterface;
 
-/**
- * Stellar\Models\Ship
- *
- * @property integer                                                                    $id
- * @property integer                                                                    $user_id
- * @property integer                                                                    $star_id
- * @property integer                                                                    $ship_type_id
- * @property integer                                                                    $energy
- * @property integer                                                                    $structure
- * @property integer                                                                    $credits
- * @property string                                                                     $name
- * @property \Carbon\Carbon                                                             $created_at
- * @property \Carbon\Carbon                                                             $updated_at
- * @property-read \Stellar\Api\Contracts\PlayerInterface                                $owner
- * @property-read StarInterface                                                         $location
- * @property-read \Stellar\Models\ShipType                                              $type
- * @property-read \Illuminate\Database\Eloquent\Collection|\Stellar\Models\Items\Item[] $items
- * @property-read int                                                                   $energy_capacity
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStarId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereShipTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereEnergy($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStructure($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereCredits($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereName($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereUpdatedAt($value)
- * @property-read mixed                                                                 $cargo_capacity
- * @property-read mixed                                                                 $shields
- * @property-read mixed                                                                 $armor
- * @property-read mixed                                                                 $kinetics
- * @property-read mixed                                                                 $beams
- * @property string                                                                     $star_name
- * @method static \Illuminate\Database\Query\Builder|\Stellar\Models\Ship whereStarName($value)
- * @mixin \Eloquent
- */
 class Ship extends Model implements LocatableInterface, ShipInterface
 {
 
@@ -76,7 +40,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getOwner()
+    public function owner()
     {
         return $this->belongsTo('Stellar\Models\User', 'user_id');
     }
@@ -109,7 +73,7 @@ class Ship extends Model implements LocatableInterface, ShipInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function getItems()
+    public function items()
     {
         return $this->belongsToMany('Stellar\Models\Items\Item')->withPivot('amount', 'paid');
     }
@@ -389,5 +353,60 @@ class Ship extends Model implements LocatableInterface, ShipInterface
     public function getType()
     {
         return $this->type;
+    }
+
+
+    /**
+     * The items installed on the ship.
+     *
+     * @return array
+     */
+    public function getItems()
+    {
+        return $this->items->toArray();
+    }
+
+
+    /**
+     * The player that owns the ship.
+     *
+     * @return PlayerInterface
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+
+    /**
+     * The items installed on the ship.
+     *
+     * @return array
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * Get the amount of structure points this ship has.
+     *
+     * @return int
+     */
+    public function getStructure()
+    {
+        return $this->type->structure;
+    }
+
+
+    /**
+     * Get the amount of credits store on this ship.
+     *
+     * @return int
+     */
+    public function getCredits()
+    {
+        return $this->credits;
     }
 }

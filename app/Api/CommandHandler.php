@@ -3,7 +3,6 @@
 namespace Stellar\Api;
 
 use Stellar\Api\Contracts\CommandHandlerInterface;
-use Stellar\Api\Contracts\PlayerInterface;
 use Stellar\Exceptions\UnknownCommandException;
 
 class CommandHandler implements CommandHandlerInterface
@@ -29,20 +28,19 @@ class CommandHandler implements CommandHandlerInterface
     /**
      * Handle the execution of the specified command.
      *
-     * @param PlayerInterface $player
-     * @param string          $command   The command to execute.
-     * @param array           $arguments [optional] arguments for the command.
+     * @param string $command   The command to execute.
+     * @param array  $arguments [optional] arguments for the command.
      *
      * @return \Stellar\Api\Contracts\CommandResultInterface
      * @throws \Stellar\Exceptions\UnknownCommandException
      */
-    public function handle($player, $command, array $arguments = [])
+    public function handle($command, array $arguments = [])
     {
         if (!array_key_exists($command, $this->commands)) {
             throw new UnknownCommandException('Unknown command: ' . $command);
         }
         /** @var \Stellar\Api\Contracts\CommandInterface $command */
-        $command = new $this->commands[$command]($player);
+        $command = new $this->commands[$command]();
 
         return $command->execute($arguments);
     }

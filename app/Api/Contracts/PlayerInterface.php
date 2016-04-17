@@ -62,6 +62,10 @@ interface PlayerInterface
 
     /**
      * Attach a basic starter ship to the player.
+     *
+     * @param \Stellar\Api\Contracts\ShipInterface $ship
+     *
+     * @return PlayerInterface
      */
-    public function setStartingShip();
+    public function setShip(ShipInterface $ship);
 }

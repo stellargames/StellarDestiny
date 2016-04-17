@@ -2,7 +2,6 @@
 
 namespace Stellar\Api\Transformers;
 
-use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 use Stellar\Api\Contracts\PlayerInterface;
 
@@ -10,7 +9,7 @@ class UserTransformer extends TransformerAbstract
 {
 
     protected $defaultIncludes = [
-        'ship',
+      'ship',
     ];
 
 

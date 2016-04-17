@@ -31,6 +31,13 @@ interface ShipInterface
      */
     public function getItems();
 
+    /**
+     * The items installed on the ship.
+     *
+     * @return array
+     */
+    public function getName();
+
 
     /**
      * Calculate the total energy storage from the available jumpstores.
@@ -46,6 +53,20 @@ interface ShipInterface
      * @return int
      */
     public function getShields();
+    
+    /**
+     * Get the amount of structure points this ship has.
+     *
+     * @return int
+     */
+    public function getStructure();
+    
+    /**
+     * Get the amount of credits store on this ship.
+     *
+     * @return int
+     */
+    public function getCredits();
 
 
     /**

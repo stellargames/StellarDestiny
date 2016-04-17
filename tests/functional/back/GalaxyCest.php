@@ -79,9 +79,9 @@ class GalaxyCest
 
     public function travelToAllStars(FunctionalTester $I)
     {
-        $this->galaxy->createNew(StarRepository::GALAXY_LARGE);
+        $this->galaxy->createNew(StarRepository::GALAXY_SMALL);
         $count = $this->howManyStarsCanWeVisit();
-        $I->assertEquals(StarRepository::GALAXY_LARGE, $count);
+        $I->assertEquals(StarRepository::GALAXY_SMALL, $count);
     }
 
 

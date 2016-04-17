@@ -42,8 +42,10 @@ class ApiController extends Controller
         $player    = $request->user('api');
         $command   = $request->input('command');
         $arguments = $request->input('arguments', []);
+        // Add context.
+        $arguments = array_replace($arguments, ['player' => $player, 'galaxy' => app('galaxy')]);
         try {
-            $result   = $handler->handle($player, $command, $arguments);
+            $result   = $handler->handle($command, $arguments);
             $response = $this->getResponse($result);
         } catch (UnknownCommandException $e) {
             $result   = null;

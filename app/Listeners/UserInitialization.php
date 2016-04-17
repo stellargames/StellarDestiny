@@ -3,6 +3,7 @@
 namespace Stellar\Listeners;
 
 use Stellar\Events\UserRegistered;
+use Stellar\ShipFactory;
 
 class UserInitialization
 {
@@ -29,7 +30,8 @@ class UserInitialization
         // Give the player a ship.
         $player = $event->user;
         if ($player->isPlayer()) {
-            $player->setStartingShip();
+            $ship = ShipFactory::getStartingShip($player);
+            $player->setShip($ship);
         }
     }
 }

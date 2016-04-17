@@ -1,5 +1,5 @@
 <?php
-use Stellar\Models\User;
+use Stellar\Events\UserRegistered;
 
 /**
  * Inherited Methods
@@ -31,14 +31,9 @@ class ApiTester extends \Codeception\Actor
     public function amAuthenticated()
     {
         $I = $this;
-        // Log in to get a token.
-        $I->haveModel(User::class, [
-          'name'     => 'John Doe',
-          'email'    => 'john@doe.com',
-          'status'   => User::REGISTERED,
-          'password' => bcrypt('password'),
-        ]);
-        $I->sendPOST('login', ['email' => 'john@doe.com', 'password' => 'password']);
+        $user = factory(Stellar\Models\User::class)->create(['password' => bcrypt('password')]);
+        Event::fire(new UserRegistered($user));
+        $I->sendPOST('login', ['email' => $user->email, 'password' => 'password']);
         $token = $I->grabDataFromResponseByJsonPath("$['data']['token']");
         $I->amBearerAuthenticated($token[0]);
         $I->haveHttpHeader('Accept', 'application/json');

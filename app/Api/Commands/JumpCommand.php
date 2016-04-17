@@ -2,13 +2,11 @@
 
 namespace Stellar\Api\Commands;
 
-use Stellar\Api\Contracts\CommandInterface;
 use Stellar\Api\Contracts\CommandResultInterface;
 use Stellar\Api\Results\JumpCommandResult;
-use Stellar\Facades\Galaxy;
 use Stellar\Repositories\Contracts\StarInterface;
 
-class JumpCommand implements CommandInterface
+class JumpCommand extends Command
 {
 
     /**
@@ -22,10 +20,31 @@ class JumpCommand implements CommandInterface
         if (!array_key_exists('destination', $arguments)) {
             return $result->fail('No destination provided');
         }
-        $star = Galaxy::getStarByName($arguments['destination']);
+        try {
+            $galaxy = $this->getGalaxy($arguments);
+        } catch (\InvalidArgumentException $e) {
+            return $result->fail($e->getMessage());
+        }
+        $star = $galaxy->getStarByName($arguments['destination']);
         if (!$star instanceof StarInterface) {
             return $result->fail('Illegal destination provided');
         }
+        try {
+            $player = $this->getPlayer($arguments);
+        } catch (\InvalidArgumentException $e) {
+            return $result->fail($e->getMessage());
+        }
+        $ship       = $player->getShip();
+        $jumpPoints = $ship->scanForJumpPoints();
+        if (!in_array($star, $jumpPoints, false)) {
+            return $result->fail('Illegal destination provided');
+        }
+
+        if ($ship->getEnergy() < 1) {
+            return $result->fail('Insufficient energy');
+        }
+
+        $ship->setLocation($star);
 
         return $result;
     }

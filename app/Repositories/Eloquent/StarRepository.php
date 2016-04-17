@@ -199,29 +199,36 @@ class StarRepository implements StarRepositoryInterface
 
     /**
      * @return StarInterface
+     * @throws \Stellar\Exceptions\GalaxyException
      */
     public static function getStartingStar()
     {
-        return Star::all()->random();
+        try {
+            $star = Star::all()->random(); 
+        } catch (\InvalidArgumentException $e) {
+            throw new GalaxyException('Failed to get a random star', null, $e);
+        }
+        return $star;
     }
 
 
     /**
-     * @return void
+     * @return StarRepositoryInterface
      */
     public function save()
     {
         foreach ($this->stars as $star) {
             $star->push();
         }
+        return $this;
     }
 
 
     /**
      * @param $size
      *
-     * @return $this
-     * @throws \Exception
+     * @return StarRepositoryInterface
+     * @throws \Stellar\Exceptions\GalaxyException
      */
     public function createNew($size)
     {
@@ -232,12 +239,17 @@ class StarRepository implements StarRepositoryInterface
 
 
     /**
-     * @return $this
-     * @throws \Exception
+     * @return StarRepositoryInterface
+     * @throws \Stellar\Exceptions\GalaxyException
      */
     public function deleteAllStars()
     {
-        Star::getQuery()->delete();
+        try {
+            Star::getQuery()->delete();
+        }
+        catch (\Exception $e) {
+            throw new GalaxyException('Failed to delete all stars', null, $e);
+        }
         $this->stars = [];
         return $this;
     }
